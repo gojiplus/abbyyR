@@ -24,5 +24,11 @@ app_password = "app_password"
 
 ```
 
+### Functions
+
+```{r}
+
+
+```
 #### License
 Scripts are released under the [GNU V3](License.md).
