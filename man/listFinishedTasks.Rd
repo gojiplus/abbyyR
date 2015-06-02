@@ -6,17 +6,12 @@
 \usage{
 listFinishedTasks(app_id = app_id, app_password = app_password)
 }
-\arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-}
 \description{
 This function gets Information about a particular application
 }
 \examples{
-listFinishedTasks()
+listFinishedTasks(app_id=app_id, app_password=app_password)
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Finished}
+\keyword{Tasks}
 

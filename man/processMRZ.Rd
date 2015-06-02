@@ -15,7 +15,7 @@ processMRZ(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processMRZ()
+processMRZ(app_id=app_id, app_password=app_password)
 }
 \keyword{Application}
 \keyword{Information}

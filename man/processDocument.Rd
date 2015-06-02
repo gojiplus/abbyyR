@@ -12,10 +12,10 @@ processDocument(app_id = app_id, app_password = app_password)
 \item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
 }
 \description{
-This function gets Information about a particular application
+This function processes several images
 }
 \examples{
-processDocument()
+processDocument(app_id=app_id, app_password=app_password)
 }
 \keyword{Application}
 \keyword{Information}

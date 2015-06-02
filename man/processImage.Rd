@@ -4,18 +4,38 @@
 \alias{processImage}
 \title{Process Image}
 \usage{
-processImage(app_id = app_id, app_password = app_password)
+processImage(app_id = app_id, app_password = app_password,
+  language = "English", profile = "documentConversion",
+  textType = "normal", imageSource = "auto", correctOrientation = "true",
+  correctSkew = "true", readBarcodes, exportFormat = "txt",
+  description = "", pdfPassword = "", file_path)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{language;}{default: English}
 
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{profile;}{default: documentConversion}
+
+\item{textType;}{default: normal}
+
+\item{imageSource;}{default: auto}
+
+\item{correctOrientation;}{default: true}
+
+\item{correctSkew;}{default: true}
+
+\item{readBarcodes;}{default:}
+
+\item{exportFormat;}{default: txt}
+
+\item{pdfPassword;}{default:}
+
+\item{description;}{default:}
 }
 \description{
-This function gets Information about a particular application
+This function processes an image
 }
 \examples{
-processImage()
+processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true",readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 }
 \keyword{Application}
 \keyword{Information}

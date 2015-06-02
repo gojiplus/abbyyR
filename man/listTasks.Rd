@@ -4,19 +4,22 @@
 \alias{listTasks}
 \title{List Tasks}
 \usage{
-listTasks(app_id = app_id, app_password = app_password)
+listTasks(app_id = app_id, app_password = app_password, fromDate, toDate,
+  excludeDeleted)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{fromDate;}{not required;  format: yyyy-mm-ddThh:mm:ssZ}
 
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{toDate;}{not required;  format: yyyy-mm-ddThh:mm:ssZ}
+
+\item{excludeDeleted;}{not required; default='false'}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-listTasks()
+listTasks(app_id=app_id, app_password=app_password,fromDate,toDate,excludeDeleted)
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{List}
+\keyword{Tasks}
 

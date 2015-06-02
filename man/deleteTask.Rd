@@ -7,16 +7,14 @@
 deleteTask(app_id = app_id, app_password = app_password, taskId)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{taskId}{}
 }
 \description{
-This function gets Information about a particular application
+This function deletes the given task and the images associated with this task.
 }
 \examples{
-deleteTask(app_id, app_password, taskId)
+deleteTask(app_id=app_id, app_password=app_password, taskId)
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Delete}
+\keyword{Task}
 

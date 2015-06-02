@@ -15,7 +15,7 @@ processRemoteImage(app_id = app_id, app_password = app_password, img_url)
 This function gets Information about a particular application
 }
 \examples{
-getAppInfo(img_url)
+getAppInfo(app_id=app_id, app_password=app_password, img_url)
 }
 \keyword{Application}
 \keyword{Information}

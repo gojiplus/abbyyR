@@ -7,16 +7,14 @@
 getTaskStatus(app_id = app_id, app_password = app_password, taskId)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{taskId}{}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-getTaskStatus(app_id, app_password, taskId)
+getTaskStatus(app_id=app_id, app_password=app_password, taskId)
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Status}
+\keyword{Task}
 
