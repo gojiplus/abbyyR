@@ -1,0 +1,15 @@
+citHeader("To cite package 'abbyyR' in publications use:")
+     
+year <- sub(".*(2[[:digit:]]{3})-.*", "\\1", meta$Date, perl = TRUE)
+vers <- paste("R package version", meta$Version)
+ 
+citEntry(entry="Manual",
+		  title = "abbyyR: Access Abbyy FineReader Cloud OCR API via R",
+		  author = personList(as.person("Gaurav SOod")),
+		  year = year,
+		  note = vers,
+		  textVersion =
+		  paste("Gaurav Sood (",
+				year,
+				"). abbyyR: Access Abbyy FineReader Cloud OCR API via R. ",
+				vers, ".", sep=""))
