@@ -19,19 +19,17 @@ http://ocrsdk.com/
 #' @examples
 #' getAppInfo(app_id=app_id, app_password=app_password)
 
-getAppInfo <- function(app_id=app_id, app_password=app_password){
-	res <- httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/getApplicationInfo"))
-	stop_for_status(res)
-	xmlToList(content(res))
-}
+getAppInfo <- function(appId=app_id, appPass=app_password){
+	res <- httr::GET(paste0("http://",appId,":",appPass,"@cloud.ocrsdk.com/getApplicationInfo"))
+	httr::stop_for_status(res)
+	appinfo <- XML::xmlToList(httr::content(res))[[1]]
 
-#' @export
-print.getAppInfo <- function(x, ...){
-  cat("Name of Application: ", x[[1]]$name, "\n", sep = "")
-  cat("No. of Pages Remaining: ", x[[1]]$pages, "\n", sep = "")
-  cat("No. of Fields Remaining: ", x[[1]]$fields, "\n", sep = "")
-  cat("Application Credits Expire on: ", x[[1]]$expires, "\n", sep = "")
-  cat("Type: ", x[[1]]$type, "\n", sep = "")
+	cat("Name of Application: ", appinfo$name, "\n", sep = "")
+  	cat("No. of Pages Remaining: ", appinfo$pages, "\n", sep = "")
+  	cat("No. of Fields Remaining: ", appinfo$fields, "\n", sep = "")
+  	cat("Application Credits Expire on: ", appinfo$expires, "\n", sep = "")
+  	cat("Type: ", appinfo$type, "\n", sep = "")
+  	return(appinfo)
 }
 
 #' Submit Image

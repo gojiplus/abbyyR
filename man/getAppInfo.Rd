@@ -4,7 +4,7 @@
 \alias{getAppInfo}
 \title{Get Application Info}
 \usage{
-getAppInfo(app_id = app_id, app_password = app_password)
+getAppInfo(appId = app_id, appPass = app_password)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
