@@ -32,6 +32,76 @@ getAppInfo <- function(appId=app_id, appPass=app_password){
   	return(appinfo)
 }
 
+#' List Tasks
+#'
+#' This function gets Information about a particular application
+#' @param fromDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
+#' @param toDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
+#' @param excludeDeleted; not required; default='false'
+#' @keywords List Tasks
+#' @export
+#' @examples
+#' listTasks(app_id=app_id, app_password=app_password,fromDate,toDate,excludeDeleted)
+
+listTasks <- function(appId=app_id, appPass=app_password,fromDate,toDate,excludeDeleted){
+	res <- httr::GET(paste0("http://",appId,":",appPass,"@cloud.ocrsdk.com/listTasks"))
+	httr::stop_for_status(res)
+	tasklist <- XML::xmlToList(httr::content(res))
+
+	lenitem <- sapply(tasklist, length) # length of each list item
+	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
+	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
+
+	cat("No. of Tasks: ", nrow(resdf), "\n")
+  	cat("Task IDs: \n", paste(resdf$id, collapse='\n '), "\n")
+  	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
+
+	return(resdf)
+}
+
+#' List Finished Tasks
+#'
+#' This function gets Information about a particular application
+#' @keywords Finished Tasks
+#' @export
+#' @examples
+#' listFinishedTasks(app_id=app_id, app_password=app_password)
+
+listFinishedTasks <- function(app_id=app_id, app_password=app_password){
+	res <- httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/listFinishedTasks"))
+	httr::stop_for_status(res)
+}
+
+#' Get Task Status
+#'
+#' This function gets Information about a particular application
+#' @param taskId
+#' @keywords Task Status
+#' @export
+#' @examples
+#' getTaskStatus(app_id=app_id, app_password=app_password, taskId)
+
+getTaskStatus <- function(app_id=app_id, app_password=app_password, taskId){
+	res <- httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/getTaskStatus"))
+	httr::stop_for_status(res)
+}
+
+#' Delete Task
+#'
+#' This function deletes the given task and the images associated with this task.
+#' @param taskId
+#' @keywords Delete Task
+#' @export
+#' @examples
+#' deleteTask(app_id=app_id, app_password=app_password, taskId)
+
+deleteTask <- function(app_id=app_id, app_password=app_password, taskId){
+	res <- httr::POST(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/deleteTask"))
+	httr::stop_for_status(res)
+}
+
 #' Submit Image
 #'
 #' Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
@@ -44,7 +114,7 @@ getAppInfo <- function(appId=app_id, appPass=app_password){
 #' submitImage(file_path,taskId,pdfPassword)
 
 submitImage <- function(app_id=app_id, app_password=app_password, file_path){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/submitImage"), body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/submitImage"), body=upload_file(file_path))
 }
 
 #' Process Remote Image
@@ -57,8 +127,9 @@ submitImage <- function(app_id=app_id, app_password=app_password, file_path){
 #' @references \url{http://dhttp://ocrsdk.com/documentation/apireference/processRemoteImage/}
 #' @examples
 #' processRemoteImage(app_id=app_id, app_password=app_password, img_url)
+
 processRemoteImage <- function(app_id=app_id, app_password=app_password, img_url){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
+	httr::POST(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
 }
 
 #' Process Image
@@ -200,55 +271,3 @@ processPhotoId <- function(app_id=app_id, app_password=app_password){
 	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/processPhotoId"))
 }
 
-#' List Tasks
-#'
-#' This function gets Information about a particular application
-#' @param fromDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
-#' @param toDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
-#' @param excludeDeleted; not required; default='false'
-#' @keywords List Tasks
-#' @export
-#' @examples
-#' listTasks(app_id=app_id, app_password=app_password,fromDate,toDate,excludeDeleted)
-
-listTasks <- function(app_id=app_id, app_password=app_password,fromDate,toDate,excludeDeleted){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/listTasks"))
-}
-
-#' List Finished Tasks
-#'
-#' This function gets Information about a particular application
-#' @keywords Finished Tasks
-#' @export
-#' @examples
-#' listFinishedTasks(app_id=app_id, app_password=app_password)
-
-listFinishedTasks <- function(app_id=app_id, app_password=app_password){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/listFinishedTasks"))
-}
-
-#' Get Task Status
-#'
-#' This function gets Information about a particular application
-#' @param taskId
-#' @keywords Task Status
-#' @export
-#' @examples
-#' getTaskStatus(app_id=app_id, app_password=app_password, taskId)
-
-getTaskStatus <- function(app_id=app_id, app_password=app_password, taskId){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/getTaskStatus"))
-}
-
-#' Delete Task
-#'
-#' This function deletes the given task and the images associated with this task.
-#' @param taskId
-#' @keywords Delete Task
-#' @export
-#' @examples
-#' deleteTask(app_id=app_id, app_password=app_password, taskId)
-
-deleteTask <- function(app_id=app_id, app_password=app_password, taskId){
-	httr::POST(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/deleteTask"))
-}
