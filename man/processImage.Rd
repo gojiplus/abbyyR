@@ -37,6 +37,9 @@ This function processes an image
 \examples{
 processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true",readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 }
+\references{
+\url{http://dhttp://ocrsdk.com/documentation/apireference/processImage/}
+}
 \keyword{Application}
 \keyword{Information}
 

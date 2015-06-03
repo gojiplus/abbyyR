@@ -14,11 +14,24 @@ http://ocrsdk.com/
 #' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
 #' @keywords Application Information
 #' @export
+#' @references \url{http://dhttp://ocrsdk.com/documentation/apireference/getApplicationInfo/}
+#' @references \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 #' @examples
-#' getAppInfo()
+#' getAppInfo(app_id=app_id, app_password=app_password)
 
 getAppInfo <- function(app_id=app_id, app_password=app_password){
-	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/getApplicationInfo"))
+	res <- httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/getApplicationInfo"))
+	stop_for_status(res)
+	xmlToList(content(res))
+}
+
+#' @export
+print.getAppInfo <- function(x, ...){
+  cat("Name of Application: ", x[[1]]$name, "\n", sep = "")
+  cat("No. of Pages Remaining: ", x[[1]]$pages, "\n", sep = "")
+  cat("No. of Fields Remaining: ", x[[1]]$fields, "\n", sep = "")
+  cat("Application Credits Expire on: ", x[[1]]$expires, "\n", sep = "")
+  cat("Type: ", x[[1]]$type, "\n", sep = "")
 }
 
 #' Submit Image
@@ -28,8 +41,9 @@ getAppInfo <- function(app_id=app_id, app_password=app_password){
 #' @param pdfPassword - Optional. If the pdf is password protected, put the password here.
 #' @keywords Submit Image
 #' @export
+#' @references \url{http://dhttp://ocrsdk.com/documentation/apireference/submitImage/}
 #' @examples
-#' getAppInfo(file_path,taskId,pdfPassword)
+#' submitImage(file_path,taskId,pdfPassword)
 
 submitImage <- function(app_id=app_id, app_password=app_password, file_path){
 	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/submitImage"), body=upload_file(file_path))
@@ -42,8 +56,9 @@ submitImage <- function(app_id=app_id, app_password=app_password, file_path){
 #' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
 #' @keywords Application Information
 #' @export
+#' @references \url{http://dhttp://ocrsdk.com/documentation/apireference/processRemoteImage/}
 #' @examples
-#' getAppInfo(app_id=app_id, app_password=app_password, img_url)
+#' processRemoteImage(app_id=app_id, app_password=app_password, img_url)
 processRemoteImage <- function(app_id=app_id, app_password=app_password, img_url){
 	httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
 }
@@ -63,6 +78,7 @@ processRemoteImage <- function(app_id=app_id, app_password=app_password, img_url
 #' @param description; default: 
 #' @keywords Application Information
 #' @export
+#' @references \url{http://dhttp://ocrsdk.com/documentation/apireference/processImage/}
 #' @examples
 #' processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true",readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 

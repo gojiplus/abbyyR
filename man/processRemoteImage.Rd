@@ -15,7 +15,10 @@ processRemoteImage(app_id = app_id, app_password = app_password, img_url)
 This function gets Information about a particular application
 }
 \examples{
-getAppInfo(app_id=app_id, app_password=app_password, img_url)
+processRemoteImage(app_id=app_id, app_password=app_password, img_url)
+}
+\references{
+\url{http://dhttp://ocrsdk.com/documentation/apireference/processRemoteImage/}
 }
 \keyword{Application}
 \keyword{Information}

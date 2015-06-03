@@ -15,7 +15,12 @@ getAppInfo(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-getAppInfo()
+getAppInfo(app_id=app_id, app_password=app_password)
+}
+\references{
+\url{http://dhttp://ocrsdk.com/documentation/apireference/getApplicationInfo/}
+
+\url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 }
 \keyword{Application}
 \keyword{Information}

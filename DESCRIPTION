@@ -9,4 +9,5 @@ LazyData: true
 Author: Gaurav Sood <gsood07@gmail.com> [aut, cre]
 Imports: httr,
     bitops,
-    RCurl
+    RCurl,
+    XML
