@@ -4,7 +4,7 @@
 \alias{processFields}
 \title{Process Fields}
 \usage{
-processFields(app_id = app_id, app_password = app_password)
+processFields(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processFields(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processFields(app_id=app_id, app_password=app_password)
+processFields()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processFields/}
 }
 \keyword{Application}
 \keyword{Information}

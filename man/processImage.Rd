@@ -4,8 +4,7 @@
 \alias{processImage}
 \title{Process Image}
 \usage{
-processImage(app_id = app_id, app_password = app_password,
-  language = "English", profile = "documentConversion",
+processImage(language = "English", profile = "documentConversion",
   textType = "normal", imageSource = "auto", correctOrientation = "true",
   correctSkew = "true", readBarcodes, exportFormat = "txt",
   description = "", pdfPassword = "", file_path)
@@ -35,10 +34,10 @@ processImage(app_id = app_id, app_password = app_password,
 This function processes an image
 }
 \examples{
-processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true",readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 }
 \references{
-\url{http://dhttp://ocrsdk.com/documentation/apireference/processImage/}
+\url{http://ocrsdk.com/documentation/apireference/processImage/}
 }
 \keyword{Application}
 \keyword{Information}

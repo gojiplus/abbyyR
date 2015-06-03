@@ -4,7 +4,7 @@
 \alias{processBarcodeField}
 \title{Process Bar Code Field}
 \usage{
-processBarcodeField(app_id = app_id, app_password = app_password)
+processBarcodeField(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processBarcodeField(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processBarcodeField(app_id=app_id, app_password=app_password)
+processBarcodeField()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
 }
 \keyword{Application}
 \keyword{Information}

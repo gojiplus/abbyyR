@@ -4,16 +4,19 @@
 \alias{getTaskStatus}
 \title{Get Task Status}
 \usage{
-getTaskStatus(app_id = app_id, app_password = app_password, taskId)
+getTaskStatus(taskId = NULL)
 }
 \arguments{
 \item{taskId}{}
 }
 \description{
-This function gets Information about a particular application
+This function gets task status for a particular task id
 }
 \examples{
-getTaskStatus(app_id=app_id, app_password=app_password, taskId)
+getTaskStatus(taskId="task_id")
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 }
 \keyword{Status}
 \keyword{Task}

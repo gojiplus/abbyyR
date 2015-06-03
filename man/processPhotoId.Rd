@@ -4,7 +4,7 @@
 \alias{processPhotoId}
 \title{Process Photo ID}
 \usage{
-processPhotoId(app_id = app_id, app_password = app_password)
+processPhotoId(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processPhotoId(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processPhotoId(app_id=app_id, app_password=app_password)
+processPhotoId()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 }
 \keyword{Application}
 \keyword{Information}

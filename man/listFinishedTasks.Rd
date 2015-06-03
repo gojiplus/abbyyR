@@ -4,13 +4,16 @@
 \alias{listFinishedTasks}
 \title{List Finished Tasks}
 \usage{
-listFinishedTasks(app_id = app_id, app_password = app_password)
+listFinishedTasks()
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-listFinishedTasks(app_id=app_id, app_password=app_password)
+listFinishedTasks()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
 }
 \keyword{Finished}
 \keyword{Tasks}

@@ -4,7 +4,7 @@
 \alias{processMRZ}
 \title{Process MRZ}
 \usage{
-processMRZ(app_id = app_id, app_password = app_password)
+processMRZ(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processMRZ(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processMRZ(app_id=app_id, app_password=app_password)
+processMRZ()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 }
 \keyword{Application}
 \keyword{Information}

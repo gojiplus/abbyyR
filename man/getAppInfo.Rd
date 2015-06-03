@@ -4,7 +4,7 @@
 \alias{getAppInfo}
 \title{Get Application Info}
 \usage{
-getAppInfo(appId = app_id, appPass = app_password)
+getAppInfo()
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,10 +15,10 @@ getAppInfo(appId = app_id, appPass = app_password)
 This function gets Information about a particular application
 }
 \examples{
-getAppInfo(app_id=app_id, app_password=app_password)
+getAppInfo()
 }
 \references{
-\url{http://dhttp://ocrsdk.com/documentation/apireference/getApplicationInfo/}
+\url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 
 \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 }

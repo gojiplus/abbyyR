@@ -4,7 +4,7 @@
 \alias{processRemoteImage}
 \title{Process Remote Image}
 \usage{
-processRemoteImage(app_id = app_id, app_password = app_password, img_url)
+processRemoteImage(img_url)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,10 +15,10 @@ processRemoteImage(app_id = app_id, app_password = app_password, img_url)
 This function gets Information about a particular application
 }
 \examples{
-processRemoteImage(app_id=app_id, app_password=app_password, img_url)
+processRemoteImage(img_url)
 }
 \references{
-\url{http://dhttp://ocrsdk.com/documentation/apireference/processRemoteImage/}
+\url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 }
 \keyword{Application}
 \keyword{Information}

@@ -4,7 +4,7 @@
 \alias{processCheckmarkField}
 \title{processCheckmarkField Method}
 \usage{
-processCheckmarkField(app_id = app_id, app_password = app_password)
+processCheckmarkField(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processCheckmarkField(app_id = app_id, app_password = app_password)
 This function gets Information about a particular application
 }
 \examples{
-processCheckmarkField(app_id=app_id, app_password=app_password)
+processCheckmarkField()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
 }
 \keyword{Application}
 \keyword{Information}

@@ -4,16 +4,19 @@
 \alias{deleteTask}
 \title{Delete Task}
 \usage{
-deleteTask(app_id = app_id, app_password = app_password, taskId)
+deleteTask(taskId = NULL)
 }
 \arguments{
 \item{taskId}{}
 }
 \description{
-This function deletes the given task and the images associated with this task.
+This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."
 }
 \examples{
-deleteTask(app_id=app_id, app_password=app_password, taskId)
+deleteTask(taskId="task_id")
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/deleteTask/}
 }
 \keyword{Delete}
 \keyword{Task}

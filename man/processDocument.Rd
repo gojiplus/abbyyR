@@ -4,7 +4,7 @@
 \alias{processDocument}
 \title{Process Document}
 \usage{
-processDocument(app_id = app_id, app_password = app_password)
+processDocument()
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +15,10 @@ processDocument(app_id = app_id, app_password = app_password)
 This function processes several images
 }
 \examples{
-processDocument(app_id=app_id, app_password=app_password)
+processDocument()
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/processDocument/}
 }
 \keyword{Application}
 \keyword{Information}

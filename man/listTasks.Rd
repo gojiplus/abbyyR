@@ -4,8 +4,7 @@
 \alias{listTasks}
 \title{List Tasks}
 \usage{
-listTasks(appId = app_id, appPass = app_password, fromDate, toDate,
-  excludeDeleted)
+listTasks(fromDate = NULL, toDate = NULL, excludeDeleted = "false")
 }
 \arguments{
 \item{fromDate;}{not required;  format: yyyy-mm-ddThh:mm:ssZ}
@@ -18,7 +17,10 @@ listTasks(appId = app_id, appPass = app_password, fromDate, toDate,
 This function gets Information about a particular application
 }
 \examples{
-listTasks(app_id=app_id, app_password=app_password,fromDate,toDate,excludeDeleted)
+listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
+}
+\references{
+\url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 }
 \keyword{List}
 \keyword{Tasks}

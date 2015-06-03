@@ -4,7 +4,7 @@
 \alias{submitImage}
 \title{Submit Image}
 \usage{
-submitImage(app_id = app_id, app_password = app_password, file_path)
+submitImage(file_path)
 }
 \arguments{
 \item{taskId}{- Optional.}
@@ -15,10 +15,10 @@ submitImage(app_id = app_id, app_password = app_password, file_path)
 Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
 }
 \examples{
-submitImage(file_path,taskId,pdfPassword)
+submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 }
 \references{
-\url{http://dhttp://ocrsdk.com/documentation/apireference/submitImage/}
+\url{http://ocrsdk.com/documentation/apireference/submitImage/}
 }
 \keyword{Image}
 \keyword{Submit}
