@@ -11,9 +11,25 @@ processRemoteImage(img_url = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{language;}{optional, default: English}
 
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{profile;}{optional, default: documentConversion}
+
+\item{textType;}{optional, default: normal}
+
+\item{imageSource;}{optional, default: auto}
+
+\item{correctOrientation;}{optional, default: true}
+
+\item{correctSkew;}{optional, default: true}
+
+\item{readBarcodes;}{optional, default:}
+
+\item{exportFormat;}{optional, default: txt}
+
+\item{pdfPassword;}{optional, default: NULL}
+
+\item{description;}{optional, default: ""}
 }
 \description{
 This function gets Information about a particular application
@@ -24,6 +40,7 @@ processRemoteImage(img_url="img_url")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Image}
+\keyword{Process}
+\keyword{Remote}
 

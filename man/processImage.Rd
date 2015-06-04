@@ -35,13 +35,13 @@ processImage(file_path = NULL, language = "English",
 This function processes an image
 }
 \examples{
-processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+processImage(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 }
 \references{
 \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 
 \url{http://ocrsdk.com/documentation/apireference/processImage/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Image}
+\keyword{Process}
 

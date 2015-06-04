@@ -4,22 +4,21 @@
 \alias{processDocument}
 \title{Process Document}
 \usage{
-processDocument()
+processDocument(taskId = NULL)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 }
 \description{
-This function processes several images
+This function processes several images for the same task and results in a multi-page document.
+For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
 }
 \examples{
-processDocument()
+processDocument(taskId = "task_id")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processDocument/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Document}
+\keyword{Process}
 

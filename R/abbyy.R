@@ -225,12 +225,12 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' @param exportFormat;  optional, default: txt
 #' @param pdfPassword;  optional, default: NULL
 #' @param description;  optional, default: ""
-#' @keywords Application Information
+#' @keywords Process Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' @references \url{http://ocrsdk.com/documentation/apireference/processImage/}
 #' @examples
-#' processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+#' processImage(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
@@ -256,9 +256,17 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' Process Remote Image
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' @param language; optional, default: English
+#' @param profile;   optional, default: documentConversion
+#' @param textType;  optional, default: normal
+#' @param imageSource;  optional, default: auto
+#' @param correctOrientation;  optional, default: true
+#' @param correctSkew;  optional, default: true
+#' @param readBarcodes;  optional, default: 
+#' @param exportFormat;  optional, default: txt
+#' @param pdfPassword;  optional, default: NULL
+#' @param description;  optional, default: ""
+#' @keywords Process Remote Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 #' @examples
@@ -287,22 +295,31 @@ processRemoteImage <- function(img_url=NULL, language="English", profile="docume
 
 #' Process Document 
 #'
-#' This function processes several images
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' This function processes several images for the same task and results in a multi-page document. 
+#' For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
+#' @param taskId - Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
+#' @keywords Process Document 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processDocument/}
 #' @examples
-#' processDocument()
+#' processDocument(taskId = "task_id")
 
-processDocument <- function(){
+processDocument <- function(taskId = NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processDocument"), query=querylist)
 	httr::stop_for_status(res)
-	return(res)
+	processdetails <- XML::xmlToList(httr::content(res))
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Business Card
