@@ -13,23 +13,25 @@ devtools::install_github("soodoku/abbyyR")
 ```
 
 ### Running
-To use the package, set app_id and app_password
+To use the package, set application id and password:
 
 ```{r}
-# App ID
-app_id = "app_id"
-
-# Application Password:
-app_password = "app_password"
+# Set 
+setapp(c("app_id", "app_password"))
 
 ```
 
 ### Functions
 
+Get Information about the Application including details like: Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. It also stores these in a list.
+
+Note: You must set your application id and password before you run this function.
+
 ```{r}
 
-submitImage
+getAppInfo()
 
 ```
+
 #### License
 Scripts are released under the [GNU V3](License.md).
