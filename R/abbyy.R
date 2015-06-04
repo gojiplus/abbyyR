@@ -325,85 +325,115 @@ processDocument <- function(taskId = NULL){
 #' Process Business Card
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' @param file_path: path of the document
+#' @keywords Business Card
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 #' @examples
-#' processBusinessCard(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+#' processBusinessCard(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 
-processBusinessCard <- function(file_path=NULL){
+processBusinessCard <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
+						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=upload_file(file_path))
+	querylist = list(img_url=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
+						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
+	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Text Field
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' @param file_path: path of the document
+#' @keywords Text Field
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processTextField/}
 #' @examples
-#' processTextField(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+#' processTextField(file_path="file_path")
 
 processTextField <- function(file_path=NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Bar Code Field
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
+#' @param file_path: path of the document
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
 #' @examples
-#' processBarcodeField()
+#' processBarcodeField(file_path="file_path")
 
 processBarcodeField <- function(file_path=NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' processCheckmarkField Method
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
+#' @param file_path: path of the document
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
 #' @examples
-#' processCheckmarkField()
+#' processCheckmarkField(file_path="file_path")
 
 processCheckmarkField <- function(file_path=NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processCheckmarkField"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processCheckmarkField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Fields
@@ -415,24 +445,31 @@ processCheckmarkField <- function(file_path=NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
 #' @examples
-#' processFields()
+#' processFields(file_path="file_path")
 
 processFields <- function(file_path=NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process MRZ: Extract data from Machine Readable Zone
 #'
 #' Extract data from Machine Readable Zone in an Image
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' @param file_path: path to the document
+#' @keywords Machine Readable Zone
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 #' @examples
@@ -443,18 +480,31 @@ processMRZ <- function(file_path=NULL){
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Photo ID
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' @param file_path
+#' @param idType
+#' @param imageSource
+#' @param correctOrientation
+#' @param correctSke
+#' @param description
+#' @param pdfPassword
+#' @keywords Photo ID
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 #' @examples
@@ -465,7 +515,15 @@ processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", co
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }

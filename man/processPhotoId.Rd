@@ -9,9 +9,19 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
   pdfPassword = "")
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{file_path}{}
 
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{idType}{}
+
+\item{imageSource}{}
+
+\item{correctOrientation}{}
+
+\item{description}{}
+
+\item{pdfPassword}{}
+
+\item{correctSke}{}
 }
 \description{
 This function gets Information about a particular application
@@ -22,6 +32,6 @@ processPhotoId(file_path="file_path", idType="auto", imageSource="auto", correct
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{ID}
+\keyword{Photo}
 

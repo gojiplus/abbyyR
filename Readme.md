@@ -104,5 +104,29 @@ For supported file formats, see [Supported File Formats](http://ocrsdk.com/docum
 processRemoteImage(img_url="img_url", language="English", profile="documentConversion")
 ```
 
+**processDocument**
+
+This function processes several images for the same task and results in a multi-page document. For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
+
+For additional details about how Abbyy FineReader implements processDocument, see the [reference](http://ocrsdk.com/documentation/apireference/processDocument/) for the function.
+
+```{r}
+processDocument(task_id="task_id")
+```
+
+**processMRZ**
+
+Extract data from Machine Readable Zone.
+
+Output may contain the following fields: MrzType, Line1, Line2, Line3, DocumentType, DocumentSubtype, IssuingCountry, LastName, GivenName, DocumentNumber, DocumentNumberVerified, DocumentNumberCheck, Nationality, BirthDate, BirthDateVerified
+
+For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements processMRZ, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
+
+```{r}
+processMRZ(file_path="file_path")
+```
+
 #### License
 Scripts are released under the [GNU V3](License.md).
+
+

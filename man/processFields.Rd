@@ -15,7 +15,7 @@ processFields(file_path = NULL)
 This function gets Information about a particular application
 }
 \examples{
-processFields()
+processFields(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processFields/}

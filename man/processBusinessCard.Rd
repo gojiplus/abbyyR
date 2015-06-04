@@ -4,22 +4,24 @@
 \alias{processBusinessCard}
 \title{Process Business Card}
 \usage{
-processBusinessCard(file_path = NULL)
+processBusinessCard(file_path = NULL, language = "English",
+  profile = "documentConversion", textType = "normal",
+  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
+  readBarcodes = "false", exportFormat = "txt", description = "",
+  pdfPassword = "")
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{file_path:}{path of the document}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processBusinessCard(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+processBusinessCard(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Business}
+\keyword{Card}
 

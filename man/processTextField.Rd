@@ -7,19 +7,17 @@
 processTextField(file_path = NULL)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{file_path:}{path of the document}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processTextField(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+processTextField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processTextField/}
 }
-\keyword{Application}
-\keyword{Information}
+\keyword{Field}
+\keyword{Text}
 

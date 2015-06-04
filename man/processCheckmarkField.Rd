@@ -7,15 +7,13 @@
 processCheckmarkField(file_path = NULL)
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{file_path:}{path of the document}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processCheckmarkField()
+processCheckmarkField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
