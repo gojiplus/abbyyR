@@ -101,7 +101,11 @@ listFinishedTasks <- function(){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listFinishedTasks"))
 	httr::stop_for_status(res)
-	return(res)
+	tasklist <- XML::xmlToList(httr::content(res))
+	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
+	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
+
+	return(resdf)
 }
 
 #' Get Task Status

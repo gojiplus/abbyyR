@@ -13,7 +13,7 @@ devtools::install_github("soodoku/abbyyR")
 ```
 
 ### Running
-To use the package, set application id and password via the `setapp` function.
+To use the package, first set application id and password via the `setapp` function.
 
 ```{r}
 setapp(c("app_id", "app_password"))
