@@ -114,6 +114,46 @@ For additional details about how Abbyy FineReader implements processDocument, se
 processDocument(task_id="task_id")
 ```
 
+**processBusinessCard**
+
+For additional details about how Abbyy FineReader implements processBusinessCard, see the [reference](http://ocrsdk.com/documentation/apireference/processBusinessCard/) for the function.
+
+```{r}
+processBusinessCard(file_path="file_path")
+```
+
+
+**processTextField**
+For additional details about how Abbyy FineReader implements processTextField, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
+
+```{r}
+processTextField(file_path="file_path")
+```
+
+
+**processBarcodeField**
+For additional details about how Abbyy FineReader implements processBarcodeField, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
+
+```{r}
+processBarcodeField(file_path="file_path")
+```
+
+
+**processCheckmarkField**
+For additional details about how Abbyy FineReader implements processCheckmarkField, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
+
+```{r}
+processCheckmarkField(file_path="file_path")
+```
+
+
+**processFields**
+For additional details about how Abbyy FineReader implements processFields, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
+
+```{r}
+processFields(file_path="file_path")
+```
+
 **processMRZ**
 
 Extract data from Machine Readable Zone.
