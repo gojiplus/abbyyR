@@ -31,6 +31,16 @@ For additional details about how Abbyy FineReader implements `getAppInfo`, see t
 
 ```{r}
 getAppInfo()
+
+# Sample Output
+"
+Name of Application: test
+No. of Pages Remaining: 99
+No. of Fields Remaining: 495
+Application Credits Expire on: 2015-08-28T00:00:00
+Type: Normal
+"
+
 ```
 
 **listTasks**
@@ -124,6 +134,7 @@ processBusinessCard(file_path="file_path")
 
 
 **processTextField**
+
 For additional details about how Abbyy FineReader implements `processTextField`, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
 
 ```{r}
@@ -132,6 +143,7 @@ processTextField(file_path="file_path")
 
 
 **processBarcodeField**
+
 For additional details about how Abbyy FineReader implements `processBarcodeField`, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
 
 ```{r}
@@ -140,14 +152,15 @@ processBarcodeField(file_path="file_path")
 
 
 **processCheckmarkField**
+
 For additional details about how Abbyy FineReader implements `processCheckmarkField`, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
 
 ```{r}
 processCheckmarkField(file_path="file_path")
 ```
 
-
 **processFields**
+
 For additional details about how Abbyy FineReader implements `processFields`, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
 
 ```{r}
