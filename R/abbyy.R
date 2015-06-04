@@ -9,6 +9,7 @@ http://ocrsdk.com/
 @author: Gaurav Sood
 "
 
+
 #' Sets Application ID and Password
 #'
 #' Sets Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK
@@ -28,10 +29,8 @@ setapp <- function(appdetails=NULL){
 
 #' Get Application Info
 #'
-#' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
-#' @keywords Application Information
+#' Get Information about the Application including details like: Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. It also stores these in a list.
+#' @keywords Get Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @references \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
@@ -40,7 +39,7 @@ setapp <- function(appdetails=NULL){
 
 getAppInfo <- function(){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')) before running this.")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/getApplicationInfo"))
 	httr::stop_for_status(res)
 	appinfo <- XML::xmlToList(httr::content(res))[[1]]
@@ -50,12 +49,14 @@ getAppInfo <- function(){
   	cat("No. of Fields Remaining: ", appinfo$fields, "\n", sep = "")
   	cat("Application Credits Expire on: ", appinfo$expires, "\n", sep = "")
   	cat("Type: ", appinfo$type, "\n", sep = "")
-  	return(appinfo)
+  	return(invisible(appinfo))
 }
 
 #' List Tasks
 #'
-#' This function gets Information about a particular application
+#' List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
+#' The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. 
+#' The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 #' @param fromDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
 #' @param toDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
 #' @param excludeDeleted; not required; default='false'
@@ -66,6 +67,7 @@ getAppInfo <- function(){
 #' listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
 
 listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listTasks"), query=querylist)
@@ -80,17 +82,20 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
 
 	# Print some important things
-	cat("No. of Tasks: ", nrow(resdf), "\n")
+	cat("Total No. of Tasks: ", nrow(resdf), "\n")
+	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
   	cat("Task IDs: \n", paste(resdf$id, collapse='\n '), "\n")
-  	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
 
   	# Return the data.frame
-	return(resdf)
+	return(invisible(resdf))
 }
 
 #' List Finished Tasks
 #'
-#' This function gets Information about a particular application
+#' List all the finished tasks in the application. 
+#' From Abbyy FineReader: The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call. 
+#' The function prints No. of Finished Tasks, Task IDs of finished tasks
+#' The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 #' @keywords Finished Tasks
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
@@ -98,19 +103,27 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 #' listFinishedTasks()
 
 listFinishedTasks <- function(){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listFinishedTasks"))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
 	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 
-	return(resdf)
+	# Print some important things
+	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
+  	cat("Task IDs: \n", paste(resdf$id, collapse='\n '), "\n")
+
+	return(invisible(resdf))
 }
 
 #' Get Task Status
 #'
 #' This function gets task status for a particular task id
+#' The function prints the status of the task by default
+#' The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 #' @param taskId
 #' @keywords Task Status
 #' @export
@@ -119,12 +132,22 @@ listFinishedTasks <- function(){
 #' getTaskStatus(taskId="task_id")
 
 getTaskStatus <- function(taskId=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(taskId)) stop("Must specify taskId")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/getTaskStatus"), query=querylist)
 	httr::stop_for_status(res)
-	return(res)
+	taskdetails <- XML::xmlToList(httr::content(res))
+	
+	resdf <- do.call(rbind.data.frame, taskdetails) # collapse to a data.frame
+	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Delete Task
@@ -138,6 +161,7 @@ getTaskStatus <- function(taskId=NULL){
 #' deleteTask(taskId="task_id")
 
 deleteTask <- function(taskId=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(taskId)) stop("Must specify taskId")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -158,6 +182,7 @@ deleteTask <- function(taskId=NULL){
 #' submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 
 submitImage <- function(file_path){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -178,6 +203,7 @@ submitImage <- function(file_path){
 #' processRemoteImage(img_url)
 
 processRemoteImage <- function(img_url){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -207,6 +233,7 @@ processRemoteImage <- function(img_url){
 
 processImage <- function(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes,exportFormat="txt", description="", pdfPassword="", file_path){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -227,6 +254,7 @@ processImage <- function(language="English", profile="documentConversion",textTy
 #' processDocument()
 
 processDocument <- function(){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processDocument"), query=querylist)
@@ -246,6 +274,7 @@ processDocument <- function(){
 #' processBusinessCard(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 
 processBusinessCard <- function(file_path){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -266,6 +295,7 @@ processBusinessCard <- function(file_path){
 #' processTextField(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
 
 processTextField <- function(file_path=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -286,6 +316,7 @@ processTextField <- function(file_path=NULL){
 #' processBarcodeField()
 
 processBarcodeField <- function(file_path=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -306,6 +337,7 @@ processBarcodeField <- function(file_path=NULL){
 #' processCheckmarkField()
 
 processCheckmarkField <- function(file_path=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -325,8 +357,8 @@ processCheckmarkField <- function(file_path=NULL){
 #' @examples
 #' processFields()
 
-
 processFields <- function(file_path=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -347,6 +379,7 @@ processFields <- function(file_path=NULL){
 #' processMRZ(file_path="file_path")
 
 processMRZ <- function(file_path=NULL){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(taskId = taskId)
@@ -368,6 +401,7 @@ processMRZ <- function(file_path=NULL){
 #' processPhotoId(file_path="file_path", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
 
 processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword=""){
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)

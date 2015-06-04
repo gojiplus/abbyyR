@@ -11,6 +11,8 @@ getTaskStatus(taskId = NULL)
 }
 \description{
 This function gets task status for a particular task id
+The function prints the status of the task by default
+The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \examples{
 getTaskStatus(taskId="task_id")

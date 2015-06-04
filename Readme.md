@@ -25,7 +25,7 @@ setapp(c("app_id", "app_password"))
 
 Get Information about the Application including details like: Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. It also stores these in a list.
 
-**Note:** You must set your application id and password via the `setapp` function before you use this function.
+For some details, see the Abbyy FineReader [Reference](http://ocrsdk.com/documentation/apireference/getApplicationInfo/) for the function.
 
 ```{r}
 getAppInfo()
@@ -33,19 +33,19 @@ getAppInfo()
 
 **listTasks**
 
-List all the tasks in the application. You can specify a date range. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime (), status (), filesCount (), credits, resultUrl
+List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file). 
 
-**Note:** You must set your application id and password via the `setapp` function before you use this function.
+For some details, see the Abbyy FineReader [Reference](http://ocrsdk.com/documentation/apireference/listTasks/) for the function.
 
 ```{r}
-listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ")
+listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ",excludeDeleted="false")
 ```
 
 **listFinishedTasks**
 
-List all the tasks that are finished.
+List all the finished tasks in the application. "The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call." (From Abbyy FineReader). The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file).
 
-**Note:** You must set your application id and password via the `setapp` function before you use this function.
+For some details, see the Abbyy FineReader [Reference](http://ocrsdk.com/documentation/apireference/listFinishedTasks/) for the function.
 
 ```{r}
 listFinishedTasks()
@@ -55,7 +55,7 @@ listFinishedTasks()
 
 Get status of a particular task.
 
-**Note:** You must set your application id and password via the `setapp` function before you use this function.
+For some details, see the Abbyy FineReader [Reference](http://ocrsdk.com/documentation/apireference/getTaskStatus/) for the function.
 
 ```{r}
 getTaskStatus(taskId="task_id")
@@ -63,9 +63,9 @@ getTaskStatus(taskId="task_id")
 
 **deleteTask**
 
-Delete a task.
+Delete a task and related data.
 
-**Note:** You must set your application id and password via the `setapp` function before you use this function.
+For some details, see the Abbyy FineReader [Reference](http://ocrsdk.com/documentation/apireference/deleteTask/) for the function.
 
 ```{r}
 deleteTask(taskId="task_id")

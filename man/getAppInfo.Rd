@@ -6,13 +6,8 @@
 \usage{
 getAppInfo()
 }
-\arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
-}
 \description{
-This function gets Information about a particular application
+Get Information about the Application including details like: Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. It also stores these in a list.
 }
 \examples{
 getAppInfo()
@@ -23,5 +18,6 @@ getAppInfo()
 \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 }
 \keyword{Application}
+\keyword{Get}
 \keyword{Information}
 
