@@ -11,7 +11,7 @@ processBusinessCard(file_path = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
-\item{file_path:}{path of the document}
+\item{file_path}{path of the document}
 }
 \description{
 This function gets Information about a particular application

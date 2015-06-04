@@ -4,18 +4,18 @@
 \alias{processFields}
 \title{Process Fields}
 \usage{
-processFields(file_path = NULL)
+processFields(file_path = NULL, taskId = NULL, description = "")
 }
 \arguments{
-\item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{file_path}{path of the document}
 
-\item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
+\item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processFields(file_path="file_path")
+processFields(file_path="file_path", taskId="task_id",description="")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processFields/}

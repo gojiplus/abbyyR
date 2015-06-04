@@ -4,10 +4,38 @@
 \alias{processTextField}
 \title{Process Text Field}
 \usage{
-processTextField(file_path = NULL)
+processTextField(file_path = NULL, language = "English", letterSet = "",
+  regExp = "", textType = "normal", oneTextLine = "false",
+  oneWordPerTextLine = "false", markingType = "simpleText",
+  placeholdersCount = "1", writingStyle = "default", description = "",
+  pdfPassword = "")
 }
 \arguments{
-\item{file_path:}{path of the document}
+\item{file_path}{path of the document}
+
+\item{language}{optional; default: "English"}
+
+\item{letterSet}{letterset to be used for recognition, set by language but can be customized; optional; default: ""}
+
+\item{regExp}{which words are allowed in the field. see regular expression documentation; optional; default: ""}
+
+\item{textType}{type of the text in the field including typewriter, handprinted; optional; default: "normal"}
+
+\item{oneTextLine}{field contains only one text line or more; optional; default: "false"}
+
+\item{oneWordPerTextLine}{field contains one word per line or not; optional; default: "false"}
+
+\item{markingType}{only for handprint recognition, includes underlinedText etc.; optional; default: "simpleText"}
+
+\item{placeholdersCount}{No. of character cells for the field; optional; default: "1"}
+
+\item{writingStyle}{handprint writing style, see Abbyy FineReader documentation for values; optional; default: "default"}
+
+\item{description}{Description of processing task; optional; default: ""}
+
+\item{pdfPassword}{Password for pdf; optional; default: ""}
+
+\item{region}{coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image)}
 }
 \description{
 This function gets Information about a particular application
@@ -17,6 +45,8 @@ processTextField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processTextField/}
+
+\url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
 }
 \keyword{Field}
 \keyword{Text}

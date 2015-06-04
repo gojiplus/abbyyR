@@ -9,19 +9,19 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
   pdfPassword = "")
 }
 \arguments{
-\item{file_path}{}
+\item{file_path}{path to file; required}
 
-\item{idType}{}
+\item{idType}{optional; default = "auto"}
 
-\item{imageSource}{}
+\item{imageSource}{optional; default = "auto"}
 
-\item{correctOrientation}{}
+\item{correctOrientation}{optional; default = "true"}
 
-\item{description}{}
+\item{description}{optional; default = ""}
 
-\item{pdfPassword}{}
+\item{pdfPassword}{optional; default = ""}
 
-\item{correctSke}{}
+\item{correctSke}{optional; default = "true"}
 }
 \description{
 This function gets Information about a particular application

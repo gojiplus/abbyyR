@@ -4,10 +4,22 @@
 \alias{processBarcodeField}
 \title{Process Bar Code Field}
 \usage{
-processBarcodeField(file_path = NULL)
+processBarcodeField(file_path = NULL, barcodeType = "autodetect",
+  region = c(-1, -1, -1, -1), containsBinaryData = "false",
+  pdfPassword = "", description = "")
 }
 \arguments{
-\item{file_path:}{path of the document}
+\item{file_path}{path of the document}
+
+\item{barcodeType}{optional, default: "autodetect"}
+
+\item{region}{coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image)}
+
+\item{containsBinaryData}{optional, default: "false"}
+
+\item{pdfPassword}{optional, default: ""}
+
+\item{description}{optional, default: ""}
 }
 \description{
 This function gets Information about a particular application

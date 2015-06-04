@@ -7,9 +7,9 @@
 listTasks(fromDate = NULL, toDate = NULL, excludeDeleted = "false")
 }
 \arguments{
-\item{fromDate;}{not required;  format: yyyy-mm-ddThh:mm:ssZ}
+\item{fromDate}{- optional;  format: yyyy-mm-ddThh:mm:ssZ}
 
-\item{toDate;}{not required;  format: yyyy-mm-ddThh:mm:ssZ}
+\item{toDate}{- optional;  format: yyyy-mm-ddThh:mm:ssZ}
 
 \item{excludeDeleted;}{not required; default='false'}
 }

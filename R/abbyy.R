@@ -13,7 +13,7 @@ http://ocrsdk.com/
 #' Sets Application ID and Password
 #'
 #' Sets Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK
-#' @param appdetails: a vector of app_id, app_password. Get these from http://ocrsdk.com/. Set them before you use other functions.
+#' @param appdetails -a vector of app_id, app_password. Get these from http://ocrsdk.com/. Set them before you use other functions.
 #' @keywords Sets Application ID and Password
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
@@ -57,8 +57,8 @@ getAppInfo <- function(){
 #' List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
 #' The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. 
 #' The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
-#' @param fromDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
-#' @param toDate; not required;  format: yyyy-mm-ddThh:mm:ssZ
+#' @param fromDate - optional;  format: yyyy-mm-ddThh:mm:ssZ
+#' @param toDate - optional;  format: yyyy-mm-ddThh:mm:ssZ
 #' @param excludeDeleted; not required; default='false'
 #' @keywords List Tasks
 #' @export
@@ -215,16 +215,16 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' Process Image
 #'
 #' This function processes an image
-#' @param language; optional, default: English
-#' @param profile;   optional, default: documentConversion
-#' @param textType;  optional, default: normal
-#' @param imageSource;  optional, default: auto
-#' @param correctOrientation;  optional, default: true
-#' @param correctSkew;  optional, default: true
-#' @param readBarcodes;  optional, default: 
-#' @param exportFormat;  optional, default: txt
-#' @param pdfPassword;  optional, default: NULL
-#' @param description;  optional, default: ""
+#' @param language optional, default: English
+#' @param profile   optional, default: documentConversion
+#' @param textType  optional, default: normal
+#' @param imageSource  optional, default: auto
+#' @param correctOrientation  optional, default: true
+#' @param correctSkew  optional, default: true
+#' @param readBarcodes  optional, default: 
+#' @param exportFormat  optional, default: txt
+#' @param pdfPassword  optional, default: NULL
+#' @param description  optional, default: ""
 #' @keywords Process Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
@@ -256,16 +256,16 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' Process Remote Image
 #'
 #' This function gets Information about a particular application
-#' @param language; optional, default: English
-#' @param profile;   optional, default: documentConversion
-#' @param textType;  optional, default: normal
-#' @param imageSource;  optional, default: auto
-#' @param correctOrientation;  optional, default: true
-#' @param correctSkew;  optional, default: true
-#' @param readBarcodes;  optional, default: 
-#' @param exportFormat;  optional, default: txt
-#' @param pdfPassword;  optional, default: NULL
-#' @param description;  optional, default: ""
+#' @param language optional, default: English
+#' @param profile   optional, default: documentConversion
+#' @param textType  optional, default: normal
+#' @param imageSource  optional, default: auto
+#' @param correctOrientation  optional, default: true
+#' @param correctSkew optional, default: true
+#' @param readBarcodes  optional, default: 
+#' @param exportFormat  optional, default: txt
+#' @param pdfPassword  optional, default: NULL
+#' @param description  optional, default: ""
 #' @keywords Process Remote Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
@@ -325,7 +325,7 @@ processDocument <- function(taskId = NULL){
 #' Process Business Card
 #'
 #' This function gets Information about a particular application
-#' @param file_path: path of the document
+#' @param file_path path of the document
 #' @keywords Business Card
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
@@ -355,18 +355,33 @@ processBusinessCard <- function(file_path=NULL, language="English", profile="doc
 #' Process Text Field
 #'
 #' This function gets Information about a particular application
-#' @param file_path: path of the document
+#' @param file_path path of the document
+#' @param region coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image) 
+#' @param language optional; default: "English"
+#' @param letterSet letterset to be used for recognition, set by language but can be customized; optional; default: ""
+#' @param regExp which words are allowed in the field. see regular expression documentation; optional; default: ""
+#' @param textType type of the text in the field including typewriter, handprinted; optional; default: "normal"
+#' @param oneTextLine field contains only one text line or more; optional; default: "false"
+#' @param oneWordPerTextLine field contains one word per line or not; optional; default: "false"
+#' @param markingType only for handprint recognition, includes underlinedText etc.; optional; default: "simpleText"
+#' @param placeholdersCount No. of character cells for the field; optional; default: "1"
+#' @param writingStyle handprint writing style, see Abbyy FineReader documentation for values; optional; default: "default"
+#' @param description Description of processing task; optional; default: ""
+#' @param pdfPassword Password for pdf; optional; default: ""
 #' @keywords Text Field
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processTextField/}
+#' @references \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
 #' @examples
 #' processTextField(file_path="file_path")
 
-processTextField <- function(file_path=NULL){
+processTextField <- function(file_path=NULL, language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
+							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
+	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
+							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	
@@ -383,18 +398,23 @@ processTextField <- function(file_path=NULL){
 #' Process Bar Code Field
 #'
 #' This function gets Information about a particular application
-#' @param file_path: path of the document
+#' @param file_path path of the document
+#' @param barcodeType optional, default: "autodetect"
+#' @param region coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image) 
+#' @param containsBinaryData   optional, default: "false"
+#' @param pdfPassword  optional, default: ""
+#' @param description  optional, default: ""
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
 #' @examples
 #' processBarcodeField(file_path="file_path")
 
-processBarcodeField <- function(file_path=NULL){
+processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region=c(-1,-1,-1,-1),containsBinaryData="false",pdfPassword="",description=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
+	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	
@@ -411,18 +431,23 @@ processBarcodeField <- function(file_path=NULL){
 #' processCheckmarkField Method
 #'
 #' This function gets Information about a particular application
-#' @param file_path: path of the document
+#' @param file_path path of the document
+#' @param checkmarkType optional, default: "empty"
+#' @param region coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image) 
+#' @param correctionAllowed  optional, default: "false"
+#' @param pdfPassword  optional, default: ""
+#' @param description  optional, default: ""
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
 #' @examples
 #' processCheckmarkField(file_path="file_path")
 
-processCheckmarkField <- function(file_path=NULL){
+processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=c(-1,-1,-1,-1),correctionAllowed="false", pdfPassword="",description=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
+	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processCheckmarkField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	
@@ -439,20 +464,20 @@ processCheckmarkField <- function(file_path=NULL){
 #' Process Fields
 #'
 #' This function gets Information about a particular application
-#' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
-#' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
+#' @param file_path path of the document
+#' @param taskId - Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
 #' @examples
-#' processFields(file_path="file_path")
+#' processFields(file_path="file_path", taskId="task_id",description="")
 
-processFields <- function(file_path=NULL){
+processFields <- function(file_path=NULL,taskId=NULL,description=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"))
+	querylist = list(taskId = taskId, description=description)
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
@@ -467,8 +492,9 @@ processFields <- function(file_path=NULL){
 
 #' Process MRZ: Extract data from Machine Readable Zone
 #'
+#' @param file_path path of the document
 #' Extract data from Machine Readable Zone in an Image
-#' @param file_path: path to the document
+#' @param file_path path to the document
 #' @keywords Machine Readable Zone
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
@@ -497,13 +523,13 @@ processMRZ <- function(file_path=NULL){
 #' Process Photo ID
 #'
 #' This function gets Information about a particular application
-#' @param file_path
-#' @param idType
-#' @param imageSource
-#' @param correctOrientation
-#' @param correctSke
-#' @param description
-#' @param pdfPassword
+#' @param file_path path to file; required
+#' @param idType optional; default = "auto"
+#' @param imageSource optional; default = "auto"
+#' @param correctOrientation optional; default = "true"
+#' @param correctSke optional; default = "true"
+#' @param description optional; default = ""
+#' @param pdfPassword optional; default = ""
 #' @keywords Photo ID
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}

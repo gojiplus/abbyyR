@@ -4,10 +4,22 @@
 \alias{processCheckmarkField}
 \title{processCheckmarkField Method}
 \usage{
-processCheckmarkField(file_path = NULL)
+processCheckmarkField(file_path = NULL, checkmarkType = "empty",
+  region = c(-1, -1, -1, -1), correctionAllowed = "false",
+  pdfPassword = "", description = "")
 }
 \arguments{
-\item{file_path:}{path of the document}
+\item{file_path}{path of the document}
+
+\item{checkmarkType}{optional, default: "empty"}
+
+\item{region}{coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image)}
+
+\item{correctionAllowed}{optional, default: "false"}
+
+\item{pdfPassword}{optional, default: ""}
+
+\item{description}{optional, default: ""}
 }
 \description{
 This function gets Information about a particular application

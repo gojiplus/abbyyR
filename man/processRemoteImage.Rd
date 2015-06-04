@@ -11,25 +11,25 @@ processRemoteImage(img_url = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
-\item{language;}{optional, default: English}
+\item{language}{optional, default: English}
 
-\item{profile;}{optional, default: documentConversion}
+\item{profile}{optional, default: documentConversion}
 
-\item{textType;}{optional, default: normal}
+\item{textType}{optional, default: normal}
 
-\item{imageSource;}{optional, default: auto}
+\item{imageSource}{optional, default: auto}
 
-\item{correctOrientation;}{optional, default: true}
+\item{correctOrientation}{optional, default: true}
 
-\item{correctSkew;}{optional, default: true}
+\item{correctSkew}{optional, default: true}
 
-\item{readBarcodes;}{optional, default:}
+\item{readBarcodes}{optional, default:}
 
-\item{exportFormat;}{optional, default: txt}
+\item{exportFormat}{optional, default: txt}
 
-\item{pdfPassword;}{optional, default: NULL}
+\item{description}{optional, default: ""}
 
-\item{description;}{optional, default: ""}
+\item{pdfPassword}{optional, default: NULL}
 }
 \description{
 This function gets Information about a particular application

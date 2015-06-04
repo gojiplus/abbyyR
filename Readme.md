@@ -32,8 +32,10 @@ For additional details about how Abbyy FineReader implements `getAppInfo`, see t
 ```{r}
 getAppInfo()
 
-# Sample Output
+ 
 "
+Sample Output:
+
 Name of Application: test
 No. of Pages Remaining: 99
 No. of Fields Remaining: 495
