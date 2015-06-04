@@ -4,39 +4,41 @@
 \alias{processImage}
 \title{Process Image}
 \usage{
-processImage(language = "English", profile = "documentConversion",
-  textType = "normal", imageSource = "auto", correctOrientation = "true",
-  correctSkew = "true", readBarcodes, exportFormat = "txt",
-  description = "", pdfPassword = "", file_path)
+processImage(file_path = NULL, language = "English",
+  profile = "documentConversion", textType = "normal",
+  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
+  readBarcodes, exportFormat = "txt", description = "", pdfPassword = "")
 }
 \arguments{
-\item{language;}{default: English}
+\item{language;}{optional, default: English}
 
-\item{profile;}{default: documentConversion}
+\item{profile;}{optional, default: documentConversion}
 
-\item{textType;}{default: normal}
+\item{textType;}{optional, default: normal}
 
-\item{imageSource;}{default: auto}
+\item{imageSource;}{optional, default: auto}
 
-\item{correctOrientation;}{default: true}
+\item{correctOrientation;}{optional, default: true}
 
-\item{correctSkew;}{default: true}
+\item{correctSkew;}{optional, default: true}
 
-\item{readBarcodes;}{default:}
+\item{readBarcodes;}{optional, default:}
 
-\item{exportFormat;}{default: txt}
+\item{exportFormat;}{optional, default: txt}
 
-\item{pdfPassword;}{default:}
+\item{pdfPassword;}{optional, default: NULL}
 
-\item{description;}{default:}
+\item{description;}{optional, default: ""}
 }
 \description{
 This function processes an image
 }
 \examples{
-processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="", file_path="file_path")
+processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 }
 \references{
+\url{http://ocrsdk.com/documentation/specifications/image-formats/}
+
 \url{http://ocrsdk.com/documentation/apireference/processImage/}
 }
 \keyword{Application}

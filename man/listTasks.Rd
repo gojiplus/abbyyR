@@ -16,7 +16,7 @@ listTasks(fromDate = NULL, toDate = NULL, excludeDeleted = "false")
 \description{
 List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks.
 The function prints Total number of tasks, Task IDs, and No. of Finished Tasks.
-The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed, Submitted), filesCount (No. of files), credits, resultUrl (URL for the processed file)
+The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 }
 \examples{
 listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')

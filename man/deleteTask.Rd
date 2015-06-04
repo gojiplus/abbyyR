@@ -11,6 +11,8 @@ deleteTask(taskId = NULL)
 }
 \description{
 This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."
+The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful
+The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \examples{
 deleteTask(taskId="task_id")

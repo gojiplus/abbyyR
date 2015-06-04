@@ -4,15 +4,16 @@
 \alias{submitImage}
 \title{Submit Image}
 \usage{
-submitImage(file_path)
+submitImage(file_path = NULL, taskId = "", pdfPassword = NULL)
 }
 \arguments{
-\item{taskId}{- Optional.}
+\item{taskId}{- assigns image to the task ID specified. If empty string is passed, a new task is created.}
 
 \item{pdfPassword}{- Optional. If the pdf is password protected, put the password here.}
 }
 \description{
 Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
+The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 }
 \examples{
 submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")

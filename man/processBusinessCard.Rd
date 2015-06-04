@@ -4,7 +4,7 @@
 \alias{processBusinessCard}
 \title{Process Business Card}
 \usage{
-processBusinessCard(file_path)
+processBusinessCard(file_path = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}

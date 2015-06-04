@@ -4,7 +4,7 @@
 \alias{processRemoteImage}
 \title{Process Remote Image}
 \usage{
-processRemoteImage(img_url)
+processRemoteImage(img_url = NULL)
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
