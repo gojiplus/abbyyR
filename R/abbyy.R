@@ -330,16 +330,16 @@ processFields <- function(file_path=NULL){
 	return(res)
 }
 
-#' Process MRZ
+#' Process MRZ: Extract data from Machine Readable Zone
 #'
-#' This function gets Information about a particular application
+#' Extract data from Machine Readable Zone in an Image
 #' @param app_id - get this from http://ocrsdk.com/. Set it before you use the package.
 #' @param app_password - get this from http://ocrsdk.com/. Set it before you use the package. 
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 #' @examples
-#' processMRZ()
+#' processMRZ(file_path="file_path")
 
 processMRZ <- function(file_path=NULL){
 	if(is.null(file_path)) stop("Must specify file_path")
@@ -347,6 +347,7 @@ processMRZ <- function(file_path=NULL){
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), query=querylist, body=upload_file(file_path))
 	httr::stop_for_status(res)
+	tasklist <- XML::xmlToList(httr::content(res))
 	return(res)
 }
 
@@ -359,14 +360,13 @@ processMRZ <- function(file_path=NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 #' @examples
-#' processPhotoId()
+#' processPhotoId(file_path="file_path", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
 
-processPhotoId <- function(file_path=NULL){
+processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword=""){
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
+	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=upload_file(file_path))
 	httr::stop_for_status(res)
 	return(res)
 }
-

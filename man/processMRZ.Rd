@@ -2,7 +2,7 @@
 % Please edit documentation in R/abbyy.R
 \name{processMRZ}
 \alias{processMRZ}
-\title{Process MRZ}
+\title{Process MRZ: Extract data from Machine Readable Zone}
 \usage{
 processMRZ(file_path = NULL)
 }
@@ -12,10 +12,10 @@ processMRZ(file_path = NULL)
 \item{app_password}{- get this from http://ocrsdk.com/. Set it before you use the package.}
 }
 \description{
-This function gets Information about a particular application
+Extract data from Machine Readable Zone in an Image
 }
 \examples{
-processMRZ()
+processMRZ(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
