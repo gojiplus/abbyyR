@@ -233,15 +233,24 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' processImage(language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",readBarcodes,exportFormat="txt", description="", pdfPassword=""){
+						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	querylist = list(file_path=file_path, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
-	res <- httr::GET(paste0("http://",app_id,":",app_password,"@cloud.ocrsdk.com/processImage"), query=querylist, body=upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processImage"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
-	return(res)
+	processdetails <- XML::xmlToList(httr::content(res))
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Remote Image
@@ -253,16 +262,27 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 #' @examples
-#' processRemoteImage(img_url)
+#' processRemoteImage(img_url="img_url")
 
-processRemoteImage <- function(img_url=NULL){
+processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
+						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(is.null(img_url)) stop("Must specify img_url")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
+	querylist = list(img_url=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
+						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
 	httr::stop_for_status(res)
-	return(res)
+	processdetails <- XML::xmlToList(httr::content(res))
+	
+	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
+	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+
+	# Print some important things
+	cat("Status of the task: ", resdf$status, "\n")
+
+	return(invisible(resdf))
 }
 
 #' Process Document 

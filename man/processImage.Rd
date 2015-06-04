@@ -7,7 +7,8 @@
 processImage(file_path = NULL, language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes, exportFormat = "txt", description = "", pdfPassword = "")
+  readBarcodes = "false", exportFormat = "txt", description = "",
+  pdfPassword = "")
 }
 \arguments{
 \item{language;}{optional, default: English}

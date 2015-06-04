@@ -4,7 +4,11 @@
 \alias{processRemoteImage}
 \title{Process Remote Image}
 \usage{
-processRemoteImage(img_url = NULL)
+processRemoteImage(img_url = NULL, language = "English",
+  profile = "documentConversion", textType = "normal",
+  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
+  readBarcodes = "false", exportFormat = "txt", description = "",
+  pdfPassword = "")
 }
 \arguments{
 \item{app_id}{- get this from http://ocrsdk.com/. Set it before you use the package.}
@@ -15,7 +19,7 @@ processRemoteImage(img_url = NULL)
 This function gets Information about a particular application
 }
 \examples{
-processRemoteImage(img_url)
+processRemoteImage(img_url="img_url")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
