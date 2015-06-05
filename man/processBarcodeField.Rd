@@ -25,7 +25,7 @@ processBarcodeField(file_path = NULL, barcodeType = "autodetect",
 This function gets Information about a particular application
 }
 \examples{
-processBarcodeField(file_path="file_path")
+# processBarcodeField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}

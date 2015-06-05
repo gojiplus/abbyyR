@@ -27,7 +27,7 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
 This function gets Information about a particular application
 }
 \examples{
-processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
+# processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}

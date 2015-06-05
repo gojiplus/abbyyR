@@ -13,7 +13,7 @@ processMRZ(file_path = NULL)
 Extract data from Machine Readable Zone in an Image
 }
 \examples{
-processMRZ(file_path="file_path")
+# processMRZ(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processMRZ/}

@@ -18,7 +18,7 @@ http://ocrsdk.com/
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @examples
-#' setapp(c("app_id", "app_password"))
+#' # setapp(c("app_id", "app_password"))
 
 setapp <- function(appdetails=NULL){
     if(!is.null(appdetails))
@@ -35,7 +35,7 @@ setapp <- function(appdetails=NULL){
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @references \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 #' @examples
-#' getAppInfo()
+#' # getAppInfo()
 
 getAppInfo <- function(){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
@@ -64,11 +64,12 @@ getAppInfo <- function(){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @examples
-#' listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
+#' # listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
 
 listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
 	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listTasks"), query=querylist)
 	httr::stop_for_status(res)
@@ -100,11 +101,12 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
 #' @examples
-#' listFinishedTasks()
+#' # listFinishedTasks()
 
 listFinishedTasks <- function(){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listFinishedTasks"))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
@@ -113,7 +115,7 @@ listFinishedTasks <- function(){
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 
 	# Print some important things
-	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
+	cat("No. of Finished Tasks: ", nrow(resdf), "\n")
   	cat("Task IDs: \n", paste(resdf$id, collapse='\n '), "\n")
 
 	return(invisible(resdf))
@@ -129,12 +131,14 @@ listFinishedTasks <- function(){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 #' @examples
-#' getTaskStatus(taskId="task_id")
+#' # getTaskStatus(taskId="task_id")
 
 getTaskStatus <- function(taskId=NULL){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(taskId)) stop("Must specify taskId")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(taskId)) stop("Must specify taskId")
+	
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/getTaskStatus"), query=querylist)
 	httr::stop_for_status(res)
@@ -160,12 +164,14 @@ getTaskStatus <- function(taskId=NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/deleteTask/}
 #' @examples
-#' deleteTask(taskId="task_id")
+#' # deleteTask(taskId="task_id")
 
 deleteTask <- function(taskId=NULL){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(taskId)) stop("Must specify taskId")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(taskId)) stop("Must specify taskId")
+
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/deleteTask"), query=querylist)
 	httr::stop_for_status(res)
@@ -192,12 +198,14 @@ deleteTask <- function(taskId=NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/submitImage/}
 #' @examples
-#' submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+#' # submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 
 submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+	
 	querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/submitImage"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
@@ -232,13 +240,17 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' @references \url{http://ocrsdk.com/documentation/apireference/processImage/}
 #' @examples
-#' processImage(file_path="file_path", language="English")
+#' # processImage(file_path="file_path", language="English")
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
+	
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	querylist = list(file_path=file_path, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processImage"), query=querylist, body=httr::upload_file(file_path))
@@ -273,13 +285,15 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 #' @examples
-#' processRemoteImage(img_url="img_url")
+#' # processRemoteImage(img_url="img_url")
 
 processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(img_url)) stop("Must specify img_url")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(img_url)) stop("Must specify img_url")
+
 	querylist = list(img_url=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
@@ -302,14 +316,15 @@ processRemoteImage <- function(img_url=NULL, language="English", profile="docume
 #' For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
 #' @param taskId - Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
 #' @keywords Process Document 
-#' @export
+#' @export 
 #' @references \url{http://ocrsdk.com/documentation/apireference/processDocument/}
 #' @examples
-#' processDocument(taskId = "task_id")
+#' # processDocument(taskId = "task_id")
 
 processDocument <- function(taskId = NULL){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
 	querylist = list(taskId = taskId)
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processDocument"), query=querylist)
 	httr::stop_for_status(res)
@@ -341,13 +356,15 @@ processDocument <- function(taskId = NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 #' @examples
-#' processBusinessCard(file_path="file_path", language="English")
+#' # processBusinessCard(file_path="file_path", language="English")
 
 processBusinessCard <- function(file_path=NULL, language="English", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",exportFormat="vCard", description="", pdfPassword=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
+
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
 	querylist = list(file_path=file_path, language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,exportFormat="vCard", description="", pdfPassword="")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=httr::upload_file(file_path))
@@ -385,13 +402,14 @@ processBusinessCard <- function(file_path=NULL, language="English", imageSource=
 #' @references \url{http://ocrsdk.com/documentation/apireference/processTextField/}
 #' @references \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
 #' @examples
-#' processTextField(file_path="file_path")
+#' # processTextField(file_path="file_path")
 
 processTextField <- function(file_path=NULL, region=c(-1,-1,-1,-1), language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
 							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
 	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
 							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=httr::upload_file(file_path))
@@ -421,12 +439,14 @@ processTextField <- function(file_path=NULL, region=c(-1,-1,-1,-1), language="En
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
 #' @examples
-#' processBarcodeField(file_path="file_path")
+#' # processBarcodeField(file_path="file_path")
 
 processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region=c(-1,-1,-1,-1),containsBinaryData="false",pdfPassword="",description=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
@@ -455,12 +475,14 @@ processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
 #' @examples
-#' processCheckmarkField(file_path="file_path")
+#' # processCheckmarkField(file_path="file_path")
 
 processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=c(-1,-1,-1,-1),correctionAllowed="false", pdfPassword="",description=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processCheckmarkField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
@@ -486,12 +508,14 @@ processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
 #' @examples
-#' processFields(file_path="file_path", taskId="task_id",description="")
+#' # processFields(file_path="file_path", taskId="task_id",description="")
 
 processFields <- function(file_path=NULL,taskId=NULL,description=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	querylist = list(taskId = taskId, description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
@@ -515,12 +539,14 @@ processFields <- function(file_path=NULL,taskId=NULL,description=""){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 #' @examples
-#' processMRZ(file_path="file_path")
+#' # processMRZ(file_path="file_path")
 
 processMRZ <- function(file_path=NULL){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
@@ -550,12 +576,14 @@ processMRZ <- function(file_path=NULL){
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 #' @examples
-#' processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
+#' # processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 
 processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword=""){
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	if(is.null(file_path)) stop("Must specify file_path")
+
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)

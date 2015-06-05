@@ -37,7 +37,7 @@ processRemoteImage(img_url = NULL, language = "English",
 This function gets Information about a particular application
 }
 \examples{
-processRemoteImage(img_url="img_url")
+# processRemoteImage(img_url="img_url")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}

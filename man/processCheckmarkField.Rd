@@ -25,7 +25,7 @@ processCheckmarkField(file_path = NULL, checkmarkType = "empty",
 This function gets Information about a particular application
 }
 \examples{
-processCheckmarkField(file_path="file_path")
+# processCheckmarkField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}

@@ -15,7 +15,7 @@ The function by default prints the status of the task you are trying to delete. 
 The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \examples{
-deleteTask(taskId="task_id")
+# deleteTask(taskId="task_id")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/deleteTask/}

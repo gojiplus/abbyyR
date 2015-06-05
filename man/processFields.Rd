@@ -17,7 +17,7 @@ processFields(file_path = NULL, taskId = NULL, description = "")
 This function gets Information about a particular application
 }
 \examples{
-processFields(file_path="file_path", taskId="task_id",description="")
+# processFields(file_path="file_path", taskId="task_id",description="")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processFields/}

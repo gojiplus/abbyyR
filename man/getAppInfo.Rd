@@ -10,7 +10,7 @@ getAppInfo()
 Get Information about the Application including details like: Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. It also stores these in a list.
 }
 \examples{
-getAppInfo()
+# getAppInfo()
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}

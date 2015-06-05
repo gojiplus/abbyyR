@@ -42,7 +42,7 @@ processTextField(file_path = NULL, region = c(-1, -1, -1, -1),
 This function gets Information about a particular application
 }
 \examples{
-processTextField(file_path="file_path")
+# processTextField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processTextField/}

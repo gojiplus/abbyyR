@@ -29,7 +29,7 @@ processBusinessCard(file_path = NULL, language = "English",
 This function gets Information about a particular application
 }
 \examples{
-processBusinessCard(file_path="file_path", language="English")
+# processBusinessCard(file_path="file_path", language="English")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}

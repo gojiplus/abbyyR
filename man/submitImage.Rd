@@ -18,7 +18,7 @@ Adds image to the existing task or creates a new task for the uploaded image. Th
 The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 }
 \examples{
-submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+# submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/submitImage/}

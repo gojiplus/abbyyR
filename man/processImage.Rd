@@ -37,7 +37,7 @@ processImage(file_path = NULL, language = "English",
 This function processes an image
 }
 \examples{
-processImage(file_path="file_path", language="English")
+# processImage(file_path="file_path", language="English")
 }
 \references{
 \url{http://ocrsdk.com/documentation/specifications/image-formats/}
