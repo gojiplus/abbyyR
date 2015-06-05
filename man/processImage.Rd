@@ -11,6 +11,8 @@ processImage(file_path = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
+\item{file_path}{path of the document}
+
 \item{language}{optional, default: English}
 
 \item{profile}{optional, default: documentConversion}
@@ -35,7 +37,7 @@ processImage(file_path = NULL, language = "English",
 This function processes an image
 }
 \examples{
-processImage(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+processImage(file_path="file_path", language="English")
 }
 \references{
 \url{http://ocrsdk.com/documentation/specifications/image-formats/}

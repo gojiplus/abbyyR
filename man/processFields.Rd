@@ -10,6 +10,8 @@ processFields(file_path = NULL, taskId = NULL, description = "")
 \item{file_path}{path of the document}
 
 \item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
+
+\item{description}{optional, default: ""}
 }
 \description{
 This function gets Information about a particular application

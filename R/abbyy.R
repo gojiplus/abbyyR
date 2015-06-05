@@ -59,7 +59,7 @@ getAppInfo <- function(){
 #' The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 #' @param fromDate - optional;  format: yyyy-mm-ddThh:mm:ssZ
 #' @param toDate - optional;  format: yyyy-mm-ddThh:mm:ssZ
-#' @param excludeDeleted; not required; default='false'
+#' @param excludeDeleted - optional; default='false'
 #' @keywords List Tasks
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
@@ -124,7 +124,7 @@ listFinishedTasks <- function(){
 #' This function gets task status for a particular task ID.
 #' The function prints the status of the task by default.
 #' The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
-#' @param taskId
+#' @param taskId -id of the task; required
 #' @keywords Task Status
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
@@ -155,7 +155,7 @@ getTaskStatus <- function(taskId=NULL){
 #' This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."
 #' The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful
 #' The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
-#' @param taskId
+#' @param taskId -id of the task; required
 #' @keywords Delete Task
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/deleteTask/}
@@ -185,6 +185,7 @@ deleteTask <- function(taskId=NULL){
 #'
 #' Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
 #' The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
+#' @param file_path path of the document
 #' @param taskId - assigns image to the task ID specified. If empty string is passed, a new task is created. 
 #' @param pdfPassword - Optional. If the pdf is password protected, put the password here.
 #' @keywords Submit Image
@@ -215,6 +216,7 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' Process Image
 #'
 #' This function processes an image
+#' @param file_path path of the document
 #' @param language optional, default: English
 #' @param profile   optional, default: documentConversion
 #' @param textType  optional, default: normal
@@ -230,7 +232,7 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' @references \url{http://ocrsdk.com/documentation/apireference/processImage/}
 #' @examples
-#' processImage(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+#' processImage(file_path="file_path", language="English")
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
@@ -256,6 +258,7 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' Process Remote Image
 #'
 #' This function gets Information about a particular application
+#' @param img_url url to remote image
 #' @param language optional, default: English
 #' @param profile   optional, default: documentConversion
 #' @param textType  optional, default: normal
@@ -326,21 +329,30 @@ processDocument <- function(taskId = NULL){
 #'
 #' This function gets Information about a particular application
 #' @param file_path path of the document
+#' @param language optional, default: English
+#' @param imageSource  optional, default: auto
+#' @param correctOrientation  optional, default: true
+#' @param correctSkew optional, default: true
+#' @param exportFormat  optional, default: "vCard"
+#' @param pdfPassword  optional, default: NULL
+#' @param description  optional, default: ""
+#' @keywords Process Remote Image
 #' @keywords Business Card
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 #' @examples
-#' processBusinessCard(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+#' processBusinessCard(file_path="file_path", language="English")
 
-processBusinessCard <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
+processBusinessCard <- function(file_path=NULL, language="English", imageSource="auto", correctOrientation="true", 
+						correctSkew="true",exportFormat="vCard", description="", pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(img_url=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
-						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
+	querylist = list(file_path=file_path, language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
+						correctSkew=correctSkew,exportFormat="vCard", description="", pdfPassword="")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -375,7 +387,7 @@ processBusinessCard <- function(file_path=NULL, language="English", profile="doc
 #' @examples
 #' processTextField(file_path="file_path")
 
-processTextField <- function(file_path=NULL, language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
+processTextField <- function(file_path=NULL, region=c(-1,-1,-1,-1), language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
 							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
@@ -384,6 +396,7 @@ processTextField <- function(file_path=NULL, language="English", letterSet="", r
 							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -417,6 +430,7 @@ processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region
 	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -450,6 +464,7 @@ processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processCheckmarkField"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -466,6 +481,7 @@ processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=
 #' This function gets Information about a particular application
 #' @param file_path path of the document
 #' @param taskId - Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
+#' @param description  optional, default: ""
 #' @keywords Application Information
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
@@ -479,6 +495,7 @@ processFields <- function(file_path=NULL,taskId=NULL,description=""){
 	querylist = list(taskId = taskId, description=description)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processFields"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -492,7 +509,6 @@ processFields <- function(file_path=NULL,taskId=NULL,description=""){
 
 #' Process MRZ: Extract data from Machine Readable Zone
 #'
-#' @param file_path path of the document
 #' Extract data from Machine Readable Zone in an Image
 #' @param file_path path to the document
 #' @keywords Machine Readable Zone
@@ -505,10 +521,10 @@ processMRZ <- function(file_path=NULL){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	if(is.null(file_path)) stop("Must specify file_path")
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	querylist = list(taskId = taskId)
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
@@ -527,14 +543,14 @@ processMRZ <- function(file_path=NULL){
 #' @param idType optional; default = "auto"
 #' @param imageSource optional; default = "auto"
 #' @param correctOrientation optional; default = "true"
-#' @param correctSke optional; default = "true"
+#' @param correctSkew optional; default = "true"
 #' @param description optional; default = ""
 #' @param pdfPassword optional; default = ""
 #' @keywords Photo ID
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 #' @examples
-#' processPhotoId(file_path="file_path", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
+#' processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 
 processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword=""){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
@@ -543,6 +559,7 @@ processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", co
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
+	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7

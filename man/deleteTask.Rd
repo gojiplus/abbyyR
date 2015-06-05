@@ -7,7 +7,7 @@
 deleteTask(taskId = NULL)
 }
 \arguments{
-\item{taskId}{}
+\item{taskId}{-id of the task; required}
 }
 \description{
 This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."

@@ -7,7 +7,7 @@
 getTaskStatus(taskId = NULL)
 }
 \arguments{
-\item{taskId}{}
+\item{taskId}{-id of the task; required}
 }
 \description{
 This function gets task status for a particular task ID.

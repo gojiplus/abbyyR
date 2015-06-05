@@ -4,14 +4,17 @@
 \alias{processTextField}
 \title{Process Text Field}
 \usage{
-processTextField(file_path = NULL, language = "English", letterSet = "",
-  regExp = "", textType = "normal", oneTextLine = "false",
+processTextField(file_path = NULL, region = c(-1, -1, -1, -1),
+  language = "English", letterSet = "", regExp = "",
+  textType = "normal", oneTextLine = "false",
   oneWordPerTextLine = "false", markingType = "simpleText",
   placeholdersCount = "1", writingStyle = "default", description = "",
   pdfPassword = "")
 }
 \arguments{
 \item{file_path}{path of the document}
+
+\item{region}{coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image)}
 
 \item{language}{optional; default: "English"}
 
@@ -34,8 +37,6 @@ processTextField(file_path = NULL, language = "English", letterSet = "",
 \item{description}{Description of processing task; optional; default: ""}
 
 \item{pdfPassword}{Password for pdf; optional; default: ""}
-
-\item{region}{coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image)}
 }
 \description{
 This function gets Information about a particular application

@@ -5,23 +5,38 @@
 \title{Process Business Card}
 \usage{
 processBusinessCard(file_path = NULL, language = "English",
-  profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes = "false", exportFormat = "txt", description = "",
-  pdfPassword = "")
+  exportFormat = "vCard", description = "", pdfPassword = "")
 }
 \arguments{
 \item{file_path}{path of the document}
+
+\item{language}{optional, default: English}
+
+\item{imageSource}{optional, default: auto}
+
+\item{correctOrientation}{optional, default: true}
+
+\item{correctSkew}{optional, default: true}
+
+\item{exportFormat}{optional, default: "vCard"}
+
+\item{description}{optional, default: ""}
+
+\item{pdfPassword}{optional, default: NULL}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processBusinessCard(file_path="file_path", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", correctSkew="true", readBarcodes,exportFormat="txt",description="", pdfPassword="")
+processBusinessCard(file_path="file_path", language="English")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 }
 \keyword{Business}
 \keyword{Card}
+\keyword{Image}
+\keyword{Process}
+\keyword{Remote}
 

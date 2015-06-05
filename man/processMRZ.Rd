@@ -7,13 +7,10 @@
 processMRZ(file_path = NULL)
 }
 \arguments{
-\item{file_path}{path of the document
-Extract data from Machine Readable Zone in an Image}
-
 \item{file_path}{path to the document}
 }
 \description{
-Process MRZ: Extract data from Machine Readable Zone
+Extract data from Machine Readable Zone in an Image
 }
 \examples{
 processMRZ(file_path="file_path")

@@ -11,6 +11,8 @@ processRemoteImage(img_url = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
+\item{img_url}{url to remote image}
+
 \item{language}{optional, default: English}
 
 \item{profile}{optional, default: documentConversion}

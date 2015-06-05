@@ -11,7 +11,7 @@ listTasks(fromDate = NULL, toDate = NULL, excludeDeleted = "false")
 
 \item{toDate}{- optional;  format: yyyy-mm-ddThh:mm:ssZ}
 
-\item{excludeDeleted;}{not required; default='false'}
+\item{excludeDeleted}{- optional; default='false'}
 }
 \description{
 List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks.

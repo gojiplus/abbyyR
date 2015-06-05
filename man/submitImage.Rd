@@ -7,6 +7,8 @@
 submitImage(file_path = NULL, taskId = "", pdfPassword = NULL)
 }
 \arguments{
+\item{file_path}{path of the document}
+
 \item{taskId}{- assigns image to the task ID specified. If empty string is passed, a new task is created.}
 
 \item{pdfPassword}{- Optional. If the pdf is password protected, put the password here.}

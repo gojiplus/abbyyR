@@ -17,17 +17,17 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
 
 \item{correctOrientation}{optional; default = "true"}
 
+\item{correctSkew}{optional; default = "true"}
+
 \item{description}{optional; default = ""}
 
 \item{pdfPassword}{optional; default = ""}
-
-\item{correctSke}{optional; default = "true"}
 }
 \description{
 This function gets Information about a particular application
 }
 \examples{
-processPhotoId(file_path="file_path", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
+processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
