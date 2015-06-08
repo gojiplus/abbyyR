@@ -1,10 +1,18 @@
 ## abbyyR: Access Abbyy Cloud OCR SDK via R
 
+
 ### Load the package
+
+To get started, load the package. The latest version of the package will always be on github. Instructions for installing the package from github are provided below.
+
+
 
 ```r
 library(abbyyR)
+```
 
+
+```r
 "
 Get the latest version from github:
 
@@ -13,9 +21,8 @@ devtools::install_github('soodoku/abbyyR')
 "
 ```
 
-```
-## [1] "\nGet the latest version from github:\n\n# install.packages('devtools')\ndevtools::install_github('soodoku/abbyyR')\n"
-```
+Your first task on loading the package should be to set the credentials - application ID and password. If you haven't already, you can get this information 
+[http://ocrsdk.com/](http://ocrsdk.com/). Once you have the application ID and password, set it via the `setapp` function. 
 
 ### Set credentials
 
@@ -38,7 +45,10 @@ getAppInfo()
 ## Type: Normal
 ```
 
-# listTasks
+### List Tasks 
+
+List all the tasks -- completed, in progress, queued etc. The function returns a data frame.
+
 
 ```r
 listTasks()
