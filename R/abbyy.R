@@ -9,11 +9,10 @@ http://ocrsdk.com/
 @author: Gaurav Sood
 "
 
-
 #' Sets Application ID and Password
 #'
 #' Sets Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK
-#' @param appdetails -a vector of app_id, app_password. Get these from http://ocrsdk.com/. Set them before you use other functions.
+#' @param appdetails - Required. A vector of app_id, app_password. Get these from \url{http://ocrsdk.com/}. Set them before you use other functions.
 #' @keywords Sets Application ID and Password
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
@@ -74,6 +73,11 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listTasks"), query=querylist)
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
+
+	if(is.null(tasklist)){
+		cat("No tasks in the application.")
+		return
+	}
 
 	# Converting list to a data.frame
 	lenitem <- sapply(tasklist, length) # length of each list item

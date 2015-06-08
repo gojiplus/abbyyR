@@ -1,4 +1,4 @@
-### Access AbbyyFine Cloud API via R
+### Access Abbyy Cloud OCR SDK API via R
 
 To get going, get the application id and password from [http://ocrsdk.com/](http://ocrsdk.com/).
 
@@ -182,6 +182,6 @@ processMRZ(file_path="file_path")
 ```
 
 #### License
-Scripts are released under the [GNU V3](License.md).
+Scripts are released under [GNU V3](http://www.gnu.org/licenses/gpl-3.0.en.html).
 
 

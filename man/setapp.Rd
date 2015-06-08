@@ -7,7 +7,7 @@
 setapp(appdetails = NULL)
 }
 \arguments{
-\item{appdetails}{-a vector of app_id, app_password. Get these from http://ocrsdk.com/. Set them before you use other functions.}
+\item{appdetails}{- Required. A vector of app_id, app_password. Get these from \url{http://ocrsdk.com/}. Set them before you use other functions.}
 }
 \description{
 Sets Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK

@@ -1,0 +1,53 @@
+## abbyyR: Access Abbyy Cloud OCR SDK via R
+
+### Load the package
+
+```r
+library(abbyyR)
+
+"
+Get the latest version from github:
+
+# install.packages('devtools')
+devtools::install_github('soodoku/abbyyR')
+"
+```
+
+```
+## [1] "\nGet the latest version from github:\n\n# install.packages('devtools')\ndevtools::install_github('soodoku/abbyyR')\n"
+```
+
+### Set credentials
+
+
+```r
+setapp(c("factbook", "7YVBc8E6xMricoTwp0mF0aHP"))
+```
+
+### Get Information about Application
+
+```r
+getAppInfo()
+```
+
+```
+## Name of Application: factbook
+## No. of Pages Remaining: 99
+## No. of Fields Remaining: 495
+## Application Credits Expire on: 2015-08-28T00:00:00
+## Type: Normal
+```
+
+# listTasks
+
+```r
+listTasks()
+```
+
+```
+## Total No. of Tasks:  2 
+## No. of Finished Tasks:  1 
+## Task IDs: 
+##  47f9b0d4-79a2-4aed-b656-2683a85ac203
+##  b7cef2a3-ed10-4e36-9520-5073f2546204
+```
