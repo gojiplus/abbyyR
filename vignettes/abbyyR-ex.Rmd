@@ -1,7 +1,6 @@
-## abbyyR: Access Abbyy Cloud OCR SDK via R
+### abbyyR: Access Abbyy Cloud OCR SDK via R
 
-
-### Load the package
+#### Load the package
 
 To get started, load the package. The latest version of the package will always be on github. Instructions for installing the package from github are provided below.
 
@@ -21,17 +20,18 @@ devtools::install_github('soodoku/abbyyR')
 "
 ```
 
+#### Set credentials
+
 Your first task on loading the package should be to set the credentials - application ID and password. If you haven't already, you can get this information 
 [http://ocrsdk.com/](http://ocrsdk.com/). Once you have the application ID and password, set it via the `setapp` function. 
-
-### Set credentials
 
 
 ```r
 setapp(c("factbook", "7YVBc8E6xMricoTwp0mF0aHP"))
 ```
 
-### Get Information about Application
+#### Get Information about Application
+
 
 ```r
 getAppInfo()
@@ -45,7 +45,7 @@ getAppInfo()
 ## Type: Normal
 ```
 
-### List Tasks 
+#### List Tasks 
 
 List all the tasks -- completed, in progress, queued etc. The function returns a data frame.
 
@@ -60,4 +60,37 @@ listTasks()
 ## Task IDs: 
 ##  47f9b0d4-79a2-4aed-b656-2683a85ac203
 ##  b7cef2a3-ed10-4e36-9520-5073f2546204
+```
+
+#### List Finished Tasks
+
+
+```r
+listFinishedTasks()
+```
+
+```
+## No. of Finished Tasks:  3 
+## Task IDs: 
+##  5c30fd05-fb01-405a-8494-b0e8b825cd82
+##  ee1f007b-50c2-4c03-a279-449be4e93e87
+##  b7cef2a3-ed10-4e36-9520-5073f2546204
+```
+
+#### Get Task Status
+
+
+```r
+getTaskStatus(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
+```
+
+```
+## Status of the task:  Deleted
+```
+
+#### Delete Task
+
+
+```r
+#deleteTask(taskId="task_id")
 ```
