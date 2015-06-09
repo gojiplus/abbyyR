@@ -285,17 +285,17 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' Process Remote Image
 #'
 #' This function gets Information about a particular application
-#' @param img_url url to remote image
-#' @param language optional, default: English
-#' @param profile   optional, default: documentConversion
-#' @param textType  optional, default: normal
-#' @param imageSource  optional, default: auto
-#' @param correctOrientation  optional, default: true
-#' @param correctSkew optional, default: true
-#' @param readBarcodes  optional, default: 
-#' @param exportFormat  optional, default: txt
-#' @param pdfPassword  optional, default: NULL
-#' @param description  optional, default: ""
+#' @param img_url   Required; url to remote image
+#' @param language  Optional; default: English
+#' @param profile   Optional; default: documentConversion
+#' @param textType  Optional; default: normal
+#' @param imageSource  Optional; default: auto
+#' @param correctOrientation  Optional; default: true
+#' @param correctSkew Optional; default: true
+#' @param readBarcodes  Optional; default: 
+#' @param exportFormat  Optional; default: txt
+#' @param pdfPassword  Optional; default: NULL
+#' @param description  Optional; default: ""
 #' @keywords Process Remote Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
@@ -303,24 +303,25 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 #' # processRemoteImage(img_url="img_url")
 
 processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
+						correctSkew="true",readBarcodes="false",exportFormat="txt", description=NULL, pdfPassword=NULL){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	if(is.null(img_url)) stop("Must specify img_url")
 
-	querylist = list(img_url=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
-						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processRemoteImage?source=",img_url))
+	querylist = list(source=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
+						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
+	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processRemoteImage"), query=querylist)
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
-	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	names(resdf) <- names(processdetails[[1]])
+	row.names(resdf) <- 1	# row.names for the df
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
+	cat("Task ID: ", 			resdf$id, "\n")
 
 	return(invisible(resdf))
 }
