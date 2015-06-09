@@ -99,7 +99,7 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 #'
 #' List all the finished tasks in the application. 
 #' From Abbyy FineReader: The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call. 
-#' The function prints No. of Finished Tasks, Task IDs of finished tasks
+#' The function prints number of finished tasks by default
 #' The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 #' @keywords Finished Tasks
 #' @export
@@ -121,14 +121,37 @@ listFinishedTasks <- function(){
 	}
 
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
-	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
+	names(resdf) <- names(tasklist[[1]]) # names for the df
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 
 	# Print some important things
 	cat("No. of Finished Tasks: ", nrow(resdf), "\n")
-  	cat("Task IDs: \n", paste(resdf$id, collapse='\n '), "\n")
 
 	return(invisible(resdf))
+}
+
+
+#' Get Results
+#'
+#' Get data from all the processed images.
+#' The function prints the status of the task by default.
+#' The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
+#' @param output Optional; folder to which you want to save the data from the processed images
+#' @keywords Get Results
+#' @export
+#' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
+#' @examples
+#' # getTaskStatus(taskId="task_id")
+
+getResults <- function(output=NULL){
+	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	finishedlist <- listFinishedTasks()
+	
+	for(i in 1:nrow(finishedlist)){
+		res <- httr::GET(finishedlist$resultUrl[i])
+	}
 }
 
 #' Get Task Status
@@ -155,8 +178,8 @@ getTaskStatus <- function(taskId=NULL){
 	taskdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, taskdetails) # collapse to a data.frame
-	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	names(resdf) <- names(taskdetails[[1]])  # names for the df, adjust for <7
+	row.names(resdf) <- 1	# row.names for the df
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")

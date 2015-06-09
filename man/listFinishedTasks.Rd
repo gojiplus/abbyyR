@@ -9,7 +9,7 @@ listFinishedTasks()
 \description{
 List all the finished tasks in the application.
 From Abbyy FineReader: The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call.
-The function prints No. of Finished Tasks, Task IDs of finished tasks
+The function prints number of finished tasks by default
 The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 }
 \examples{

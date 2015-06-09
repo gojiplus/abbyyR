@@ -7,31 +7,31 @@
 processRemoteImage(img_url = NULL, language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes = "false", exportFormat = "txt", description = "",
-  pdfPassword = "")
+  readBarcodes = "false", exportFormat = "txt", description = NULL,
+  pdfPassword = NULL)
 }
 \arguments{
-\item{img_url}{url to remote image}
+\item{img_url}{Required; url to remote image}
 
-\item{language}{optional, default: English}
+\item{language}{Optional; default: English}
 
-\item{profile}{optional, default: documentConversion}
+\item{profile}{Optional; default: documentConversion}
 
-\item{textType}{optional, default: normal}
+\item{textType}{Optional; default: normal}
 
-\item{imageSource}{optional, default: auto}
+\item{imageSource}{Optional; default: auto}
 
-\item{correctOrientation}{optional, default: true}
+\item{correctOrientation}{Optional; default: true}
 
-\item{correctSkew}{optional, default: true}
+\item{correctSkew}{Optional; default: true}
 
-\item{readBarcodes}{optional, default:}
+\item{readBarcodes}{Optional; default:}
 
-\item{exportFormat}{optional, default: txt}
+\item{exportFormat}{Optional; default: txt}
 
-\item{description}{optional, default: ""}
+\item{description}{Optional; default: ""}
 
-\item{pdfPassword}{optional, default: NULL}
+\item{pdfPassword}{Optional; default: NULL}
 }
 \description{
 This function gets Information about a particular application

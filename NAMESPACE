@@ -2,6 +2,7 @@
 
 export(deleteTask)
 export(getAppInfo)
+export(getResults)
 export(getTaskStatus)
 export(listFinishedTasks)
 export(listTasks)
