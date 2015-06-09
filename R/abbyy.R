@@ -82,7 +82,7 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	# Converting list to a data.frame
 	lenitem <- sapply(tasklist, length) # length of each list item
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
-	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
+	names(resdf) <- names(tasklist[[1]]) # names for the df
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
 
@@ -183,7 +183,7 @@ deleteTask <- function(taskId=NULL){
 	if(is.null(taskId)) stop("Must specify taskId")
 
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/deleteTask"), query=querylist)
+	res <- httr::GET(paste0("https://",app_id,":",app_pass,"@cloud.ocrsdk.com/deleteTask"), query=querylist)
 	httr::stop_for_status(res)
 	deletedTaskdetails <- XML::xmlToList(httr::content(res))
 	
@@ -201,32 +201,36 @@ deleteTask <- function(taskId=NULL){
 #'
 #' Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
 #' The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
-#' @param file_path path of the document
-#' @param taskId - assigns image to the task ID specified. If empty string is passed, a new task is created. 
-#' @param pdfPassword - Optional. If the pdf is password protected, put the password here.
+#' @param file_path Required; Path to the document
+#' @param taskId    Optional; Assigns image to the task ID specified. If an empty string is passed, a new task is created. 
+#' @param pdfPassword Optional; If the pdf is password protected, put the password here.
 #' @keywords Submit Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/submitImage/}
 #' @examples
 #' # submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 
-submitImage <- function(file_path=NULL, taskId="", pdfPassword=NULL){
+submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 	
-	querylist = list(taskId = taskId, pdfPassword=pdfPassword)
+	# The API doesn't handle taskId="" and that is just as well as new task is created
+	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
+	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
+	
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/submitImage"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	submitdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, submitdetails) # collapse to a data.frame
-	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	names(resdf) <- names(submitdetails[[1]])
+	row.names(resdf) <- 1
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
+	cat("Task ID: ", 			resdf$id, "\n")
 
 	return(invisible(resdf))
 }
@@ -258,21 +262,22 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
-
 	if(is.null(file_path)) stop("Must specify file_path")
 
-	querylist = list(file_path=file_path, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
-						correctSkew=correctSkew,readBarcodes,exportFormat="txt", description="", pdfPassword="")
+	querylist = list(language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
+						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
+
 	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processImage"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
-	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
+	names(resdf) <- names(processdetails[[1]])
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
+	cat("Task ID: ", 			resdf$id, "\n")
 
 	return(invisible(resdf))
 }
@@ -375,7 +380,7 @@ processBusinessCard <- function(file_path=NULL, language="English", imageSource=
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	if(is.null(file_path)) stop("Must specify file_path")
-	querylist = list(file_path=file_path, language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
+	querylist = list(language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,exportFormat="vCard", description="", pdfPassword="")
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)

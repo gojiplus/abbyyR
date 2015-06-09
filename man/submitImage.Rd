@@ -4,14 +4,14 @@
 \alias{submitImage}
 \title{Submit Image}
 \usage{
-submitImage(file_path = NULL, taskId = "", pdfPassword = NULL)
+submitImage(file_path = NULL, taskId = "", pdfPassword = "")
 }
 \arguments{
-\item{file_path}{path of the document}
+\item{file_path}{Required; Path to the document}
 
-\item{taskId}{- assigns image to the task ID specified. If empty string is passed, a new task is created.}
+\item{taskId}{Optional; Assigns image to the task ID specified. If an empty string is passed, a new task is created.}
 
-\item{pdfPassword}{- Optional. If the pdf is password protected, put the password here.}
+\item{pdfPassword}{Optional; If the pdf is password protected, put the password here.}
 }
 \description{
 Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.

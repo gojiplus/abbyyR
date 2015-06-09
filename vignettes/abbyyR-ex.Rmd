@@ -51,15 +51,23 @@ List all the tasks -- completed, in progress, queued etc. The function returns a
 
 
 ```r
-listTasks()
+tasklist <- listTasks()
 ```
 
 ```
-## Total No. of Tasks:  2 
-## No. of Finished Tasks:  1 
+## Total No. of Tasks:  10 
+## No. of Finished Tasks:  4 
 ## Task IDs: 
 ##  47f9b0d4-79a2-4aed-b656-2683a85ac203
 ##  b7cef2a3-ed10-4e36-9520-5073f2546204
+##  3e292e02-8213-46b5-872a-e60f9b6eb259
+##  e7049cfa-b70c-4188-934b-4064007ad52a
+##  69c3ab2b-332f-4b34-9252-e4a3ea619fa1
+##  a742a642-7943-4ced-bff1-5a40dcd2a5c8
+##  91aaeca6-ace5-43ae-923e-87cbad943dde
+##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
+##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
+##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
 ```
 
 ```r
@@ -67,10 +75,17 @@ listTasks(excludeDeleted="true")
 ```
 
 ```
-## Total No. of Tasks:  1 
-## No. of Finished Tasks:  1 
+## Total No. of Tasks:  8 
+## No. of Finished Tasks:  4 
 ## Task IDs: 
-##  b7cef2a3-ed10-4e36-9520-5073f2546204
+##  3e292e02-8213-46b5-872a-e60f9b6eb259
+##  e7049cfa-b70c-4188-934b-4064007ad52a
+##  69c3ab2b-332f-4b34-9252-e4a3ea619fa1
+##  a742a642-7943-4ced-bff1-5a40dcd2a5c8
+##  91aaeca6-ace5-43ae-923e-87cbad943dde
+##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
+##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
+##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
 ```
 
 ```r
@@ -89,11 +104,14 @@ listFinishedTasks()
 ```
 
 ```
-## No. of Finished Tasks:  3 
+## No. of Finished Tasks:  6 
 ## Task IDs: 
 ##  5c30fd05-fb01-405a-8494-b0e8b825cd82
 ##  ee1f007b-50c2-4c03-a279-449be4e93e87
-##  b7cef2a3-ed10-4e36-9520-5073f2546204
+##  91aaeca6-ace5-43ae-923e-87cbad943dde
+##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
+##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
+##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
 ```
 
 #### Get Task Status
@@ -109,13 +127,34 @@ getTaskStatus(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
 
 #### Delete Task
 
-Deleting an already deleted task.
+Deleting an already deleted task will result in an error.
 
 
 ```r
-deleteTask(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
+#deleteTask(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
+```
+
+**Submit an Image for Processing**
+
+Note: I am uploading a sample image that Abbyy provides for free to test its software. You can find this image in the data folder of the package.
+
+
+```r
+submitImage(file_path="t1.tif", pdfPassword="")
 ```
 
 ```
-## Error in deleteTask(taskId = "47f9b0d4-79a2-4aed-b656-2683a85ac203"): client error: (450) Blocked by Windows Parental Controls (Microsoft)
+## Status of the task:  Submitted 
+## Task ID:  9c219122-ebab-4785-b2db-48482d9790e6
+```
+
+**Process an Image**
+
+
+```r
+processImage(file_path="t1.tif")
+```
+
+```
+## Status of the task:  Queued
 ```

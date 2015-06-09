@@ -92,7 +92,7 @@ Adds image to the existing task or creates a new task for the uploaded image. Th
 For additional details about how Abbyy FineReader implements `submitImage`, see the [reference](http://ocrsdk.com/documentation/apireference/submitImage/) for the function.
 
 ```{r}
-submitImage(taskId="task_id")
+submitImage(file_path="file_path", taskId="task_id", pdfPassword="")
 ```
 
 **Process Image**
