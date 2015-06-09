@@ -114,6 +114,12 @@ listFinishedTasks <- function(){
 	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listFinishedTasks"))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
+
+	if(is.null(tasklist)){
+		cat("No finished tasks in the application. \n")
+		return(invisible(NULL))
+	}
+
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
 	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl") # names for the df
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

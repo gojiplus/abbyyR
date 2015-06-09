@@ -109,7 +109,13 @@ getTaskStatus(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
 
 #### Delete Task
 
+Deleting an already deleted task.
+
 
 ```r
-#deleteTask(taskId="task_id")
+deleteTask(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")
+```
+
+```
+## Error in deleteTask(taskId = "47f9b0d4-79a2-4aed-b656-2683a85ac203"): client error: (450) Blocked by Windows Parental Controls (Microsoft)
 ```
