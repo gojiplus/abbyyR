@@ -75,8 +75,8 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	tasklist <- XML::xmlToList(httr::content(res))
 
 	if(is.null(tasklist)){
-		cat("No tasks in the application.")
-		return
+		cat("No tasks in the application. \n")
+		return(invisible(NULL))
 	}
 
 	# Converting list to a data.frame

@@ -62,6 +62,25 @@ listTasks()
 ##  b7cef2a3-ed10-4e36-9520-5073f2546204
 ```
 
+```r
+listTasks(excludeDeleted="true")
+```
+
+```
+## Total No. of Tasks:  1 
+## No. of Finished Tasks:  1 
+## Task IDs: 
+##  b7cef2a3-ed10-4e36-9520-5073f2546204
+```
+
+```r
+listTasks(fromDate="2015-05-30T20:28:43Z", toDate="2015-05-31T20:28:43Z")
+```
+
+```
+## No tasks in the application.
+```
+
 #### List Finished Tasks
 
 
