@@ -13,9 +13,11 @@ submitImage(file_path = NULL, taskId = "", pdfPassword = "")
 
 \item{pdfPassword}{Optional; If the pdf is password protected, put the password here.}
 }
+\value{
+Data frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
+}
 \description{
 Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
-The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 }
 \examples{
 # submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
@@ -23,6 +25,4 @@ The function returns a data.frame with all the details of the submitted image: i
 \references{
 \url{http://ocrsdk.com/documentation/apireference/submitImage/}
 }
-\keyword{Image}
-\keyword{Submit}
 

@@ -25,6 +25,9 @@ processBusinessCard(file_path = NULL, language = "English",
 
 \item{pdfPassword}{optional, default: NULL}
 }
+\value{
+Data frame with details of the task associated with the submitted Business Card
+}
 \description{
 This function gets Information about a particular application
 }
@@ -34,8 +37,6 @@ This function gets Information about a particular application
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
 }
-\keyword{Business}
-\keyword{Card}
 \keyword{Image}
 \keyword{Process}
 \keyword{Remote}

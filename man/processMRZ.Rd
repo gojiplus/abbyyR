@@ -9,6 +9,9 @@ processMRZ(file_path = NULL)
 \arguments{
 \item{file_path}{path to the document}
 }
+\value{
+Data frame with details of the task associated with the submitted MRZ document
+}
 \description{
 Extract data from Machine Readable Zone in an Image
 }
@@ -18,7 +21,4 @@ Extract data from Machine Readable Zone in an Image
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 }
-\keyword{Machine}
-\keyword{Readable}
-\keyword{Zone}
 

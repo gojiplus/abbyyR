@@ -21,6 +21,9 @@ processBarcodeField(file_path = NULL, barcodeType = "autodetect",
 
 \item{description}{optional, default: ""}
 }
+\value{
+Data frame with details of the task associated with the submitted Image
+}
 \description{
 This function gets Information about a particular application
 }
@@ -30,6 +33,4 @@ This function gets Information about a particular application
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
 }
-\keyword{Application}
-\keyword{Information}
 

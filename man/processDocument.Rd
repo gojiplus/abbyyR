@@ -4,10 +4,37 @@
 \alias{processDocument}
 \title{Process Document}
 \usage{
-processDocument(taskId = NULL)
+processDocument(taskId = NULL, language = "English",
+  profile = "documentConversion", textType = "normal",
+  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
+  readBarcodes = "false", exportFormat = "txt", description = NULL,
+  pdfPassword = NULL)
 }
 \arguments{
 \item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
+
+\item{language}{Optional; default: English}
+
+\item{profile}{Optional; default: documentConversion}
+
+\item{textType}{Optional; default: normal}
+
+\item{imageSource}{Optional; default: auto}
+
+\item{correctOrientation}{Optional; default: true}
+
+\item{correctSkew}{Optional; default: true}
+
+\item{readBarcodes}{Optional; default:}
+
+\item{exportFormat}{Optional; default: txt}
+
+\item{description}{Optional; default: ""}
+
+\item{pdfPassword}{Optional; default: NULL}
+}
+\value{
+Data frame with details of the task associated with the submitted Document
 }
 \description{
 This function processes several images for the same task and results in a multi-page document.
@@ -19,6 +46,4 @@ For instance, upload pages of the book individually via submitImage to the same 
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processDocument/}
 }
-\keyword{Document}
-\keyword{Process}
 

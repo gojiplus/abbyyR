@@ -13,6 +13,9 @@ processFields(file_path = NULL, taskId = NULL, description = "")
 
 \item{description}{optional, default: ""}
 }
+\value{
+Data frame with details of the task associated with the submitted Image
+}
 \description{
 This function gets Information about a particular application
 }
@@ -22,6 +25,4 @@ This function gets Information about a particular application
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processFields/}
 }
-\keyword{Application}
-\keyword{Information}
 

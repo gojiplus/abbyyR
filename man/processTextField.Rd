@@ -38,6 +38,9 @@ processTextField(file_path = NULL, region = c(-1, -1, -1, -1),
 
 \item{pdfPassword}{Password for pdf; optional; default: ""}
 }
+\value{
+Data frame with details of the task associated with the submitted Image
+}
 \description{
 This function gets Information about a particular application
 }
@@ -49,6 +52,4 @@ This function gets Information about a particular application
 
 \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
 }
-\keyword{Field}
-\keyword{Text}
 

@@ -55,30 +55,8 @@ tasklist <- listTasks()
 ```
 
 ```
-## Total No. of Tasks:  21 
-## No. of Finished Tasks:  14 
-## Task IDs: 
-##  47f9b0d4-79a2-4aed-b656-2683a85ac203
-##  b7cef2a3-ed10-4e36-9520-5073f2546204
-##  3e292e02-8213-46b5-872a-e60f9b6eb259
-##  e7049cfa-b70c-4188-934b-4064007ad52a
-##  69c3ab2b-332f-4b34-9252-e4a3ea619fa1
-##  a742a642-7943-4ced-bff1-5a40dcd2a5c8
-##  91aaeca6-ace5-43ae-923e-87cbad943dde
-##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
-##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
-##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
-##  9c219122-ebab-4785-b2db-48482d9790e6
-##  2936ddc8-9ef0-4119-8395-f2f506910847
-##  c069280f-757b-48c3-8dfa-b84bae195ef5
-##  2eef8968-5574-4ed7-be2e-e4f61de773c8
-##  01f0712e-b7fc-47bf-bfda-5766b61c5e91
-##  096dd20e-cff8-4368-9f69-a56c06a4ce4b
-##  0cbf7a19-18ff-4b78-9a1d-19f0ff33b57e
-##  ada7fd2b-8ff6-4c7a-82f2-d196eee0e526
-##  c66ccaa7-7a7f-416a-83b0-ac6c9098830c
-##  86d1f8c5-4e69-471d-b390-5570c3d21eb4
-##  0011a0ca-4468-4c00-96fd-020d1fc3eb30
+## Total No. of Tasks:  24 
+## No. of Finished Tasks:  16
 ```
 
 ```r
@@ -86,28 +64,8 @@ listTasks(excludeDeleted="true")
 ```
 
 ```
-## Total No. of Tasks:  19 
-## No. of Finished Tasks:  14 
-## Task IDs: 
-##  3e292e02-8213-46b5-872a-e60f9b6eb259
-##  e7049cfa-b70c-4188-934b-4064007ad52a
-##  69c3ab2b-332f-4b34-9252-e4a3ea619fa1
-##  a742a642-7943-4ced-bff1-5a40dcd2a5c8
-##  91aaeca6-ace5-43ae-923e-87cbad943dde
-##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
-##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
-##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
-##  9c219122-ebab-4785-b2db-48482d9790e6
-##  2936ddc8-9ef0-4119-8395-f2f506910847
-##  c069280f-757b-48c3-8dfa-b84bae195ef5
-##  2eef8968-5574-4ed7-be2e-e4f61de773c8
-##  01f0712e-b7fc-47bf-bfda-5766b61c5e91
-##  096dd20e-cff8-4368-9f69-a56c06a4ce4b
-##  0cbf7a19-18ff-4b78-9a1d-19f0ff33b57e
-##  ada7fd2b-8ff6-4c7a-82f2-d196eee0e526
-##  c66ccaa7-7a7f-416a-83b0-ac6c9098830c
-##  86d1f8c5-4e69-471d-b390-5570c3d21eb4
-##  0011a0ca-4468-4c00-96fd-020d1fc3eb30
+## Total No. of Tasks:  22 
+## No. of Finished Tasks:  16
 ```
 
 ```r
@@ -126,24 +84,7 @@ listFinishedTasks()
 ```
 
 ```
-## No. of Finished Tasks:  16 
-## Task IDs: 
-##  5c30fd05-fb01-405a-8494-b0e8b825cd82
-##  ee1f007b-50c2-4c03-a279-449be4e93e87
-##  91aaeca6-ace5-43ae-923e-87cbad943dde
-##  c45b18c8-aa9d-4250-8a8d-96d6b77c1f59
-##  ffbf5d30-c9b5-41f7-99c3-f3baa4b77560
-##  12c6ae7f-46f2-4e38-a8dd-e405efdd973d
-##  2936ddc8-9ef0-4119-8395-f2f506910847
-##  c069280f-757b-48c3-8dfa-b84bae195ef5
-##  2eef8968-5574-4ed7-be2e-e4f61de773c8
-##  01f0712e-b7fc-47bf-bfda-5766b61c5e91
-##  096dd20e-cff8-4368-9f69-a56c06a4ce4b
-##  0cbf7a19-18ff-4b78-9a1d-19f0ff33b57e
-##  ada7fd2b-8ff6-4c7a-82f2-d196eee0e526
-##  c66ccaa7-7a7f-416a-83b0-ac6c9098830c
-##  86d1f8c5-4e69-471d-b390-5570c3d21eb4
-##  0011a0ca-4468-4c00-96fd-020d1fc3eb30
+## No. of Finished Tasks:  18
 ```
 
 #### Get Task Status
@@ -177,7 +118,7 @@ submitImage(file_path="t1.tif", pdfPassword="")
 
 ```
 ## Status of the task:  Submitted 
-## Task ID:  eba9cd7f-0d34-4f45-9992-a89fbb911c50
+## Task ID:  a94bcceb-acfb-4282-ba4e-83ef26a237f6
 ```
 
 **Process an Image**
@@ -189,11 +130,10 @@ processImage(file_path="t1.tif")
 
 ```
 ## Status of the task:  Queued 
-## Task ID:  049d48d1-2eb8-4e89-b8f2-88f004e32ba4
+## Task ID:  f3e0bc70-964a-4622-a16d-b5262254e8f0
 ```
 
 **Process a Remote Image**
-
 
 
 ```r
@@ -202,5 +142,36 @@ processRemoteImage(img_url="https://raw.githubusercontent.com/soodoku/abbyyR/mas
 
 ```
 ## Status of the task:  Submitted 
-## Task ID:  cf4e6e4f-97bc-44d5-a78c-d27e361290f5
+## Task ID:  02fc8355-79ea-415b-9b7c-f94a52a519b5
 ```
+
+**Get Results**
+
+Go through all the finished tasks and download all the data.
+
+
+```r
+# getResults()
+```
+
+**Process Document**
+
+
+```r
+res <- listTasks()
+```
+
+```
+## Total No. of Tasks:  27 
+## No. of Finished Tasks:  17
+```
+
+```r
+processDocument(taskId=res$id[res$status=="Submitted"][1])
+```
+
+```
+## Status of the task:  Queued
+```
+
+

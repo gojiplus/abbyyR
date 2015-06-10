@@ -11,7 +11,7 @@ processImage(file_path = NULL, language = "English",
   pdfPassword = "")
 }
 \arguments{
-\item{file_path}{path of the document}
+\item{file_path}{path to the document}
 
 \item{language}{optional, default: English}
 
@@ -33,6 +33,9 @@ processImage(file_path = NULL, language = "English",
 
 \item{pdfPassword}{optional, default: NULL}
 }
+\value{
+Data frame with details of the task associated with the submitted Image
+}
 \description{
 This function processes an image
 }
@@ -44,6 +47,4 @@ This function processes an image
 
 \url{http://ocrsdk.com/documentation/apireference/processImage/}
 }
-\keyword{Image}
-\keyword{Process}
 

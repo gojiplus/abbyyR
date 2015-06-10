@@ -9,6 +9,9 @@ getTaskStatus(taskId = NULL)
 \arguments{
 \item{taskId}{-id of the task; required}
 }
+\value{
+A data frame with all the available details about the task
+}
 \description{
 This function gets task status for a particular task ID.
 The function prints the status of the task by default.
@@ -20,6 +23,4 @@ The function returns a data.frame with all the task details: id (task id), regis
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 }
-\keyword{Status}
-\keyword{Task}
 

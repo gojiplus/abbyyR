@@ -4,22 +4,16 @@
 \alias{getResults}
 \title{Get Results}
 \usage{
-getResults(output = NULL)
+getResults(output="")
 }
 \arguments{
-\item{output}{Optional; folder to which you want to save the data from the processed images}
+\item{output}{Optional; folder to which you want to save the data from the processed images; Default is same folder as the script}
 }
 \description{
 Get data from all the processed images.
-The function prints the status of the task by default.
-The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
-}
-\examples{
-# getTaskStatus(taskId="task_id")
+The function goes through the finishedTasks data frame and downloads all the files in resultsUrl
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 }
-\keyword{Get}
-\keyword{Results}
 

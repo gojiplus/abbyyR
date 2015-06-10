@@ -6,18 +6,15 @@
 \usage{
 listFinishedTasks()
 }
+\value{
+A data frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed), filesCount (No. of files), credits, resultUrl (URL for the processed file)
+}
 \description{
 List all the finished tasks in the application.
 From Abbyy FineReader: The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call.
 The function prints number of finished tasks by default
-The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file)
-}
-\examples{
-# listFinishedTasks()
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
 }
-\keyword{Finished}
-\keyword{Tasks}
 

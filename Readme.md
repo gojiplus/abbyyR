@@ -32,16 +32,6 @@ For additional details about how Abbyy FineReader implements `getAppInfo`, see t
 ```{r}
 getAppInfo()
 
-"
-Sample Output:
-
-Name of Application: test
-No. of Pages Remaining: 99
-No. of Fields Remaining: 495
-Application Credits Expire on: 2015-08-28T00:00:00
-Type: Normal
-"
-
 ```
 
 **List Tasks**

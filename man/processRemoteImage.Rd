@@ -33,6 +33,9 @@ processRemoteImage(img_url = NULL, language = "English",
 
 \item{pdfPassword}{Optional; default: NULL}
 }
+\value{
+Data frame with details of the task associated with the submitted Remote Image
+}
 \description{
 This function gets Information about a particular application
 }
@@ -42,7 +45,4 @@ This function gets Information about a particular application
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 }
-\keyword{Image}
-\keyword{Process}
-\keyword{Remote}
 

@@ -23,6 +23,9 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
 
 \item{pdfPassword}{optional; default = ""}
 }
+\value{
+Data frame with details of the task associated with the submitted Photo ID image
+}
 \description{
 This function gets Information about a particular application
 }
@@ -32,6 +35,4 @@ This function gets Information about a particular application
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 }
-\keyword{ID}
-\keyword{Photo}
 
