@@ -34,7 +34,7 @@ The function returns a list that includes the name of the Application, no. of pa
 
 Tasks are a way to bundle images that need to be processed with same parameters. Say for instance, one task may have images that have been taken by a mobile phone and which you want OCRd to a text file. Another may have all scanned images that you want exported to XML. There are a variety of functions to help you manage the tasks. 
 
-    * **List Tasks**
+   * **List Tasks**
 
 	`listTasks` lists all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listTasks/) for the function.
 
