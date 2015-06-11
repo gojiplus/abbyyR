@@ -1,9 +1,9 @@
 Package: abbyyR
-Title: Access to Abbyy FineReader OCR SDK API
+Title: Access to Abbyy Optical Character Recognition (OCR) API
 Version: 0.1
 Authors@R: person("Gaurav", "Sood", email = "gsood07@gmail.com", role = c("aut", "cre"))
 Maintainer: Gaurav Sood <gsood07@gmail.com>
-Description: OCR a wide variety of image formats easily.
+Description: Get text from images of text using Abbyy Cloud Optical Character Recognition (OCR) API. Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports. Get the results in a variety of formats including plain text and XML. To learn more about the Abbyy OCR API, see http://ocrsdk.com/. 
 URL: http://github.com/soodoku/abbyyR
 BugReports: http://github.com/soodoku/abbyyR/issues
 Depends: R (>= 3.2.0)
