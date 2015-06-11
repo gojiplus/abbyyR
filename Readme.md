@@ -39,10 +39,10 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 	`listTasks` lists all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listTasks/) for the function.
 
         ```{r}
-        listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ",excludeDeleted="false")
+        listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ")
         ```
 
-    *  **List Finished Tasks**
+   * **List Finished Tasks**
 
 	List all the finished tasks in the application. "The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call." (From Abbyy FineReader). The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listFinishedTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listFinishedTasks/) for the function.
 
@@ -52,7 +52,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
         listFinishedTasks()
         ```
 
-    *  **Get Task Status**
+   *  **Get Task Status**
 
 	The function gets task status for a particular task ID. The function prints the status of the task by default. The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable).
 
@@ -62,7 +62,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
         getTaskStatus(taskId="task_id")
         ```
 
-    * **Delete a Task**
+   *  **Delete a Task**
 
 	This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned." The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful. The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 
@@ -76,107 +76,107 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 
 Till now we have covered tools to manage the workflow. Now we cover details about how to submit images, barcode fields, business cards etc. for OCR. Abbyy conveniently provides separate functions for submitting different types of documents. The argument that we can pass depending on the kind of the document we are processing. Abbyy provides a way to process a single image, and a bundle of images (bundled under one task) using the same set of parameters. The function below either submit documents to Abbyy or trigger processing of documents (separate steps). To download images that have been processed, use the `getResults` function. 
 
-1. Submit an Image for Processing
+   *  **Submit an Image for Processing**
 
-Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits,  estimatedProcessingTime
+	Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits,  estimatedProcessingTime
 
-For additional details about how Abbyy FineReader implements `submitImage`, see the [reference](http://ocrsdk.com/documentation/apireference/submitImage/) for the function.
+	For additional details about how Abbyy FineReader implements `submitImage`, see the [reference](http://ocrsdk.com/documentation/apireference/submitImage/) for the function.
 
-```{r}
-submitImage(file_path="file_path", taskId="task_id", pdfPassword="")
-```
+	```{r}
+	submitImage(file_path="file_path", taskId="task_id", pdfPassword="")
+	```
 
-2. Process Image
+   *  **Process Image**
 
-Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If an empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
+	Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If an empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 
-For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processImage/) for the function.
+	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processImage/) for the function.
 
-```{r}
-processImage(file_path="file_path", language="English", profile="documentConversion")
-```
+	```{r}
+	processImage(file_path="file_path", language="English", profile="documentConversion")
+	```
 
-3. Process a Remote Image
+   *  **Process a Remote Image**
 
-Same as processImage except the function takes image url as a required argument.
+	Same as processImage except the function takes image url as a required argument.
 
-For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processRemoteImage/) for the function.
+	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processRemoteImage/) for the function.
 
-```{r}
-processRemoteImage(img_url="img_url", language="English", profile="documentConversion")
-```
+	```{r}
+	processRemoteImage(img_url="img_url", language="English", profile="documentConversion")
+	```
 
-4. Process Document
+   *  **Process Document**
 
-This function processes several images for the same task and results in a multi-page document. For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
+	This function processes several images for the same task and results in a multi-page document. For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
 
-For additional details about how Abbyy FineReader implements `processDocument`, see the [reference](http://ocrsdk.com/documentation/apireference/processDocument/) for the function.
+	For additional details about how Abbyy FineReader implements `processDocument`, see the [reference](http://ocrsdk.com/documentation/apireference/processDocument/) for the function.
 
-```{r}
-processDocument(task_id="task_id")
-```
+	```{r}
+	processDocument(task_id="task_id")
+	```
 
-5. Process Business Card
+   *  **Process Business Card**
 
-For additional details about how Abbyy FineReader implements `processBusinessCard`, see the [reference](http://ocrsdk.com/documentation/apireference/processBusinessCard/) for the function.
+	For additional details about how Abbyy FineReader implements `processBusinessCard`, see the [reference](http://ocrsdk.com/documentation/apireference/processBusinessCard/) for the function.
 
-```{r}
-processBusinessCard(file_path="file_path")
-```
+	```{r}
+	processBusinessCard(file_path="file_path")
+	```
 
-6. Process Text Field
+   *  **Process Text Field**
 
-For additional details about how Abbyy FineReader implements `processTextField`, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
+	For additional details about how Abbyy FineReader implements `processTextField`, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
 
-```{r}
-processTextField(file_path="file_path")
-```
+	```{r}
+	processTextField(file_path="file_path")
+	```
 
-7. Process Barcode Field
+   *  **Process Barcode Field**
 
-For additional details about how Abbyy FineReader implements `processBarcodeField`, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
+	For additional details about how Abbyy FineReader implements `processBarcodeField`, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
 
-```{r}
-processBarcodeField(file_path="file_path")
-```
+	```{r}
+	processBarcodeField(file_path="file_path")
+	```
 
-8. Process Checkmark Field
+   *  **Process Checkmark Field**
 
-For additional details about how Abbyy FineReader implements `processCheckmarkField`, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
+	For additional details about how Abbyy FineReader implements `processCheckmarkField`, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
 
-```{r}
-processCheckmarkField(file_path="file_path")
-```
+	```{r}
+	processCheckmarkField(file_path="file_path")
+	```
 
-9. Process Fields
+   *  **Process Fields**
 
-For additional details about how Abbyy FineReader implements `processFields`, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
+	For additional details about how Abbyy FineReader implements `processFields`, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
 
-```{r}
-processFields(file_path="file_path")
-```
+	```{r}
+	processFields(file_path="file_path")
+	```
 
-10. Process MRZ
+   *  **Process MRZ**
 
-Extract data from Machine Readable Zone.
+	Extract data from Machine Readable Zone.
 
-Output may contain the following fields: MrzType, Line1, Line2, Line3, DocumentType, DocumentSubtype, IssuingCountry, LastName, GivenName, DocumentNumber, DocumentNumberVerified, DocumentNumberCheck, Nationality, BirthDate, BirthDateVerified
+	Output may contain the following fields: MrzType, Line1, Line2, Line3, DocumentType, DocumentSubtype, IssuingCountry, LastName, GivenName, DocumentNumber, DocumentNumberVerified, DocumentNumberCheck, Nationality, BirthDate, BirthDateVerified
 
-For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
+	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
 
-```{r}
-processMRZ(file_path="file_path")
-```
+	```{r}
+	processMRZ(file_path="file_path")
+	```
 
-11. Process Photo ID
+   *  **Process Photo ID**
 
-Extract data from a Photo ID.
+	Extract data from a Photo ID.
 
-For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
+	For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
 
-```{r}
-processPhotoId(file_path="file_path")
-```
+	```{r}
+	processPhotoId(file_path="file_path")
+	```
 
 #### License
 Scripts are released under [GNU V3](http://www.gnu.org/licenses/gpl-3.0.en.html).
