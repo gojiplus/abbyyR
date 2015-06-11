@@ -1,6 +1,6 @@
 ### Access Abbyy Cloud OCR SDK API via R
 
-To get going, get the application id and password from [http://ocrsdk.com/](http://ocrsdk.com/).
+Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in form of text files or detailed XML.
 
 ### Installation
 
@@ -12,8 +12,9 @@ devtools::install_github("soodoku/abbyyR")
 
 ```
 
-### Running
-To use the package, first set application id and password via the `setapp` function.
+### Usage
+
+To get going, get the application id and password from [http://ocrsdk.com/](http://ocrsdk.com/). Then set the application id and password via the `setapp` function.
 
 ```{r}
 setapp(c("app_id", "app_password"))

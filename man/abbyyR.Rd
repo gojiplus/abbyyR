@@ -4,8 +4,8 @@
 \name{abbyyR}
 \alias{abbyyR}
 \alias{abbyyR-package}
-\title{\pkg{abbyyR} makes getting OCR easy.}
+\title{\pkg{abbyyR} makes OCR easy.}
 \description{
-\pkg{abbyyR} makes getting OCR easy.
+\pkg{abbyyR} makes OCR easy.
 }
 
