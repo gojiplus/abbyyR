@@ -27,7 +27,7 @@ Your first task on loading the package should be to set the credentials - applic
 
 
 ```r
-setapp(c("factbook", "7YVBc8E6xMricoTwp0mF0aHP"))
+setapp(c("factbook", "7YVBc8E6xMricoTwp0mF0aH"))
 ```
 
 #### Get Information about Application
@@ -55,8 +55,8 @@ tasklist <- listTasks()
 ```
 
 ```
-## Total No. of Tasks:  24 
-## No. of Finished Tasks:  16
+## Total No. of Tasks:  30 
+## No. of Finished Tasks:  22
 ```
 
 ```r
@@ -64,8 +64,8 @@ listTasks(excludeDeleted="true")
 ```
 
 ```
-## Total No. of Tasks:  22 
-## No. of Finished Tasks:  16
+## Total No. of Tasks:  28 
+## No. of Finished Tasks:  22
 ```
 
 ```r
@@ -84,7 +84,7 @@ listFinishedTasks()
 ```
 
 ```
-## No. of Finished Tasks:  18
+## No. of Finished Tasks:  24
 ```
 
 #### Get Task Status
@@ -118,7 +118,7 @@ submitImage(file_path="t1.tif", pdfPassword="")
 
 ```
 ## Status of the task:  Submitted 
-## Task ID:  a94bcceb-acfb-4282-ba4e-83ef26a237f6
+## Task ID:  4c088272-003d-4fc7-b0f7-b805495c4466
 ```
 
 **Process an Image**
@@ -130,7 +130,7 @@ processImage(file_path="t1.tif")
 
 ```
 ## Status of the task:  Queued 
-## Task ID:  f3e0bc70-964a-4622-a16d-b5262254e8f0
+## Task ID:  650d4cd3-964c-40c6-9118-97eecc099b34
 ```
 
 **Process a Remote Image**
@@ -142,16 +142,7 @@ processRemoteImage(img_url="https://raw.githubusercontent.com/soodoku/abbyyR/mas
 
 ```
 ## Status of the task:  Submitted 
-## Task ID:  02fc8355-79ea-415b-9b7c-f94a52a519b5
-```
-
-**Get Results**
-
-Go through all the finished tasks and download all the data.
-
-
-```r
-# getResults()
+## Task ID:  7f5112b8-6541-435e-86c4-dc978a45749e
 ```
 
 **Process Document**
@@ -162,8 +153,8 @@ res <- listTasks()
 ```
 
 ```
-## Total No. of Tasks:  27 
-## No. of Finished Tasks:  17
+## Total No. of Tasks:  33 
+## No. of Finished Tasks:  23
 ```
 
 ```r
@@ -174,4 +165,11 @@ processDocument(taskId=res$id[res$status=="Submitted"][1])
 ## Status of the task:  Queued
 ```
 
+**Get Results**
 
+Go through all the finished tasks and download all the data.
+
+
+```r
+# getResults()
+```
