@@ -1,5 +1,7 @@
 ### Access Abbyy Cloud OCR SDK API via R
 
+[![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
+
 Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in form of text files or detailed XML.
 The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/). Details about results of calls to the API can be [found here](http://ocrsdk.com/documentation/specifications/status-codes/).
 
