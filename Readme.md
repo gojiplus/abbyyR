@@ -9,26 +9,26 @@ The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/)
 
 To get the current development version from github:
 
-	```{r}
-	# install.packages("devtools")
-	devtools::install_github("soodoku/abbyyR")
-	```
+```{r}
+# install.packages("devtools")
+devtools::install_github("soodoku/abbyyR")
+```
 
 ### Usage
 
 To get going, get the application id and password from [http://ocrsdk.com/](http://ocrsdk.com/). Then set the application id and password via the `setapp` function.
 
-	```{r}
-	setapp(c("app_id", "app_password"))
-	```
+```{r}
+setapp(c("app_id", "app_password"))
+```
 
 #### Applications
 
 Applications are a convenient way to keep different OCR projects separate. You can have multiple applications running at the same time. Each application has its own budget. To get more information about the application, use `getAppInfo`. 
 
-	```{r get_appinfo}
-	getAppInfo()
-	```
+```{r get_appinfo}
+getAppInfo()
+```
 
 The function returns a list that includes the name of the Application, no. of pages remaining (given the money), no. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. For additional details about how Abbyy FineReader implements `getAppInfo`, see the [reference](http://ocrsdk.com/documentation/apireference/getApplicationInfo/) for the function.
 
