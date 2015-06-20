@@ -1,2 +1,5 @@
 language: r
 sudo: required
+
+after_success:
+  - Rscript -e 'library(covr);coveralls()'
