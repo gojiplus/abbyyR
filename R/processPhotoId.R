@@ -21,7 +21,7 @@ processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", co
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processPhotoId"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processPhotoId", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

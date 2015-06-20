@@ -27,7 +27,7 @@ processBusinessCard <- function(file_path=NULL, language="English", imageSource=
 	querylist = list(language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
 					 correctSkew=correctSkew,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBusinessCard"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processBusinessCard", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

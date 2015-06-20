@@ -30,7 +30,7 @@ processTextField <- function(file_path=NULL, region="-1,-1,-1,-1", language="Eng
 	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
 							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
 	
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processTextField"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processTextField", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

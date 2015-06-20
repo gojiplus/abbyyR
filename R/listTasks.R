@@ -16,7 +16,7 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/listTasks"), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/listTasks", authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
 

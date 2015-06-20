@@ -16,7 +16,7 @@ deleteTask <- function(taskId=NULL){
 	if(is.null(taskId)) stop("Must specify taskId")
 
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("https://",app_id,":",app_pass,"@cloud.ocrsdk.com/deleteTask"), query=querylist)
+	res <- httr::GET("https://cloud.ocrsdk.com/deleteTask", authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	deletedTaskdetails <- XML::xmlToList(httr::content(res))
 	

@@ -20,7 +20,7 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 	
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/submitImage"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/submitImage", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	submitdetails <- XML::xmlToList(httr::content(res))
 	

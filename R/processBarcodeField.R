@@ -20,7 +20,7 @@ processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processBarcodeField"), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processBarcodeField", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

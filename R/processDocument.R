@@ -26,7 +26,7 @@ processDocument <- function(taskId = NULL, language="English", profile="document
 	
 	querylist = list(taskId = taskId, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processDocument"), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/processDocument", authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

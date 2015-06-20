@@ -17,7 +17,7 @@ getTaskStatus <- function(taskId=NULL){
 	if(is.null(taskId)) stop("Must specify taskId")
 	
 	querylist = list(taskId = taskId)
-	res <- httr::GET(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/getTaskStatus"), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/getTaskStatus", authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	taskdetails <- XML::xmlToList(httr::content(res))
 	

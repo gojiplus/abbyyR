@@ -14,3 +14,4 @@ setapp <- function(appdetails=NULL){
     else
         return(getOption('AbbyyAppId'))    
 }
+

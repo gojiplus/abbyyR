@@ -14,7 +14,7 @@ processMRZ <- function(file_path=NULL){
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 
-	res <- httr::POST(paste0("http://",app_id,":",app_pass,"@cloud.ocrsdk.com/processMRZ"), body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processMRZ", authenticate(app_id, app_pass), body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
 	processdetails <- XML::xmlToList(httr::content(res))
