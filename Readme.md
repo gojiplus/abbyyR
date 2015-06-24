@@ -1,5 +1,6 @@
 ### Access Abbyy Cloud OCR SDK API via R
-[![License GPL 3][badge-license]](http://www.gnu.org/licenses/gpl-3.0.txt)
+
+[![GPL-3.0](http://img.shields.io/:license-gpl-blue.svg)](http://opensource.org/licenses/GPL-3.0)
 [![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/abbyyR)](http://cran.r-project.org/web/packages/abbyyR)
 ![](http://cranlogs.r-pkg.org/badges/abbyyR)
