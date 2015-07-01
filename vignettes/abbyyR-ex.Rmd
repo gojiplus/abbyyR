@@ -111,7 +111,7 @@ Deleting an already deleted task will result in an error.
 
 Note: I am uploading a sample image that Abbyy provides for free to test its software. You can find this image in the data folder of the package.
 
-![Sample Image](https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.TIF)
+
 
 ```r
 submitImage(file_path="t1.tif", pdfPassword="")
@@ -165,6 +165,10 @@ processDocument(taskId=res$id[res$status=="Submitted"][1])
 ```
 ## Status of the task:  Queued
 ```
+
+** Process Bar Code**
+![Sample Image](https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/barcode.JPG)
+
 
 **Get Results**
 
