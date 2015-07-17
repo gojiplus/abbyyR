@@ -40,7 +40,9 @@ Data frame with details of the task associated with the submitted Remote Image
 This function gets Information about a particular application
 }
 \examples{
-# processRemoteImage(img_url="img_url")
+\dontrun{
+processRemoteImage(img_url="img_url")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}

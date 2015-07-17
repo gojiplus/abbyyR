@@ -18,8 +18,9 @@
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processTextField/}
 #' @references \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
-#' @examples
-#' # processTextField(file_path="file_path")
+#' @examples \dontrun{
+#' processTextField(file_path="file_path")
+#' }
 
 processTextField <- function(file_path=NULL, region="-1,-1,-1,-1", language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
 							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword=""){
@@ -30,7 +31,7 @@ processTextField <- function(file_path=NULL, region="-1,-1,-1,-1", language="Eng
 	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
 							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
 	
-	res <- httr::POST("http://cloud.ocrsdk.com/processTextField", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processTextField", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

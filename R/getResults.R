@@ -6,6 +6,9 @@
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 #' @usage getResults(output="")
+#' @examples \dontrun{
+#' getResults(output="")
+#' }
 
 getResults <- function(output=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")

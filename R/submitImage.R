@@ -6,9 +6,10 @@
 #' @param pdfPassword Optional; If the pdf is password protected, put the password here.
 #' @return Data frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 #' @export
-#' @references \url{http://ocrsdk.com/documentation/apireference/submitImage/}
-#' @examples
-#' # submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+#' @references \url{http://ocrsdk.com/documentation/apireference/submitImage/} 
+#' @examples \dontrun{
+#' submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+#' }
 
 submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
@@ -20,7 +21,7 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 	
-	res <- httr::POST("http://cloud.ocrsdk.com/submitImage", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/submitImage", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	submitdetails <- XML::xmlToList(httr::content(res))
 	

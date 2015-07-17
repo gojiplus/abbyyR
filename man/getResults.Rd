@@ -13,6 +13,11 @@ getResults(output="")
 Get data from all the processed images.
 The function goes through the finishedTasks data frame and downloads all the files in resultsUrl
 }
+\examples{
+\dontrun{
+getResults(output="")
+}
+}
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 }

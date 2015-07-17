@@ -30,7 +30,9 @@ Data frame with details of the task associated with the submitted Photo ID image
 This function gets Information about a particular application
 }
 \examples{
-# processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
+\dontrun{
+processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}

@@ -41,7 +41,9 @@ This function processes several images for the same task and results in a multi-
 For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
 }
 \examples{
-# processDocument(taskId = "task_id")
+\dontrun{
+processDocument(taskId = "task_id")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processDocument/}

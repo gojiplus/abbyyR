@@ -8,4 +8,7 @@
 \description{
 \pkg{abbyyR} makes OCR easy.
 }
+\author{
+Gaurav Sood
+}
 

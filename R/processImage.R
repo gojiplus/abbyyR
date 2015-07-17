@@ -16,8 +16,9 @@
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' @references \url{http://ocrsdk.com/documentation/apireference/processImage/}
-#' @examples
-#' # processImage(file_path="file_path", language="English")
+#' @examples \dontrun{
+#' processImage(file_path="file_path", language="English")
+#' }
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
@@ -30,7 +31,7 @@ processImage <- function(file_path=NULL, language="English", profile="documentCo
 	querylist = list(language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 
-	res <- httr::POST("http://cloud.ocrsdk.com/processImage", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processImage", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

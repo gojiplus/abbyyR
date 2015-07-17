@@ -5,8 +5,9 @@
 #' @return Data frame with details of the task associated with the submitted MRZ document
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
-#' @examples
-#' # processMRZ(file_path="file_path")
+#' @examples \dontrun{
+#' processMRZ(file_path="file_path")
+#' }
 
 processMRZ <- function(file_path=NULL){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
@@ -14,7 +15,7 @@ processMRZ <- function(file_path=NULL){
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 
-	res <- httr::POST("http://cloud.ocrsdk.com/processMRZ", authenticate(app_id, app_pass), body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processMRZ", httr::authenticate(app_id, app_pass), body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
 	processdetails <- XML::xmlToList(httr::content(res))

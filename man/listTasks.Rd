@@ -21,6 +21,11 @@ A data frame with the following columns: id (task id), registrationTime, statusC
 List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks.
 The function prints Total number of tasks and No. of Finished Tasks.
 }
+\examples{
+\dontrun{
+listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
+}
+}
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 }

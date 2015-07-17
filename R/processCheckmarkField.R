@@ -10,8 +10,9 @@
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
-#' @examples
-#' # processCheckmarkField(file_path="file_path")
+#' @examples \dontrun{
+#' processCheckmarkField(file_path="file_path")
+#' }
 
 processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region="-1,-1,-1,-1",correctionAllowed="false", pdfPassword="",description=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
@@ -20,7 +21,7 @@ processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
-	res <- httr::POST("http://cloud.ocrsdk.com/processCheckmarkField", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processCheckmarkField", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

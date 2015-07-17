@@ -10,13 +10,16 @@
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @usage listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
+#' @examples \dontrun{
+#' listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
+#' }
 
 listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
-	res <- httr::GET("http://cloud.ocrsdk.com/listTasks", authenticate(app_id, app_pass), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/listTasks", httr::authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	tasklist <- XML::xmlToList(httr::content(res))
 

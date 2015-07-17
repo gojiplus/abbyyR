@@ -17,7 +17,7 @@ processFields <- function(file_path=NULL,taskId=NULL,description=""){
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(taskId = taskId, description=description)
-	res <- httr::POST("http://cloud.ocrsdk.com/processFields", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processFields", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

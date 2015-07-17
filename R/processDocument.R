@@ -16,8 +16,9 @@
 #' @return Data frame with details of the task associated with the submitted Document
 #' @export 
 #' @references \url{http://ocrsdk.com/documentation/apireference/processDocument/}
-#' @examples
-#' # processDocument(taskId = "task_id")
+#' @examples \dontrun{
+#' processDocument(taskId = "task_id")
+#' }
 
 processDocument <- function(taskId = NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description=NULL, pdfPassword=NULL){
@@ -26,7 +27,7 @@ processDocument <- function(taskId = NULL, language="English", profile="document
 	
 	querylist = list(taskId = taskId, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
-	res <- httr::GET("http://cloud.ocrsdk.com/processDocument", authenticate(app_id, app_pass), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/processDocument", httr::authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

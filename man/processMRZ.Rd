@@ -16,7 +16,9 @@ Data frame with details of the task associated with the submitted MRZ document
 Extract data from Machine Readable Zone in an Image
 }
 \examples{
-# processMRZ(file_path="file_path")
+\dontrun{
+processMRZ(file_path="file_path")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processMRZ/}

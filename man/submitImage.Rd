@@ -20,7 +20,9 @@ Data frame with all the details of the submitted image: id (task id), registrati
 Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called.
 }
 \examples{
-# submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+\dontrun{
+submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/submitImage/}

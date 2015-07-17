@@ -13,7 +13,9 @@ setapp(appdetails = NULL)
 Set Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK. Run this before anything else.
 }
 \examples{
+\dontrun{
 setapp(c("app_id", "app_password"))
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}

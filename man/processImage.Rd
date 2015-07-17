@@ -40,7 +40,9 @@ Data frame with details of the task associated with the submitted Image
 This function processes an image
 }
 \examples{
-# processImage(file_path="file_path", language="English")
+\dontrun{
+processImage(file_path="file_path", language="English")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/specifications/image-formats/}

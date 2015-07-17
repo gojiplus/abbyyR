@@ -12,6 +12,11 @@ A list with items including Name of the Application, No. of pages remaining (giv
 \description{
 Get Information about the Application, such as number of pages (given the money), when the application credits expire etc. The function prints the details, and returns a list with the details.
 }
+\examples{
+\dontrun{
+getAppInfo()
+}
+}
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 

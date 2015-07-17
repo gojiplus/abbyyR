@@ -18,7 +18,9 @@ The function prints the status of the task by default.
 The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \examples{
-# getTaskStatus(taskId="task_id")
+\dontrun{
+getTaskStatus(taskId="task_id")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}

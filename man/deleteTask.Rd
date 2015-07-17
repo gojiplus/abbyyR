@@ -17,7 +17,9 @@ This function deletes a particular task and associated data. From Abbyy "If you 
 The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful
 }
 \examples{
-# deleteTask(taskId="task_id")
+\dontrun{
+deleteTask(taskId="task_id")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/deleteTask/}

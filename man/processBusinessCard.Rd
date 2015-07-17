@@ -32,7 +32,9 @@ Data frame with details of the task associated with the submitted Business Card
 This function gets Information about a particular application
 }
 \examples{
-# processBusinessCard(file_path="file_path", language="English")
+\dontrun{
+processBusinessCard(file_path="file_path", language="English")
+}
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}

@@ -10,8 +10,9 @@
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBarcodeField/}
-#' @examples
-#' # processBarcodeField(file_path="file_path")
+#' @examples \dontrun{
+#' processBarcodeField(file_path="file_path")
+#' }
 
 processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region="-1,-1,-1,-1",containsBinaryData="false",pdfPassword="",description=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
@@ -20,7 +21,7 @@ processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
-	res <- httr::POST("http://cloud.ocrsdk.com/processBarcodeField", authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+	res <- httr::POST("http://cloud.ocrsdk.com/processBarcodeField", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

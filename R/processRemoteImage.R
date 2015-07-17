@@ -15,8 +15,9 @@
 #' @return Data frame with details of the task associated with the submitted Remote Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
-#' @examples
-#' # processRemoteImage(img_url="img_url")
+#' @examples \dontrun{
+#' processRemoteImage(img_url="img_url")
+#' }
 
 processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description=NULL, pdfPassword=NULL){
@@ -27,7 +28,7 @@ processRemoteImage <- function(img_url=NULL, language="English", profile="docume
 
 	querylist = list(source=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
-	res <- httr::GET("http://cloud.ocrsdk.com/processRemoteImage", authenticate(app_id, app_pass), query=querylist)
+	res <- httr::GET("http://cloud.ocrsdk.com/processRemoteImage", httr::authenticate(app_id, app_pass), query=querylist)
 	httr::stop_for_status(res)
 	processdetails <- XML::xmlToList(httr::content(res))
 	

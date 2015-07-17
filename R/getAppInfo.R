@@ -6,11 +6,14 @@
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' @references \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 #' @usage getAppInfo()
+#' @examples \dontrun{
+#' getAppInfo()
+#' }
 
 getAppInfo <- function(){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	res <- httr::GET("http://cloud.ocrsdk.com/getApplicationInfo", authenticate(app_id, app_pass))
+	res <- httr::GET("http://cloud.ocrsdk.com/getApplicationInfo", httr::authenticate(app_id, app_pass))
 	httr::stop_for_status(res)
 	appinfo <- XML::xmlToList(httr::content(res))[[1]]
 

@@ -5,8 +5,9 @@
 #' @keywords Sets Application ID and Password
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
-#' @examples
+#' @examples \dontrun{
 #' setapp(c("app_id", "app_password"))
+#' }
 
 setapp <- function(appdetails=NULL){
     if(!is.null(appdetails))
