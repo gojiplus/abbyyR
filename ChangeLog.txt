@@ -1,0 +1,5 @@
+version .2 2015-08-20
+
+	Improved How Authetication Information is Transmitted.
+	Better Vignette
+
