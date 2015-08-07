@@ -2,3 +2,5 @@
 ^\.Rproj\.user$
 .travis.yml
 Readme.md
+ChangeLog.txt
+abby_dev
