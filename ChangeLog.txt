@@ -1,5 +1,5 @@
 version .2 2015-08-20
-
-	Improved How Authetication Information is Transmitted.
-	Better Vignette
-
+-----------------------
+1. Improved How Authetication Information is Transmitted.
+2. New Vignette
+3. Download files via curl::curl_download rather than download.file
