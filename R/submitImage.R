@@ -20,8 +20,8 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	# The API doesn't handle taskId="" and that is just as well as new task is created
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
-	
-	res <- httr::POST("http://cloud.ocrsdk.com/submitImage", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
+
+	res <- httr::POST("https://cloud.ocrsdk.com/submitImage", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
 	httr::stop_for_status(res)
 	submitdetails <- XML::xmlToList(httr::content(res))
 	

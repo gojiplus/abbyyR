@@ -1,0 +1,112 @@
+### abbyyR: Getting Text from Wisconsin Ads Storyboards
+
+#### Load the package
+
+To get started, load the package. The latest version of the package will always be on github. Instructions for installing the package from github are provided below.
+
+
+```r
+library(abbyyR)
+```
+
+#### Set credentials
+
+Your first task on loading the package should be to set the credentials - application ID and password. If you haven't already, you can get this information 
+[http://ocrsdk.com/](http://ocrsdk.com/). Once you have the application ID and password, set it via the `setapp` function. 
+
+
+```r
+# setapp(c("factbook", "7YVBc8E6xMricoTwp0mF0aH"))
+```
+
+#### Start from a Clean Slate
+
+Some of you may want to start by deleting all existing tasks in an application.
+
+```r
+"
+all_tasks <- listTasks()
+for (i in 1:nrow(all_tasks)) deleteTask(all_tasks$id[i]) 
+"
+```
+
+#### Submit All Images in a Directory
+
+
+```r
+# Set path to directory with all the images
+path_to_img_dir <- paste0(path.package("abbyyR"),"/inst/extdata/wisc_ads/")
+total_files <- length(dir(path_to_img_dir))
+
+# Iterate through the files and submit all the images
+
+# Monitor progress via progress bar package
+library(progress)
+pb <- progress_bar$new(format = "  downloading [:bar] :percent\n",
+					    total = total_files, 
+					    clear = FALSE, width= 60)
+
+# Abbyy Fine API doesn't keep the file name so we have to keep track of it locally
+tracker <- data.frame(filename=NA, taskid=NA)
+
+# Loop
+j <- 1
+
+for (i in dir(path_to_img_dir)){
+	
+	# Assuming only 1 dot in the file name
+	tracker[j,] <- c(unlist(strsplit(basename(i), "[.]"))[1], submitImage(file_path=paste0(path_to_img_dir, i))$id)
+	j <- j + 1
+
+	# Prg. bar
+	pb$tick()
+	Sys.sleep(1/100)
+}
+
+```
+
+#### Process All the Files
+
+```
+
+for (i in 1:nrow(tracker)) processDocument(tracker$taskid[i]) 
+
+```
+
+#### Are all the tasks completed?
+
+You can either wait and check manually or ping after every few seconds to check status like so:
+
+```r
+"
+i <- 1
+
+while(i < total_files){
+	i <- nrow(listFinishedTasks())
+	if (i == total_files){
+		print("All Done!")
+		break;
+	}
+
+	Sys.sleep(5)
+"
+}
+```
+
+#### Downloading Finished Files
+
+You need to setup an output folder. And then download all the completed files.
+
+```r
+setwd(paste0(path.package("abbyyR"),"/inst/extdata/wisc_out/"))
+
+finishedlist <- listFinishedTasks()
+results      <- merge(tracker, finishedlist, by.x="taskid", by.y="id")
+
+library(curl)
+
+for(i in 1:nrow(results)){
+	curl_download(results$resultUrl[i], destfile=results$filename[i])
+}
+
+```
