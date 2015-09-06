@@ -4,7 +4,6 @@
 [![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/abbyyR)](http://cran.r-project.org/web/packages/abbyyR)
 ![](http://cranlogs.r-pkg.org/badges/abbyyR)
-[![Coverage Status](https://coveralls.io/repos/soodoku/abbyyR/badge.svg)](https://coveralls.io/r/soodoku/abbyyR)
 
 Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in form of text files or detailed XML.
 The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/). Details about results of calls to the API can be [found here](http://ocrsdk.com/documentation/specifications/status-codes/).
