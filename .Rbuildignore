@@ -2,5 +2,7 @@
 ^\.Rproj\.user$
 .travis.yml
 Readme.md
+^.*\.Rmd$
+^.*\.md$
 ChangeLog.txt
 abby_dev
