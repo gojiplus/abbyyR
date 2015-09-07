@@ -19,7 +19,7 @@ devtools::install_github("soodoku/abbyyR")
 
 ### Usage
 
-Learn how to use abbyyR with a vignette that gives you an [overview of the package](vignettes/Overview of abbyyR.md). Or, see how [some functions are used along with output](vignettes/abbyyR-ex.md). Or, see an applied example of scraping text from a folder of [static Wisconsin Ads storyboards](vignettes/wiscads.md).
+Learn how to use abbyyR with a vignette that gives you an [overview of the package](vignettes/Overview_of_abbyyR.md). Or, see how [some functions are used along with output](vignettes/abbyyR_example.md). Or, see an applied example of scraping text from a folder of [static Wisconsin Ads storyboards](vignettes/wiscads.md).
 
 #### License
 Scripts are released under [GNU V3](http://www.gnu.org/licenses/gpl-3.0.en.html).
