@@ -7,7 +7,7 @@ The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/)
 
 To get the current development version from github:
 
-```{r install}
+```{r, eval=FALSE, install}
 # install.packages("devtools")
 devtools::install_github("soodoku/abbyyR")
 ```
@@ -16,7 +16,7 @@ devtools::install_github("soodoku/abbyyR")
 
 To get going, get the application id and password from [http://ocrsdk.com/](http://ocrsdk.com/). Then set the application id and password via the `setapp` function.
 
-```{r setapp}
+```{r, eval=FALSE, setapp}
 setapp(c("app_id", "app_password"))
 ```
 
@@ -24,7 +24,7 @@ setapp(c("app_id", "app_password"))
 
 Applications are a convenient way to keep different OCR projects separate. You can have multiple applications running at the same time. Each application has its own budget. To get more information about the application, use `getAppInfo`. 
 
-```{r get_appinfo}
+```{r, eval=FALSE, get_appinfo}
 getAppInfo()
 ```
 
@@ -38,7 +38,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 
 	`listTasks` lists all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listTasks/) for the function.
 
-    ```{r listTasks}
+    ```{r, eval=FALSE, listTasks}
     listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ")
     ```
 
@@ -48,7 +48,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 
 	You can download the results of the OCR project from all the FinishedTasks using the `getResults` function.
 
-    ```{r listFinishedTasks}
+    ```{r, eval=FALSE, listFinishedTasks}
     listFinishedTasks()
     ```
 
@@ -58,7 +58,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 
 	For additional details about how Abbyy FineReader implements `getTaskStatus`, see the [reference](http://ocrsdk.com/documentation/apireference/getTaskStatus/) for the function.
 
-    ```{r getTaskStatus}
+    ```{r, getTaskStatus, eval=FALSE}
     getTaskStatus(taskId="task_id")
     ```
 
@@ -68,7 +68,7 @@ Tasks are a way to bundle images that need to be processed with same parameters.
 
 	For additional details about how Abbyy FineReader implements `deleteTask`, see the [reference](http://ocrsdk.com/documentation/apireference/deleteTask/) for the function.
 
-	```{r deleteTask}
+	```{r, deleteTask, eval=FALSE}
     deleteTask(taskId="task_id")
     ```
 
@@ -82,7 +82,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `submitImage`, see the [reference](http://ocrsdk.com/documentation/apireference/submitImage/) for the function.
 
-	```{r submitImage}
+	```{r, submitImage, eval=FALSE}
 	submitImage(file_path="file_path", taskId="task_id", pdfPassword="")
 	```
 
@@ -92,7 +92,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processImage/) for the function.
 
-	```{r processImage}
+	```{r, processImage, eval=FALSE}
 	processImage(file_path="file_path", language="English", profile="documentConversion")
 	```
 
@@ -102,7 +102,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processRemoteImage/) for the function.
 
-	```{r processRemoteImage}
+	```{r, processRemoteImage, eval=FALSE}
 	processRemoteImage(img_url="img_url", language="English", profile="documentConversion")
 	```
 
@@ -112,7 +112,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processDocument`, see the [reference](http://ocrsdk.com/documentation/apireference/processDocument/) for the function.
 
-	```{r processDocument}
+	```{r, processDocument, eval=FALSE}
 	processDocument(task_id="task_id")
 	```
 
@@ -120,7 +120,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processBusinessCard`, see the [reference](http://ocrsdk.com/documentation/apireference/processBusinessCard/) for the function.
 
-	```{r processBusinessCard}
+	```{r, processBusinessCard, eval=FALSE}
 	processBusinessCard(file_path="file_path")
 	```
 
@@ -128,7 +128,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processTextField`, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
 
-	```{r processTextField}
+	```{r, processTextField, eval=FALSE}
 	processTextField(file_path="file_path")
 	```
 
@@ -136,7 +136,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processBarcodeField`, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
 
-	```{r processBarcodeField}
+	```{r, processBarcodeField, eval=FALSE}
 	processBarcodeField(file_path="file_path")
 	```
 
@@ -144,7 +144,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processCheckmarkField`, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
 
-	```{r processCheckmarkField}
+	```{r, processCheckmarkField, eval=FALSE}
 	processCheckmarkField(file_path="file_path")
 	```
 
@@ -152,7 +152,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processFields`, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
 
-	```{r processFields}
+	```{r, processFields, eval=FALSE}
 	processFields(file_path="file_path")
 	```
 
@@ -164,7 +164,7 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
 
-	```{r processMRZ}
+	```{r, processMRZ, eval=FALSE}
 	processMRZ(file_path="file_path")
 	```
 
@@ -174,6 +174,6 @@ Till now we have covered tools to manage the workflow. Now we cover details abou
 
 	For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
 
-	```{r processPhotoId}
+	```{r, processPhotoId, eval=FALSE}
 	processPhotoId(file_path="file_path")
 	```
