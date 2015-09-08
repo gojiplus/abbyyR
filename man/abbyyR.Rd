@@ -6,7 +6,9 @@
 \alias{abbyyR-package}
 \title{\pkg{abbyyR} makes OCR easy.}
 \description{
-\pkg{abbyyR} makes OCR easy.
+Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R.
+Get the results in form of text files or detailed XML. The package provides access to Abbyy OCR -- see \url{http://ocrsdk.com/}.
+Details about results of calls to the API can be found at \url{http://ocrsdk.com/documentation/specifications/status-codes/}
 }
 \author{
 Gaurav Sood
