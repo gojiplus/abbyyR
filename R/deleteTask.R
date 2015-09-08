@@ -17,9 +17,9 @@ deleteTask <- function(taskId=NULL){
 	if(is.null(taskId)) stop("Must specify taskId")
 
 	querylist = list(taskId = taskId)
-	res <- httr::GET("https://cloud.ocrsdk.com/deleteTask", httr::authenticate(app_id, app_pass), query=querylist)
-	httr::stop_for_status(res)
-	deletedTaskdetails <- XML::xmlToList(httr::content(res))
+	res <- GET("https://cloud.ocrsdk.com/deleteTask", authenticate(app_id, app_pass), query=querylist)
+	stop_for_status(res)
+	deletedTaskdetails <- xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, deletedTaskdetails) # collapse to a data.frame
 	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7

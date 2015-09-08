@@ -28,9 +28,9 @@ processRemoteImage <- function(img_url=NULL, language="English", profile="docume
 
 	querylist = list(source=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
-	res <- httr::GET("http://cloud.ocrsdk.com/processRemoteImage", httr::authenticate(app_id, app_pass), query=querylist)
-	httr::stop_for_status(res)
-	processdetails <- XML::xmlToList(httr::content(res))
+	res <- GET("http://cloud.ocrsdk.com/processRemoteImage", authenticate(app_id, app_pass), query=querylist)
+	stop_for_status(res)
+	processdetails <- xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])

@@ -21,9 +21,9 @@ processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region=
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
-	res <- httr::POST("http://cloud.ocrsdk.com/processCheckmarkField", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
-	httr::stop_for_status(res)
-	processdetails <- XML::xmlToList(httr::content(res))
+	res <- POST("http://cloud.ocrsdk.com/processCheckmarkField", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
+	stop_for_status(res)
+	processdetails <- xmlToList(httr::content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7

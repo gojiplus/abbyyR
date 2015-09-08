@@ -17,9 +17,9 @@ processFields <- function(file_path=NULL,taskId=NULL,description=""){
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(taskId = taskId, description=description)
-	res <- httr::POST("http://cloud.ocrsdk.com/processFields", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
-	httr::stop_for_status(res)
-	processdetails <- XML::xmlToList(httr::content(res))
+	res <- POST("http://cloud.ocrsdk.com/processFields", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
+	stop_for_status(res)
+	processdetails <- xmlToList(content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7

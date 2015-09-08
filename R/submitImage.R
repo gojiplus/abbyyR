@@ -21,9 +21,9 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 
-	res <- httr::POST("https://cloud.ocrsdk.com/submitImage", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
-	httr::stop_for_status(res)
-	submitdetails <- XML::xmlToList(httr::content(res))
+	res <- POST("https://cloud.ocrsdk.com/submitImage", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
+	stop_for_status(res)
+	submitdetails <- xmlToList(content(res))
 	
 	resdf <- do.call(rbind.data.frame, submitdetails) # collapse to a data.frame
 	names(resdf) <- names(submitdetails[[1]])

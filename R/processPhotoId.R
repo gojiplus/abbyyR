@@ -22,9 +22,9 @@ processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", co
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
-	res <- httr::POST("http://cloud.ocrsdk.com/processPhotoId", httr::authenticate(app_id, app_pass), query=querylist, body=httr::upload_file(file_path))
-	httr::stop_for_status(res)
-	processdetails <- XML::xmlToList(httr::content(res))
+	res <- POST("http://cloud.ocrsdk.com/processPhotoId", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
+	stop_for_status(res)
+	processdetails <- xmlToList(content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])

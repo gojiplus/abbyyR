@@ -15,10 +15,10 @@ processMRZ <- function(file_path=NULL){
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 
-	res <- httr::POST("http://cloud.ocrsdk.com/processMRZ", httr::authenticate(app_id, app_pass), body=httr::upload_file(file_path))
-	httr::stop_for_status(res)
-	tasklist <- XML::xmlToList(httr::content(res))
-	processdetails <- XML::xmlToList(httr::content(res))
+	res <- POST("http://cloud.ocrsdk.com/processMRZ", authenticate(app_id, app_pass), body=upload_file(file_path))
+	stop_for_status(res)
+	tasklist <- xmlToList(content(res))
+	processdetails <- xmlToList(content(res))
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
