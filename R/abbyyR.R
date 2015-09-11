@@ -13,6 +13,8 @@
 #' @importFrom httr GET POST authenticate config stop_for_status upload_file content
 #' @importFrom XML  xmlToList
 #' @importFrom curl curl_download
+#' @importFrom RecordLinkage levenshteinDist
+#' @importFrom readr read_file
 #' @docType package
 #' @author Gaurav Sood
 NULL

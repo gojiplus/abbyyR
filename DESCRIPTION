@@ -11,4 +11,6 @@ License: GPL (>= 2)
 LazyData: true
 Imports: httr,
     XML,
-    curl
+    curl,
+    RecordLinkage,
+    readr

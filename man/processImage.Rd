@@ -25,9 +25,10 @@ processImage(file_path = NULL, language = "English",
 
 \item{correctSkew}{optional, default: true}
 
-\item{readBarcodes}{optional, default:}
+\item{readBarcodes}{optional, default: false}
 
-\item{exportFormat}{optional, default: txt}
+\item{exportFormat}{optional, default: txt;
+options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto}
 
 \item{description}{optional, default: ""}
 
@@ -41,7 +42,7 @@ This function processes an image
 }
 \examples{
 \dontrun{
-processImage(file_path="file_path", language="English")
+processImage(file_path="file_path", language="English", exportFormat="txtUnstructured")
 }
 }
 \references{
