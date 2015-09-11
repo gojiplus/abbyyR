@@ -1,7 +1,7 @@
 #' OCR File
 #'
 #' Want to quick OCR a local file and get the results? Use this function.  
-#' @param path_to_ocr path to file containing OCR'd text; required
+#' @param file_path path to file containing OCR'd text; required
 #' @param exportFormat  optional, default: txt; 
 #' options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto
 #' @param output_dir path to output directory. file_name will be same as input file name (except for the extension)

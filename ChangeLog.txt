@@ -1,6 +1,6 @@
 version .2 2015-08-20
 -----------------------
-1. Improved How Authetication Information is Transmitted.
+1. Improved How Authentication Information is Transmitted.
 2. New Vignette
 3. Download files via curl::curl_download rather than download.file
 4. A function that gives you quality of OCR: compare human transcription to OCR output. String Distance.
