@@ -14,7 +14,7 @@
 #' processBarcodeField(file_path="file_path")
 #' }
 
-processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region="-1,-1,-1,-1",containsBinaryData="false",pdfPassword="",description=""){
+processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description=""){
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
