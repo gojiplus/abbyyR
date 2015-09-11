@@ -13,7 +13,7 @@
 #' 	           remove_extra_space=TRUE)
 #' }
 
-compare_txt <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE) 
+compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE) 
 {
 	ocr  <- read_file(path_to_ocr)
 	gold <- read_file(path_to_gold)
