@@ -8,8 +8,9 @@
 #' @param imageSource  optional, default: auto
 #' @param correctOrientation  optional, default: true
 #' @param correctSkew  optional, default: true
-#' @param readBarcodes  optional, default: 
-#' @param exportFormat  optional, default: txt
+#' @param readBarcodes  optional, default: false
+#' @param exportFormat  optional, default: txt; 
+#' options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto
 #' @param pdfPassword  optional, default: NULL
 #' @param description  optional, default: ""
 #' @return Data frame with details of the task associated with the submitted Image
@@ -17,11 +18,12 @@
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' @references \url{http://ocrsdk.com/documentation/apireference/processImage/}
 #' @examples \dontrun{
-#' processImage(file_path="file_path", language="English")
+#' processImage(file_path="file_path", language="English", exportFormat="txtUnstructured")
 #' }
 
+
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",readBarcodes="false",exportFormat="txt", description="", pdfPassword=""){
+						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword=""){
 	
 	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
