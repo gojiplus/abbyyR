@@ -1,6 +1,6 @@
 ### Access Abbyy Cloud OCR SDK API via R
 
-[![GPL-3.0](http://img.shields.io/:license-gpl-blue.svg)](http://opensource.org/licenses/GPL-3.0)
+[![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/abbyyR)](http://cran.r-project.org/web/packages/abbyyR)
 ![](http://cranlogs.r-pkg.org/badges/abbyyR)
@@ -22,4 +22,4 @@ devtools::install_github("soodoku/abbyyR")
 Learn how to use abbyyR with a vignette that gives you an [overview of the package](vignettes/Overview_of_abbyyR.md). Or, see how [some functions are used along with output](vignettes/abbyyR_example.md). Or, see an applied example of scraping text from a folder of [static Wisconsin Ads storyboards](vignettes/wiscads.md).
 
 #### License
-Scripts are released under [GNU V3](http://www.gnu.org/licenses/gpl-3.0.en.html).
+Scripts are released under the [MIT License](https://opensource.org/licenses/MIT).
