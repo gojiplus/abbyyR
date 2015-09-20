@@ -5,7 +5,7 @@
 \title{Compare Text}
 \usage{
 compareText(path_to_ocr = NULL, path_to_gold = NULL,
-  remove_extra_space = TRUE)
+  remove_extra_space = TRUE, normalize = TRUE)
 }
 \arguments{
 \item{path_to_ocr}{path to file containing OCR'd text; required}
@@ -13,6 +13,8 @@ compareText(path_to_ocr = NULL, path_to_gold = NULL,
 \item{path_to_gold}{path to file containing human transcribed text; required}
 
 \item{remove_extra_space}{a dummy indicating whether or not extra spaces should be removed from the OCR file; default is TRUE}
+
+\item{normalize}{add a way to normalize string distance measures -- otherwise longer document means more errors, more distance}
 }
 \value{
 levenshtein distance
