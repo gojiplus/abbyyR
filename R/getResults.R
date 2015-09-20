@@ -19,6 +19,6 @@ getResults <- function(output=""){
 	for(i in 1:nrow(finishedlist)){
 		#RCurl::getURLContent(finishedlist$resultUrl[i], ssl.verifypeer = FALSE, useragent = "R")
 		#httr::getURL(ssl.verifypeer = FALSE)
-		curl_download(finishedlist$resultUrl[i],destfile=paste0(output, finishedlist$id[i]))
+		curl_download(finishedlist$resultUrl[i], destfile=paste0(output, finishedlist$id[i]))
 	}
 }

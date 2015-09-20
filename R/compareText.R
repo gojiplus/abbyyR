@@ -5,6 +5,7 @@
 #' @param path_to_ocr path to file containing OCR'd text; required
 #' @param path_to_gold path to file containing human transcribed text; required
 #' @param remove_extra_space a dummy indicating whether or not extra spaces should be removed from the OCR file; default is TRUE
+#' @param normalize add a way to normalize string distance measures -- otherwise longer document means more errors, more distance
 #' 
 #' @return levenshtein distance
 #' @export
@@ -13,7 +14,7 @@
 #' 	           remove_extra_space=TRUE)
 #' }
 
-compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE) 
+compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE, normalize=TRUE) 
 {
 	ocr  <- read_file(path_to_ocr)
 	gold <- read_file(path_to_gold)
@@ -24,6 +25,8 @@ compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=
 	}
 
 	levdist <- levenshteinDist(ocr, gold)
+
+	if (normalize == TRUE) levdist/nchar(gold) 
 
 	levdist
 }
