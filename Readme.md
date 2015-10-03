@@ -3,7 +3,7 @@
 [![MIT](https://img.shields.io/github/license/mashape/apistatus.svg)](https://opensource.org/licenses/MIT)
 [![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/abbyyR)](http://cran.r-project.org/web/packages/abbyyR)
-![](http://cranlogs.r-pkg.org/badges/abbyyR)
+![](http://cranlogs.r-pkg.org/badges/grand-total/abbyyR)
 
 Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in a wide variety of formats, from text files to detailed XMLs with information about bounding boxes, etc.
 
