@@ -3,6 +3,5 @@
 .travis.yml
 Readme.md
 ^.*\.Rmd$
-^.*\.md$
-ChangeLog.txt
+ChangeLog
 abbyy_dev
