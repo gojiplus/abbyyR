@@ -2,7 +2,6 @@
 ^\.Rproj\.user$
 .travis.yml
 appveyor.yml
-Readme.md
 ^.*\.Rmd$
 ChangeLog
 abbyy_dev
