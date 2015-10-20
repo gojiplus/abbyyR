@@ -1,4 +1,13 @@
-### abbyyR: Access Abbyy Cloud OCR SDK via R
+---
+title: "A Worked Out Example of Managing with abbyyR"
+author: "Gaurav Sood"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{A Worked Out Example of Managing with abbyyR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
 
 #### Load the package
 

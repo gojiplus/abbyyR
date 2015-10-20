@@ -20,11 +20,9 @@ devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 
 ### Using abbyyR
 
-To get acquainted with some of the important functions, read the [overview of the package](vignettes/Overview_of_abbyyR.md). Or, see how [some functions are used along with output](vignettes/abbyyR_example.md). If you are looking for a hands-on example, see [how to scrape text from a folder of images](vignettes/wiscads.md) (static Wisconsin Ads storyboards).
+To get acquainted with some of the important functions, read the [overview of the package](vignettes/Overview_of_abbyyR.Rmd). Or, see how [some functions are used along with output](vignettes/abbyyR_example.Rmd). If you are looking for a hands-on example, see [how to scrape text from a folder of images](vignettes/wiscads.Rmd) (static Wisconsin Ads storyboards).
 
-The final output quality varies by complexity of the layout to resolution to font face etc. To measure the final quality of ocr, you can measure the edit distance to `gold standard' coded sample using [recognize](https://github.com/soodoku/recognize). To do quick complex search and replace to fix messy data, you can use [turbo search and replace](https://github.com/soodoku/search-and-replace).
-
-
+The final output quality varies by complexity of the layout to resolution to font face etc. To measure the final quality of ocr, you can measure the edit distance to `gold standard' coded sample using [recognize](https://github.com/soodoku/recognize). To do quick edit distance based search and replace to fix messy data, you can use [turbo search and replace](https://github.com/soodoku/search-and-replace).
 
 #### License
 Scripts are released under the [MIT License](https://opensource.org/licenses/MIT).

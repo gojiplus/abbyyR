@@ -1,3 +1,14 @@
+---
+title: "Overview of abbyyR"
+author: "Gaurav Sood"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Overview of abbyyR}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
 ### Access Abbyy Cloud OCR SDK API via R
 
 Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in form of text files or detailed XML.
@@ -9,7 +20,7 @@ To get the current development version from github:
 
 ```{r, eval=FALSE, install}
 # install.packages("devtools")
-devtools::install_github("soodoku/abbyyR")
+devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 ```
 
 ### Usage
