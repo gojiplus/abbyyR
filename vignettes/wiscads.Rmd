@@ -104,8 +104,8 @@ while(i < total_files){
 	}
 
 	Sys.sleep(5)
+	}
 "
-}
 ```
 
 #### Downloading Finished Files
