@@ -15,7 +15,7 @@ To get the current development version from GitHub:
 
 ```{r install}
 # install.packages("devtools")
-devtools::install_github("soodoku/abbyyR")
+devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 ```
 
 ### Using abbyyR
