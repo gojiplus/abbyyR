@@ -2,5 +2,4 @@
 ^\.Rproj\.user$
 .travis.yml
 appveyor.yml
-ChangeLog
 abbyy_dev
