@@ -22,7 +22,7 @@ devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 
 To get acquainted with some of the important functions, read the vignettes:
 
-```
+```{r vignette}
 # Overview of the package
 vignette("introduction", package = "abbyyR")
 # some functions are used along with output
