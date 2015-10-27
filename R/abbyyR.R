@@ -47,3 +47,26 @@ function(path, query) {
 
 	res
 }
+
+
+#'
+#' POST
+#' 
+#' @param path path to specific API request URL 
+#' @param query query list
+#' @param body passing image through body 
+#' @return list
+
+abbyy_POST <- 
+function(path, query, body="") {
+
+	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	auth <- authenticate(app_id, app_pass)
+	res <- POST("https://cloud.ocrsdk.com/", path=path, auth, query=query, body=body)
+	stop_for_status(res)
+	res <- xmlToList(content(res))
+
+	res
+}

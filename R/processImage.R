@@ -23,20 +23,18 @@
 
 
 processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword=""){
-	
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	
+						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword="")
+{
+		
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 
-	res <- POST("http://cloud.ocrsdk.com/processImage", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
-	stop_for_status(res)
-	processdetails <- xmlToList(content(res))
-	
+
+	body=upload_file(file_path)
+	processdetails <- abbyy_POST("processImage", query=querylist, body=body)
+		
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

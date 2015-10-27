@@ -18,20 +18,17 @@
 #' }
 
 processBusinessCard <- function(file_path=NULL, language="English", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",exportFormat="vCard", description="", pdfPassword=""){
-
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+						correctSkew="true",exportFormat="vCard", description="", pdfPassword="")
+{
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 	
 	querylist = list(language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
 					 correctSkew=correctSkew,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
-	res <- POST("http://cloud.ocrsdk.com/processBusinessCard", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
-	stop_for_status(res)
-	processdetails <- xmlToList(httr::content(res))
-	
+	body=upload_file(file_path)
+	processdetails <- abbyy_POST("processBusinessCard", query=querylist, body=body)
+
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

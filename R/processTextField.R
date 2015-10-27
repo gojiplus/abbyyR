@@ -23,18 +23,16 @@
 #' }
 
 processTextField <- function(file_path=NULL, region="-1,-1,-1,-1", language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
-							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword=""){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword="")
+{
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
 							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
-	
-	res <- POST("http://cloud.ocrsdk.com/processTextField", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
-	stop_for_status(res)
-	processdetails <- xmlToList(content(res))
-	
+
+	body=upload_file(file_path)
+	processdetails <- abbyy_POST("processTextField", query=querylist, body=body)
+			
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

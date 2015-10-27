@@ -11,15 +11,12 @@
 #' # processFields(file_path="file_path", taskId="task_id",description="")
 
 processFields <- function(file_path=NULL,taskId=NULL,description=""){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 
 	querylist = list(taskId = taskId, description=description)
-	res <- POST("http://cloud.ocrsdk.com/processFields", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
-	stop_for_status(res)
-	processdetails <- xmlToList(content(res))
+	body=upload_file(file_path)
+	processdetails <- abbyy_POST("processFields", query=querylist, body=body)
 	
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7

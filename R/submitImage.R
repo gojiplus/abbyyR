@@ -11,9 +11,8 @@
 #' submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 #' }
 
-submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+submitImage <- function(file_path=NULL, taskId="", pdfPassword="")
+{
 	
 	if(is.null(file_path)) stop("Must specify file_path")
 	
@@ -21,9 +20,8 @@ submitImage <- function(file_path=NULL, taskId="", pdfPassword=""){
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 
-	res <- POST("https://cloud.ocrsdk.com/submitImage", authenticate(app_id, app_pass), query=querylist, body=upload_file(file_path))
-	stop_for_status(res)
-	submitdetails <- xmlToList(content(res))
+	body=upload_file(file_path)
+	submitdetails <- abbyy_POST("submitImage", query=querylist, body=body)
 	
 	resdf <- do.call(rbind.data.frame, submitdetails) # collapse to a data.frame
 	names(resdf) <- names(submitdetails[[1]])
