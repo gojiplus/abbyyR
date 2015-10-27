@@ -11,16 +11,13 @@
 #' }
 
 deleteTask <- function(taskId=NULL){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	
+		
 	if(is.null(taskId)) stop("Must specify taskId")
 
 	querylist = list(taskId = taskId)
-	res <- GET("https://cloud.ocrsdk.com/deleteTask", authenticate(app_id, app_pass), query=querylist)
-	stop_for_status(res)
-	deletedTaskdetails <- xmlToList(content(res))
 	
+	deletedTaskdetails <- abbyy_GET("deleteTask", query=querylist)
+		
 	resdf <- do.call(rbind.data.frame, deletedTaskdetails) # collapse to a data.frame
 	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

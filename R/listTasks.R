@@ -14,14 +14,11 @@
 #' listTasks(fromDate=NULL,toDate=NULL,excludeDeleted='false')
 #' }
 
-listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false')
+{
 	
-	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
-	res <- GET("http://cloud.ocrsdk.com/listTasks", authenticate(app_id, app_pass), query=querylist)
-	stop_for_status(res)
-	tasklist <- xmlToList(content(res))
+	querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
+	tasklist <- abbyy_GET("listTasks", query=querylist)
 
 	if(is.null(tasklist)){
 		cat("No tasks in the application. \n")
