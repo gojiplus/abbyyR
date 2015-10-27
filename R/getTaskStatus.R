@@ -20,7 +20,7 @@ getTaskStatus <- function(taskId=NULL){
 	querylist = list(taskId = taskId)
 	res <- GET("http://cloud.ocrsdk.com/getTaskStatus", authenticate(app_id, app_pass), query=querylist)
 	stop_for_status(res)
-	taskdetails <- xmlToList(httr::content(res))
+	taskdetails <- xmlToList(content(res))
 	
 	resdf <- do.call(rbind.data.frame, taskdetails) # collapse to a data.frame
 	names(resdf) <- names(taskdetails[[1]])  

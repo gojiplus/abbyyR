@@ -10,12 +10,9 @@
 #' getAppInfo()
 #' }
 
-getAppInfo <- function(){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	res <- GET("http://cloud.ocrsdk.com/getApplicationInfo", httr::authenticate(app_id, app_pass))
-	stop_for_status(res)
-	appinfo <- xmlToList(httr::content(res))[[1]]
+getAppInfo <- function()
+{
+	appinfo <- abbyy_GET("getApplicationInfo", query="")[[1]]
 
 	cat("Name of Application: ", appinfo$name, "\n", sep = "")
   	cat("No. of Pages Remaining: ", appinfo$pages, "\n", sep = "")

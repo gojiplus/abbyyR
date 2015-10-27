@@ -22,3 +22,28 @@
 #' @docType package
 #' @author Gaurav Sood
 NULL
+
+
+#' 
+#' Base POST AND GET functions. Not exported.
+
+#'
+#' GET
+#' 
+#' @param path path to specific API request URL 
+#' @param query query list 
+#' @return list
+
+abbyy_GET <- 
+function(path, query) {
+
+	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	
+	auth <- authenticate(app_id, app_pass)
+	res <- GET("https://cloud.ocrsdk.com/", path=path, auth, query=query)
+	stop_for_status(res)
+	res <- xmlToList(content(res))
+
+	res
+}

@@ -19,9 +19,9 @@ listTasks <- function(fromDate=NULL,toDate=NULL, excludeDeleted='false'){
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	querylist = list(fromDate = fromDate, toDate = toDate, excludeDeleted=excludeDeleted)
-	res <- GET("http://cloud.ocrsdk.com/listTasks", httr::authenticate(app_id, app_pass), query=querylist)
+	res <- GET("http://cloud.ocrsdk.com/listTasks", authenticate(app_id, app_pass), query=querylist)
 	stop_for_status(res)
-	tasklist <- xmlToList(httr::content(res))
+	tasklist <- xmlToList(content(res))
 
 	if(is.null(tasklist)){
 		cat("No tasks in the application. \n")

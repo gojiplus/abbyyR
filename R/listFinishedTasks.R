@@ -12,12 +12,8 @@
 #' }
 
 listFinishedTasks <- function(){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
-	res <- GET("http://cloud.ocrsdk.com/listFinishedTasks", authenticate(app_id, app_pass))
-	stop_for_status(res)
-	tasklist <- xmlToList(httr::content(res))
+	tasklist <- abbyy_GET("listFinishedTasks", query="")	
 
 	if(is.null(tasklist)){
 		cat("No finished tasks in the application. \n")
