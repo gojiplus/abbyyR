@@ -42,7 +42,7 @@ function(path, query) {
 	
 	auth <- authenticate(app_id, app_pass)
 	res <- GET("https://cloud.ocrsdk.com/", path=path, auth, query=query)
-	stop_for_status(res)
+	abbyy_check(res)
 	res <- xmlToList(content(res))
 
 	res
@@ -65,8 +65,21 @@ function(path, query, body="") {
 	
 	auth <- authenticate(app_id, app_pass)
 	res <- POST("https://cloud.ocrsdk.com/", path=path, auth, query=query, body=body)
-	stop_for_status(res)
+	abbyy_check(res)
 	res <- xmlToList(content(res))
 
 	res
 }
+
+#'
+#' Request Response Verification
+#' 
+#' @param  req request
+#' @return in case of failure, a message
+
+abbyy_check <- 
+function(req) {
+  if (req$status_code < 400) return(invisible())
+
+  stop("HTTP failure: ", req$status_code, "\n", call. = FALSE)
+} 
