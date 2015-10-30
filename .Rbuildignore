@@ -4,3 +4,4 @@
 ^appveyor\.yml$
 ^abbyy_dev$
 ^inst/extdata/t1.TIF$
+^inst/extdata/t1.png$
