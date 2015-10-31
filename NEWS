@@ -1,5 +1,5 @@
-version .21 2015-10-30
-----------------------
+version .3 2015-10-31
+-----------------------
 1. Better error handling
 2. Better internal organization of functions
 3. Added Readme
