@@ -1,4 +1,4 @@
-version .3 2015-10-31
+version .2.1 2015-10-31
 -----------------------
 1. Better error handling
 2. Better internal organization of functions
