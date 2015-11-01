@@ -1,4 +1,4 @@
-### Access Abbyy Cloud OCR from R
+## Access Abbyy Cloud OCR from R
 
 [![Build Status](https://travis-ci.org/soodoku/abbyyR.svg?branch=master)](https://travis-ci.org/soodoku/abbyyR)
 [![Appveyor Build status](https://ci.appveyor.com/api/projects/status/yh856e6cv7uucaj2?svg=true)](https://ci.appveyor.com/project/soodoku/abbyyR)
@@ -13,7 +13,7 @@ The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/)
 
 To get the current development version from GitHub:
 
-```{r install}
+```r
 # install.packages("devtools")
 devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 ```
@@ -22,7 +22,7 @@ devtools::install_github("soodoku/abbyyR", build_vignettes = TRUE)
 
 To get acquainted with some of the important functions, read the vignettes:
 
-```{r vignette}
+```r
 # Overview of the package
 vignette("introduction", package = "abbyyR")
 # some functions are used along with output
@@ -33,5 +33,5 @@ vignette("wiscads", package = "abbyyR")
 
 The final output quality varies by complexity of the layout to resolution to font face etc. To measure the final quality of ocr, you can measure the edit distance to `gold standard' coded sample using [recognize](https://github.com/soodoku/recognize). To do quick edit distance based search and replace to fix messy data, you can use [turbo search and replace](https://github.com/soodoku/search-and-replace).
 
-#### License
+### License
 Scripts are released under the [MIT License](https://opensource.org/licenses/MIT).
