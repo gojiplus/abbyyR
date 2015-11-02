@@ -11,6 +11,11 @@ The package provides access to the [Abbyy Cloud OCR SDK API](http://ocrsdk.com/)
 
 ### Installation
 
+To get the latest version on CRAN:
+```r
+install.packages("abbyyR")
+```
+
 To get the current development version from GitHub:
 
 ```r
