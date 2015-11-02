@@ -22,5 +22,6 @@ Imports:
     RecordLinkage,
     readr
 Suggests:
+    testthat,
     knitr (>= 1.11)
 RoxygenNote: 5.0.0
