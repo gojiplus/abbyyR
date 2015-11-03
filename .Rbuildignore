@@ -6,3 +6,4 @@
 ^inst/extdata/t1.TIF$
 ^inst/extdata/t1.png$
 ^cran-comments.md$
+^tests/testthat/token_file.rds$

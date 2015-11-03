@@ -2,3 +2,4 @@
 .Rhistory
 .RData
 abbyy_dev/
+tests/testthat/token_file.rds
