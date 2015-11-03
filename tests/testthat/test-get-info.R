@@ -1,8 +1,9 @@
 context("Create Batch")
 
-test_that("batch creation happens successfully", {
+token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
+
+test_that("getAppInfo happens successfully", {
   skip_on_cran()
-  token <- readRDS("token_file.rds")
   setapp(token)
   get_info <- getAppInfo()
   expect_that(get_info, is_a("list"))
