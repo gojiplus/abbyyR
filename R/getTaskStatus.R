@@ -16,7 +16,7 @@ getTaskStatus <- function(taskId=NULL){
 	if(is.null(taskId)) stop("Must specify taskId")
 	
 	querylist <- list(taskId = taskId)	
-	taskdetails <- abbyy_GET("deleteTask", query=querylist)
+	taskdetails <- abbyy_GET("getTaskStatus", query=querylist)
 
 	resdf <- do.call(rbind.data.frame, taskdetails) # collapse to a data.frame
 	names(resdf) <- names(taskdetails[[1]])  

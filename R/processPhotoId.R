@@ -1,6 +1,7 @@
 #' Process Photo ID
 #'
-#' This function gets Information about a particular application
+#' Get data from a Photo ID. The function is under testing and may not work fully.
+#' 
 #' @param file_path path to file; required
 #' @param idType optional; default = "auto"
 #' @param imageSource optional; default = "auto"
@@ -23,7 +24,7 @@ processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", co
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 
 	body=upload_file(file_path)
-	processdetails <- abbyy_POST("processPhotoId", query=querylist, body=body)
+	processdetails <- abbyy_POST("processPhotoId", query=NULL, body=body)
 
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
 	names(resdf) <- names(processdetails[[1]])

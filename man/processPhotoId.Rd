@@ -27,7 +27,7 @@ processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
 Data frame with details of the task associated with the submitted Photo ID image
 }
 \description{
-This function gets Information about a particular application
+Get data from a Photo ID. The function is under testing and may not work fully.
 }
 \examples{
 \dontrun{
