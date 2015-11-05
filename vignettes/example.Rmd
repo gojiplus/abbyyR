@@ -175,10 +175,6 @@ processDocument(taskId=res$id[res$status=="Submitted"][1])
 ## Status of the task:  Queued
 ```
 
-**Process Bar Code**  
-![Sample Image](https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/barcode1.jpg)
-
-
 **Get Results**
 
 Go through all the finished tasks and download all the data.
