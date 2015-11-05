@@ -4,10 +4,12 @@
 \alias{setapp}
 \title{Sets Application ID and Password}
 \usage{
-setapp(appdetails = NULL)
+setapp(appdetails = NULL, force = FALSE)
 }
 \arguments{
-\item{appdetails}{Required; A vector of app_id, app_password. Get these from \url{http://ocrsdk.com/}. Set them before you use other functions.}
+\item{appdetails}{A vector of app_id, app_password. Get these from \url{http://ocrsdk.com/}. Set them before you use other functions.}
+
+\item{force}{Force change the app_id and app_password stored in the environment}
 }
 \description{
 Set Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK. Run this before anything else.

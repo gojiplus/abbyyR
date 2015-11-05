@@ -37,7 +37,7 @@ NULL
 abbyy_GET <- 
 function(path, query) {
 
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	auth <- authenticate(app_id, app_pass)
@@ -60,7 +60,7 @@ function(path, query) {
 abbyy_POST <- 
 function(path, query, body="") {
 
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
+	app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
 	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	auth <- authenticate(app_id, app_pass)
