@@ -147,7 +147,7 @@ processImage(file_path="t1.tif")
 
 
 ```{r, eval=FALSE, processRemote}
-processRemoteImage(img_url="http://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.TIF")
+processRemoteImage(img_url="https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.TIF")
 ```
 
 ```
@@ -176,7 +176,7 @@ processDocument(taskId=res$id[res$status=="Submitted"][1])
 ```
 
 **Process Bar Code**  
-![Sample Image](../inst/extdata/barcode1.jpg)
+![Sample Image](https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/barcode1.jpg)
 
 
 **Get Results**
