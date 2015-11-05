@@ -2,6 +2,10 @@
 #'
 #' Set Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK. Run this before anything else.
 #' 
+#' @details 
+#' The function looks for AbbyyAppId and AbbyyAppPassword in the environment. If it doesn't find them and if we don't want to force
+#' change in them, it looks for arguments. And if no arguments are passed, it asks for user to input the values. 
+#' 
 #' @param appdetails A vector of app_id, app_password. Get these from \url{http://ocrsdk.com/}. Set them before you use other functions.
 #' @param force Force change the app_id and app_password stored in the environment
 #' 
@@ -12,13 +16,14 @@
 #' setapp(c("app_id", "app_password"))
 #' }
 
-setapp <- function(appdetails = NULL, force=FALSE) {
+setapp <- 
+function(appdetails = NULL, force=FALSE) {
 
     env_id <- Sys.getenv('AbbyyAppId')
     env_pass <- Sys.getenv('AbbyyAppPassword')
     
     # If you cannot find AbbyyAppId or AbbyyAppPassword in the environment
-    if ((identical(env_id, "") | identical(env_pass, "")) && !force) {
+    if ((identical(env_id, "") | identical(env_pass, "")) | !force) {
 
     	# First look for arguments passed in the function
 	    if (!is.null(appdetails)) {
@@ -38,5 +43,3 @@ setapp <- function(appdetails = NULL, force=FALSE) {
 	        }
     }
 }
-
-

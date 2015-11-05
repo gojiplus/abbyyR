@@ -14,6 +14,10 @@ setapp(appdetails = NULL, force = FALSE)
 \description{
 Set Application ID and Password. Needed for interfacing with Abbyy FineReader Cloud OCR SDK. Run this before anything else.
 }
+\details{
+The function looks for AbbyyAppId and AbbyyAppPassword in the environment. If it doesn't find them and if we don't want to force
+change in them, it looks for arguments. And if no arguments are passed, it asks for user to input the values.
+}
 \examples{
 \dontrun{
 setapp(c("app_id", "app_password"))

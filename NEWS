@@ -3,6 +3,7 @@ version .2.2 2015-11-5
 1. added basic test
 2. processPhotoID is not completely supported by abbyy. Adjusted for that. Changed documentation.
 3. getTaskStatus had a bug -- it is fixed now
+4. Storing keys in environment than options
 
 version .2.1 2015-10-31
 -----------------------
