@@ -176,7 +176,7 @@ processDocument(taskId=res$id[res$status=="Submitted"][1])
 ```
 
 **Process Bar Code**  
-![Sample Image](http://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/barcode1.jpg)
+![Sample Image](../inst/extdata/barcode1.jpg)
 
 
 **Get Results**
