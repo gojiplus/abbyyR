@@ -4,7 +4,7 @@
 \alias{processBarcodeField}
 \title{Process Bar Code Field}
 \usage{
-processBarcodeField(file_path = NULL, barcodeType = "autodetect",
+processBarcodeField(file_path = "", barcodeType = "autodetect",
   region = "-1,-1,-1,-1", containsBinaryData = "false", pdfPassword = "",
   description = "")
 }

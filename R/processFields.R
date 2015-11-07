@@ -7,12 +7,13 @@
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
-#' @examples
-#' # processFields(file_path="file_path", taskId="task_id",description="")
+#' @examples \dontrun{
+#' processFields(file_path="file_path", taskId="task_id",description="")
+#' }
 
-processFields <- function(file_path=NULL,taskId=NULL,description=""){
+processFields <- function(file_path="", taskId=NULL, description=""){
 	
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(taskId = taskId, description=description)
 	body=upload_file(file_path)

@@ -38,7 +38,7 @@ abbyy_GET <-
 function(path, query) {
 
 	app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	if(identical(app_id, "") | identical(app_pass, "")) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	auth <- authenticate(app_id, app_pass)
 	res <- GET("https://cloud.ocrsdk.com/", path=path, auth, query=query)
@@ -61,7 +61,7 @@ abbyy_POST <-
 function(path, query, body="") {
 
 	app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
+	if(identical(app_id, "") | identical(app_pass, "")) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
 	
 	auth <- authenticate(app_id, app_pass)
 	res <- POST("https://cloud.ocrsdk.com/", path=path, auth, query=query, body=body)

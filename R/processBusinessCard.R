@@ -1,7 +1,8 @@
 #' Process Business Card
 #'
 #' This function gets Information about a particular application
-#' @param file_path path of the document
+#' 
+#' @param file_path required, path of the document, default: ""
 #' @param language optional, default: English
 #' @param imageSource  optional, default: auto
 #' @param correctOrientation  optional, default: true
@@ -17,11 +18,11 @@
 #' processBusinessCard(file_path="file_path", language="English")
 #' }
 
-processBusinessCard <- function(file_path=NULL, language="English", imageSource="auto", correctOrientation="true", 
+processBusinessCard <- function(file_path="", language="English", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",exportFormat="vCard", description="", pdfPassword="")
 {
 	
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 	
 	querylist = list(language=language, imageSource=imageSource, correctOrientation=correctOrientation, 
 					 correctSkew=correctSkew,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)

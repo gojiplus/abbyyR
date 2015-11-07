@@ -4,7 +4,7 @@
 \alias{ocrFile}
 \title{OCR File}
 \usage{
-ocrFile(file_path = NULL, output_dir = "./", exportFormat = "txt")
+ocrFile(file_path = "", output_dir = "./", exportFormat = "txt")
 }
 \arguments{
 \item{file_path}{path to file containing OCR'd text; required}

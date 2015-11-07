@@ -22,15 +22,14 @@
 #' }
 
 
-processImage <- function(file_path=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
+processImage <- function(file_path="", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword="")
 {
 		
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
-
 
 	body=upload_file(file_path)
 	processdetails <- abbyy_POST("processImage", query=querylist, body=body)

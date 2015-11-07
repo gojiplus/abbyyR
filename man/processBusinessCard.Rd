@@ -4,12 +4,12 @@
 \alias{processBusinessCard}
 \title{Process Business Card}
 \usage{
-processBusinessCard(file_path = NULL, language = "English",
+processBusinessCard(file_path = "", language = "English",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
   exportFormat = "vCard", description = "", pdfPassword = "")
 }
 \arguments{
-\item{file_path}{path of the document}
+\item{file_path}{required, path of the document, default: ""}
 
 \item{language}{optional, default: English}
 

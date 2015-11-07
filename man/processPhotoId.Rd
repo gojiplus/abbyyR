@@ -4,7 +4,7 @@
 \alias{processPhotoId}
 \title{Process Photo ID}
 \usage{
-processPhotoId(file_path = NULL, idType = "auto", imageSource = "auto",
+processPhotoId(file_path = "", idType = "auto", imageSource = "auto",
   correctOrientation = "true", correctSkew = "true", description = "",
   pdfPassword = "")
 }

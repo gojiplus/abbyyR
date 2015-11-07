@@ -9,10 +9,10 @@
 #' processMRZ(file_path="file_path")
 #' }
 
-processMRZ <- function(file_path=NULL)
+processMRZ <- function(file_path="")
 {
 	
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	body=upload_file(file_path)
 	processdetails <- abbyy_POST("processMRZ", body=body)

@@ -4,7 +4,7 @@
 \alias{processMRZ}
 \title{Process MRZ: Extract data from Machine Readable Zone}
 \usage{
-processMRZ(file_path = NULL)
+processMRZ(file_path = "")
 }
 \arguments{
 \item{file_path}{path to the document}

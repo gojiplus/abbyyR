@@ -16,10 +16,10 @@
 #' processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 #' }
 
-processPhotoId <- function(file_path=NULL, idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
+processPhotoId <- function(file_path="", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="")
 {
 		
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 

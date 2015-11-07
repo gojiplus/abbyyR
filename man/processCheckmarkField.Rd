@@ -4,12 +4,12 @@
 \alias{processCheckmarkField}
 \title{processCheckmarkField Method}
 \usage{
-processCheckmarkField(file_path = NULL, checkmarkType = "empty",
+processCheckmarkField(file_path = "", checkmarkType = "empty",
   region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "",
   description = "")
 }
 \arguments{
-\item{file_path}{path of the document}
+\item{file_path}{required, path of the document, default: ""}
 
 \item{checkmarkType}{optional, default: "empty"}
 

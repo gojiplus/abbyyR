@@ -11,7 +11,7 @@ processDocument(taskId = NULL, language = "English",
   pdfPassword = NULL)
 }
 \arguments{
-\item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
+\item{taskId}{Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 
 \item{language}{Optional; default: English}
 

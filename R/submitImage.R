@@ -11,11 +11,11 @@
 #' submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
 #' }
 
-submitImage <- function(file_path=NULL, taskId="", pdfPassword="")
+submitImage <- function(file_path="", taskId="", pdfPassword="")
 {
 	
-	if(is.null(file_path)) stop("Must specify file_path")
-	
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+
 	# The API doesn't handle taskId="" and that is just as well as new task is created
 	if(taskId=="") querylist = list(pdfPassword=pdfPassword)
 	else querylist = list(taskId = taskId, pdfPassword=pdfPassword)

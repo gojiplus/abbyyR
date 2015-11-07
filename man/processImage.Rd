@@ -4,7 +4,7 @@
 \alias{processImage}
 \title{Process Image}
 \usage{
-processImage(file_path = NULL, language = "English",
+processImage(file_path = "", language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
   readBarcodes = "false", exportFormat = "txt", description = "",

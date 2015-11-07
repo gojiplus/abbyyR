@@ -12,7 +12,7 @@
 #' OCRFile(file_path="path_to_ocr_file", output_dir="path_to_output_dir")
 #' }
 
-ocrFile <- function(file_path=NULL, output_dir="./", exportFormat="txt") 
+ocrFile <- function(file_path="", output_dir="./", exportFormat="txt") 
 {
 	res <- processImage(file_path=file_path, exportFormat=exportFormat)
 

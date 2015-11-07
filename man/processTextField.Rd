@@ -4,7 +4,7 @@
 \alias{processTextField}
 \title{Process Text Field}
 \usage{
-processTextField(file_path = NULL, region = "-1,-1,-1,-1",
+processTextField(file_path = "", region = "-1,-1,-1,-1",
   language = "English", letterSet = "", regExp = "",
   textType = "normal", oneTextLine = "false",
   oneWordPerTextLine = "false", markingType = "simpleText",

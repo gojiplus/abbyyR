@@ -1,7 +1,8 @@
 #' processCheckmarkField Method
 #'
 #' This function gets Information about a particular application
-#' @param file_path path of the document
+#' 
+#' @param file_path required, path of the document, default: ""
 #' @param checkmarkType optional, default: "empty"
 #' @param region coordinates of region from top left, 4 values: top left bottom right; optional; default: "-1,-1,-1,-1" (entire image) 
 #' @param correctionAllowed  optional, default: "false"
@@ -14,10 +15,9 @@
 #' processCheckmarkField(file_path="file_path")
 #' }
 
-processCheckmarkField <- function(file_path=NULL,checkmarkType="empty",  region="-1,-1,-1,-1",correctionAllowed="false", pdfPassword="",description="")
-{
+processCheckmarkField <- function(file_path="",checkmarkType="empty",  region="-1,-1,-1,-1",correctionAllowed="false", pdfPassword="",description="") {
 
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
 	

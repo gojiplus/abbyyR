@@ -10,15 +10,11 @@
 #' getResults(output="")
 #' }
 
-getResults <- function(output=""){
-	app_id=getOption("AbbyyAppId"); app_pass=getOption("AbbyyAppPassword")
-	if(is.null(app_id) | is.null(app_pass)) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-	
+getResults <- function(output="./") {
+
 	finishedlist <- listFinishedTasks()
 	
 	for(i in 1:nrow(finishedlist)){
-		#RCurl::getURLContent(finishedlist$resultUrl[i], ssl.verifypeer = FALSE, useragent = "R")
-		#httr::getURL(ssl.verifypeer = FALSE)
 		curl_download(finishedlist$resultUrl[i], destfile=paste0(output, finishedlist$id[i]))
 	}
 }

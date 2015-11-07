@@ -14,10 +14,10 @@
 #' processBarcodeField(file_path="file_path")
 #' }
 
-processBarcodeField <- function(file_path=NULL, barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description="")
+processBarcodeField <- function(file_path="", barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description="")
 {
 		
-	if(is.null(file_path)) stop("Must specify file_path")
+	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
 	

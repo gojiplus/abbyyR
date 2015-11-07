@@ -4,7 +4,7 @@
 \alias{submitImage}
 \title{Submit Image}
 \usage{
-submitImage(file_path = NULL, taskId = "", pdfPassword = "")
+submitImage(file_path = "", taskId = "", pdfPassword = "")
 }
 \arguments{
 \item{file_path}{Required; Path to the document}

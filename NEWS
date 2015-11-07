@@ -1,3 +1,9 @@
+version .2.3 2015-11-XX
+-----------------------
+1. check if file exists
+2. fixed bug in getResults()
+3. fixed checking env. tokens
+
 version .2.2 2015-11-5
 -----------------------
 1. added basic test
