@@ -1,4 +1,4 @@
-context("Create Batch")
+context("Get App Info.")
 
 token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
 
