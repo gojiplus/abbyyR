@@ -3,6 +3,19 @@ sudo: required
 
 warnings_are_errors: true
 
+r_binary_packages:
+  - BH
+  - NLP
+  - Rcpp
+  - assertthat
+  - digest
+  - dplyr
+  - knitr
+  - rmarkdown
+  - stringr
+  - testthat
+  - tidyr
+  
 r_github_packages:
   - jimhester/covr
 after_success:
