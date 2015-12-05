@@ -1,4 +1,4 @@
-version .2.3 2015-12-XX
+version .2.3 2015-12-05
 -----------------------
 1. check if file exists
 2. fixed bug in getResults()
