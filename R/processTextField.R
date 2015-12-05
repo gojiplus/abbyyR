@@ -14,22 +14,26 @@
 #' @param writingStyle handprint writing style, see Abbyy FineReader documentation for values; optional; default: "default"
 #' @param description Description of processing task; optional; default: ""
 #' @param pdfPassword Password for pdf; optional; default: ""
+#' 
 #' @return Data frame with details of the task associated with the submitted Image
+#' 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processTextField/}
 #' @references \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
+#' 
 #' @examples \dontrun{
 #' processTextField(file_path="file_path")
 #' }
 
-processTextField <- function(file_path="", region="-1,-1,-1,-1", language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", oneWordPerTextLine="false", 
-							 markingType="simpleText", placeholdersCount="1", writingStyle="default", description="",pdfPassword="")
-{
+processTextField <- function(file_path="", region="-1,-1,-1,-1", language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", 
+	                         oneWordPerTextLine="false", markingType="simpleText", placeholdersCount="1", writingStyle="default", description="", 
+	                         pdfPassword="") {
 	
 	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(language=language, letterSet=letterSet, regExp=regExp, textType=textType, oneTextLine=oneTextLine, oneWordPerTextLine=oneWordPerTextLine, 
-							 markingType=markingType, placeholdersCount=placeholdersCount, writingStyle=writingStyle, description=description,pdfPassword=pdfPassword)
+	querylist = list(language = language, letterSet = letterSet, regExp = regExp, textType = textType, oneTextLine = oneTextLine, 
+		             oneWordPerTextLine = oneWordPerTextLine, markingType = markingType, placeholdersCount = placeholdersCount, 
+		             writingStyle = writingStyle, description = description, pdfPassword = pdfPassword)
 
 	body=upload_file(file_path)
 	processdetails <- abbyy_POST("processTextField", query=querylist, body=body)

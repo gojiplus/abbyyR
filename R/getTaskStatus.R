@@ -12,9 +12,9 @@
 #' getTaskStatus(taskId="task_id")
 #' }
 
-getTaskStatus <- function(taskId=NULL){
+getTaskStatus <- function(taskId = NULL) {
 	
-	if(is.null(taskId)) stop("Must specify taskId")
+	if (is.null(taskId)) stop("Must specify taskId")
 	
 	querylist <- list(taskId = taskId)	
 	taskdetails <- abbyy_GET("getTaskStatus", query=querylist)
