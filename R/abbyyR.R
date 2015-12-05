@@ -16,7 +16,7 @@
 #' 
 #' @importFrom httr GET POST authenticate config stop_for_status upload_file content
 #' @importFrom XML  xmlToList
-#' @importFrom curl curl_download
+#' @importFrom curl curl_download curl_fetch_memory
 #' @importFrom RecordLinkage levenshteinDist
 #' @importFrom readr read_file
 #' @docType package

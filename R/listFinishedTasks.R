@@ -3,6 +3,7 @@
 #' List all the finished tasks in the application. 
 #' From Abbyy FineReader: The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call. 
 #' The function prints number of finished tasks by default
+#' 
 #' @return A data frame with the following columns: id (task id), registrationTime, statusChangeTime, status (Completed), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
@@ -15,9 +16,14 @@ listFinishedTasks <- function(){
 	
 	tasklist <- abbyy_GET("listFinishedTasks", query="")	
 
+	# Names of return df.
+	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
+
+
 	if(is.null(tasklist)){
 		cat("No finished tasks in the application. \n")
-		return(invisible(NULL))
+		no_dat <- read.table(text = "", col.names = frame_names)
+		return(invisible(no_dat))
 	}
 
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)

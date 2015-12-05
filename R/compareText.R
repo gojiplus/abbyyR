@@ -16,6 +16,9 @@
 
 compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE, normalize=TRUE) 
 {
+
+	.Deprecated("The functionality is to moved to a separate package. Check package recognize on GitHub.")
+	
 	ocr  <- read_file(path_to_ocr)
 	gold <- read_file(path_to_gold)
 

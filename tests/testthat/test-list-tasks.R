@@ -1,10 +1,10 @@
-context("Get App Info.")
+context("List Tasks")
 
 token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
 
-test_that("getAppInfo happens successfully", {
+test_that("listTasks happens successfully", {
   skip_on_cran()
   setapp(token)
-  get_info <- getAppInfo()
-  expect_that(get_info, is_a("list"))
+  list_tasks <- listTasks()
+  expect_that(listTasks(), is_a("data.frame"))
 })

@@ -4,10 +4,12 @@
 \alias{getResults}
 \title{Get Results}
 \usage{
-getResults(output="")
+getResults(output="", save_to_file=TRUE)
 }
 \arguments{
 \item{output}{Optional; folder to which you want to save the data from the processed images; Default is same folder as the script}
+
+\item{save_to_file}{Required; Default is TRUE; If true, it saves to file. Otherwise returns the object you requested.}
 }
 \description{
 Get data from all the processed images.
@@ -15,7 +17,7 @@ The function goes through the finishedTasks data frame and downloads all the fil
 }
 \examples{
 \dontrun{
-getResults(output="")
+getResults(save_to_file=FALSE)
 }
 }
 \references{
