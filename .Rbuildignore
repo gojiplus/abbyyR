@@ -4,5 +4,4 @@
 ^appveyor\.yml$
 ^dev$
 ^inst/extdata/t1.TIF$
-^inst/extdata/t1.png$
 ^cran-comments.md$
