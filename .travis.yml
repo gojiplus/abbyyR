@@ -15,8 +15,14 @@ r_binary_packages:
   - stringr
   - testthat
   - tidyr
-  
+
 r_github_packages:
   - jimhester/covr
+
 after_success:
   - Rscript -e 'covr::codecov()'
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
