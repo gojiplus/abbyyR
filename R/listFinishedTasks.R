@@ -12,7 +12,7 @@
 #' listFinishedTasks()
 #' }
 
-listFinishedTasks <- function(){
+listFinishedTasks <- function() {
 	
 	tasklist <- abbyy_GET("listFinishedTasks", query="")	
 
@@ -20,15 +20,13 @@ listFinishedTasks <- function(){
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
 
 
-	if(is.null(tasklist)){
+	if (is.null(tasklist)){
 		cat("No finished tasks in the application. \n")
 		no_dat <- read.table(text = "", col.names = frame_names)
 		return(invisible(no_dat))
 	}
 
-	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
-	names(resdf) <- names(tasklist[[1]]) # names for the df
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	resdf <- as.data.frame(do.call(rbind, tasklist)) # collapse to a data.frame
 
 	# Print some important things
 	cat("No. of Finished Tasks: ", nrow(resdf), "\n")

@@ -7,7 +7,7 @@
 getTaskStatus(taskId = NULL)
 }
 \arguments{
-\item{taskId}{-id of the task; required}
+\item{taskId}{Required, Id of the task}
 }
 \value{
 A data frame with all the available details about the task
