@@ -18,16 +18,14 @@
 
 processPhotoId <- function(file_path="", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="") {
 		
-	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
+	querylist <- list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 
-	body=upload_file(file_path)
-	processdetails <- abbyy_POST("processPhotoId", query=NULL, body=body)
+	body <- upload_file(file_path)
+	process_details <- abbyy_POST("processPhotoId", query=NULL, body=body)
 
-	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
-	names(resdf) <- names(processdetails[[1]])
-	row.names(resdf) <- 1
+	resdf <- as.data.frame(do.call(rbind, process_details))
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
