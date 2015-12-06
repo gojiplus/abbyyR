@@ -32,7 +32,7 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
 	# Names of return df.
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
 
-	if(is.null(tasklist)){
+	if (is.null(tasklist)){
 		cat("No tasks in the application. \n")
 		no_dat <- read.table(text = "", col.names = frame_names)
 		return(invisible(no_dat))
@@ -41,7 +41,7 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
 	# Converting list to a data.frame
 	lenitem <- sapply(tasklist, length) # length of each list item
 	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
-	names(resdf) <- names(tasklist[[1]]) # names for the df
+	names(resdf) <- frame_names
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
 

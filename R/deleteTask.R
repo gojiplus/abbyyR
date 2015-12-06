@@ -16,7 +16,7 @@
 
 deleteTask <- function(taskId=NULL){
 		
-	if(is.null(taskId)) stop("Must specify taskId")
+	if (is.null(taskId)) stop("Must specify taskId")
 
 	# Get the status of the task
 	task_status <- getTaskStatus(taskId)
