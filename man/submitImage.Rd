@@ -21,7 +21,7 @@ Adds image to the existing task or creates a new task for the uploaded image. Th
 }
 \examples{
 \dontrun{
-submitImage(file_path="/images/image1.png",taskId="task_id",pdfPassword="pdf_password")
+submitImage(file_path="/images/image1.png", taskId="task_id", pdfPassword="pdf_password")
 }
 }
 \references{

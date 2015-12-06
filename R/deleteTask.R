@@ -21,10 +21,11 @@ deleteTask <- function(taskId=NULL){
 	# Get the status of the task
 	task_status <- getTaskStatus(taskId)
 	
-	# Print status of the task
-	cat("Status of the task: ", task_status$status, "\n")
-
-	if (task_status$status!='Deleted') {
+	if (task_status$status == 'Deleted') {
+		# Print status of the task
+		cat("Status of the task: ", task_status$status, "\n")
+		
+	} else {
 		
 		querylist = list(taskId = taskId)
 		deleted_task_details <- abbyy_GET("deleteTask", query=querylist)

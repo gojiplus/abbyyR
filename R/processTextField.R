@@ -29,13 +29,13 @@ processTextField <- function(file_path="", region="-1,-1,-1,-1", language="Engli
 	                         oneWordPerTextLine="false", markingType="simpleText", placeholdersCount="1", writingStyle="default", description="", 
 	                         pdfPassword="") {
 	
-	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(language = language, letterSet = letterSet, regExp = regExp, textType = textType, oneTextLine = oneTextLine, 
+	querylist <- list(language = language, letterSet = letterSet, regExp = regExp, textType = textType, oneTextLine = oneTextLine, 
 		             oneWordPerTextLine = oneWordPerTextLine, markingType = markingType, placeholdersCount = placeholdersCount, 
 		             writingStyle = writingStyle, description = description, pdfPassword = pdfPassword)
 
-	body=upload_file(file_path)
+	body  <- upload_file(file_path)
 	processdetails <- abbyy_POST("processTextField", query=querylist, body=body)
 			
 	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame

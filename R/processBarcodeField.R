@@ -17,9 +17,9 @@
 processBarcodeField <- function(file_path="", barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description="")
 {
 		
-	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(barcodeType=barcodeType, region=region,containsBinaryData=containsBinaryData,pdfPassword=pdfPassword,description=description)
+	querylist = list(barcodeType=barcodeType, region=region, containsBinaryData=containsBinaryData, pdfPassword=pdfPassword, description=description)
 	
 	body=upload_file(file_path)
 	processdetails <- abbyy_POST("processBarcodeField", query=querylist, body=body)
