@@ -9,7 +9,7 @@ getResults(output="", save_to_file=TRUE)
 \arguments{
 \item{output}{Optional; folder to which you want to save the data from the processed images; Default is same folder as the script}
 
-\item{save_to_file}{Required; Default is TRUE; If true, it saves to file. Otherwise returns the object you requested.}
+\item{save_to_file}{Required; Default is TRUE; If true, it saves to file. Otherwise returns a data frame with results + other attributes from Abbyy}
 }
 \description{
 Get data from all the processed images.

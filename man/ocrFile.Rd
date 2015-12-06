@@ -4,7 +4,8 @@
 \alias{ocrFile}
 \title{OCR File}
 \usage{
-ocrFile(file_path = "", output_dir = "./", exportFormat = "txt")
+ocrFile(file_path = "", output_dir = "./", exportFormat = "txt",
+  save_to_file = TRUE)
 }
 \arguments{
 \item{file_path}{path to file containing OCR'd text; required}
@@ -13,6 +14,8 @@ ocrFile(file_path = "", output_dir = "./", exportFormat = "txt")
 
 \item{exportFormat}{optional, default: txt; 
 options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto}
+
+\item{save_to_file}{Required, Boolean, Default is TRUE, but if not, returns result to memory}
 }
 \value{
 path to output file
@@ -22,7 +25,7 @@ Want to quick OCR a local file and get the results? Use this function.
 }
 \examples{
 \dontrun{
-OCRFile(file_path="path_to_ocr_file", output_dir="path_to_output_dir")
+ocrFile(file_path="path_to_ocr_file", output_dir="path_to_output_dir")
 }
 }
 

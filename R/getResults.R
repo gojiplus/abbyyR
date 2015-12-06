@@ -4,7 +4,7 @@
 #' The function goes through the finishedTasks data frame and downloads all the files in resultsUrl
 #' 
 #' @param output Optional; folder to which you want to save the data from the processed images; Default is same folder as the script
-#' @param save_to_file Required; Default is TRUE; If true, it saves to file. Otherwise returns the object you requested.
+#' @param save_to_file Required; Default is TRUE; If true, it saves to file. Otherwise returns a data frame with results + other attributes from Abbyy
 #' 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
@@ -17,18 +17,22 @@
 
 getResults <- function(output="./", save_to_file=TRUE) {
 
-	finishedlist <- listFinishedTasks()
+	finished_list <- listFinishedTasks()
 	
-	res <- list()
-
 	if (!save_to_file) {
-		for(i in 1:nrow(finishedlist)) {
-			res[[i]] <- curl_fetch_memory(finishedlist$resultUrl[i])
+		# Add additional col. to finished_list
+		finished_list$results <- NA
+		
+		for (i in 1:nrow(finished_list)) {
+			temp <- curl_fetch_memory(finished_list$resultUrl[i])
+			finished_list$results[i] <- rawToChar(temp$content)
 		}
-		return(res)
+
+		return(invisible(finished_list))
 	}
 
-	for(i in 1:nrow(finishedlist)){
-		curl_download(finishedlist$resultUrl[i], destfile=paste0(output, finishedlist$id[i]))
+	for (i in 1:nrow(finished_list)){
+		curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
 	}
+	
 }
