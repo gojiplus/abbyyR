@@ -7,14 +7,17 @@
 deleteTask(taskId = NULL)
 }
 \arguments{
-\item{taskId}{id of the task; required}
+\item{taskId}{Required; Id of the task}
 }
 \value{
 Data frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \description{
-This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."
-The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful
+Deletes task and associated data. While Abbyy says, "If you try to delete the task that has already been deleted, the successful response is returned," 
+it doesn't appear to hold. Hence, the function now defaults to checking the status of the task via \code{\link{getTaskStatus}}, and 
+deletes only if it hasn't been deleted. 
+ 
+The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful.
 }
 \examples{
 \dontrun{

@@ -1,8 +1,12 @@
 #' Delete Task
 #'
-#' This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned."
-#' The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful
-#' @param taskId id of the task; required
+#' Deletes task and associated data. While Abbyy says, "If you try to delete the task that has already been deleted, the successful response is returned," 
+#' it doesn't appear to hold. Hence, the function now defaults to checking the status of the task via \code{\link{getTaskStatus}}, and 
+#' deletes only if it hasn't been deleted. 
+#'  
+#' The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful.
+#' 
+#' @param taskId Required; Id of the task
 #' @return Data frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/deleteTask/}
@@ -14,16 +18,22 @@ deleteTask <- function(taskId=NULL){
 		
 	if(is.null(taskId)) stop("Must specify taskId")
 
-	querylist = list(taskId = taskId)
+	# Get the status of the task
+	task_status <- getTaskStatus(taskId)
 	
-	deletedTaskdetails <- abbyy_GET("deleteTask", query=querylist)
+	# Print status of the task
+	cat("Status of the task: ", task_status$status, "\n")
+
+	if (task_status$status!='Deleted') {
 		
-	resdf <- do.call(rbind.data.frame, deletedTaskdetails) # collapse to a data.frame
-	names(resdf) <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")[1:length(resdf)] # names for the df, adjust for <7
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+		querylist = list(taskId = taskId)
+		deleted_task_details <- abbyy_GET("deleteTask", query=querylist)
+		resdf <- as.data.frame(do.call(rbind, deleted_task_details))
+	
+		# Print status of the task
+		cat("Status of the task: ", resdf$status, "\n")
+		return(invisible(resdf))
+	}
 
-	# Print some important things
-	cat("Status of the task: ", resdf$status, "\n")
-
-	return(invisible(resdf))
+	return(invisible(task_status))
 }
