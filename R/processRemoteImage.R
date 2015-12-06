@@ -22,16 +22,14 @@
 processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
 						correctSkew="true",readBarcodes="false",exportFormat="txt", description=NULL, pdfPassword=NULL){
 	
-	if(is.null(img_url)) stop("Must specify img_url")
+	if (is.null(img_url)) stop("Must specify img_url")
 
 	querylist = list(source=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
-	processdetails <- abbyy_GET("processRemoteImage", query=querylist)
+	process_details <- abbyy_GET("processRemoteImage", query=querylist)
 	
-	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
-	names(resdf) <- names(processdetails[[1]])
-	row.names(resdf) <- 1	# row.names for the df
+	resdf <- as.data.frame(do.call(rbind, process_details))
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
