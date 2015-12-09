@@ -29,6 +29,7 @@ processPhotoId <- function(file_path="", idType="auto", imageSource="auto", corr
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
+	cat("Task ID: ", 			resdf$id, "\n")
 
 	return(invisible(resdf))
 }

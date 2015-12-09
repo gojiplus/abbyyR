@@ -28,12 +28,10 @@ processBusinessCard <- function(file_path="", language="English", imageSource="a
 					 correctSkew=correctSkew,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
 	body=upload_file(file_path)
-	processdetails <- abbyy_POST("processBusinessCard", query=querylist, body=body)
+	process_details <- abbyy_POST("processBusinessCard", query=querylist, body=body)
 
-	resdf <- do.call(rbind.data.frame, processdetails) # collapse to a data.frame
-	names(resdf) <- names(processdetails[[1]])[1:length(resdf)] # names for the df, adjust for <7
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
-
+	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
+	
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")

@@ -14,10 +14,10 @@
 #' 	           remove_extra_space=TRUE)
 #' }
 
-compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE, normalize=TRUE) 
-{
+compareText <- function(path_to_ocr=NULL, path_to_gold=NULL, remove_extra_space=TRUE, normalize=TRUE) {
 
-	.Deprecated("The functionality is to moved to a separate package. Check package recognize on GitHub.")
+	.Deprecated("The functionality is to be moved to a separate package.\n 
+		         Check package 'recognize' on GitHub at https://github.com/soodoku/recognize.")
 	
 	ocr  <- read_file(path_to_ocr)
 	gold <- read_file(path_to_gold)
