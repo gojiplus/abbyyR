@@ -11,9 +11,16 @@ getResults(output="", save_to_file=TRUE)
 
 \item{save_to_file}{Required; Default is TRUE; If true, it saves to file. Otherwise returns a data frame with results + other attributes from Abbyy}
 }
+\value{
+data frame returned by \code{\link{listFinishedTasks}} plus either a column that contains paths to local files (when writing to disk), 
+or actual results returned.
+}
 \description{
 Get data from all the processed images.
-The function goes through the finishedTasks data frame and downloads all the files in resultsUrl
+The function calls \code{\link{listFinishedTasks}}, goes through the finishedTasks data frame and downloads all the files in resultsUrl
+Results can be stored in memory or written to the hard disk. By default, the function writes to the disk. 
+If the user wants the results to be written to disk, a data frame with paths to local file paths is returned. If the user wants to store the 
+results in memory, data frame with a column carrying the results is returned.
 }
 \examples{
 \dontrun{
