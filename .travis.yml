@@ -15,6 +15,7 @@ r_binary_packages:
   - stringr
   - testthat
   - tidyr
+  - ipred
 
 r_github_packages:
   - jimhester/covr
