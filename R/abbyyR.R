@@ -44,7 +44,7 @@ function(path, query) {
 	auth <- authenticate(app_id, app_pass)
 	res <- GET("https://cloud.ocrsdk.com/", path=path, auth, query=query)
 	abbyy_check(res)
-	res <- xmlToList(content(res))
+	res <- xmlToList(content(res, as="text"))
 
 	res
 }
@@ -67,7 +67,7 @@ function(path, query, body="") {
 	auth <- authenticate(app_id, app_pass)
 	res <- POST("https://cloud.ocrsdk.com/", path=path, auth, query=query, body=body)
 	abbyy_check(res)
-	res <- xmlToList(content(res))
+	res <- xmlToList(content(res, as="text"))
 
 	res
 }
