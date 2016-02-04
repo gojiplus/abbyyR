@@ -24,24 +24,31 @@ getResults <- function(output="./", save_to_file=TRUE) {
 
 	finished_list <- listFinishedTasks()
 	
-	if (!save_to_file) {
-		# Add additional col. to finished_list
-		finished_list$results <- NA
-		
-		for (i in 1:nrow(finished_list)) {
-			temp <- curl_fetch_memory(finished_list$resultUrl[i])
-			finished_list$results[i] <- rawToChar(temp$content)
+	if (nrow(finished_list) == 0) {
+
+		cat("No Finished Tasks")
+
+	} else {
+
+		if (!save_to_file) {
+			# Add additional col. to finished_list
+			finished_list$results <- NA
+			
+			for (i in 1:nrow(finished_list)) {
+				temp <- curl_fetch_memory(finished_list$resultUrl[i])
+				finished_list$results[i] <- rawToChar(temp$content)
+			}
+
+			return(invisible(finished_list))
 		}
 
-		return(invisible(finished_list))
-	}
+		finished_list$local_file_path <- NA
 
-	finished_list$local_file_path <- NA
-
-	for (i in 1:nrow(finished_list)){
-		curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
-		finished_list$local_file_path[i] <- paste0(output, finished_list$id[i])
-	}
+		for (i in 1:nrow(finished_list)){
+			curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
+			finished_list$local_file_path[i] <- paste0(output, finished_list$id[i])
+			}
+		}
 	
 	return(invisible(finished_list))
 }
