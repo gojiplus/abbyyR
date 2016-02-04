@@ -1,4 +1,4 @@
-version .2.4 2015-1-XX
+version .3 2016-02-03
 -----------------------
 1. getResults returns a data frame carrying local file paths after writing to disk
 2. Simpler coercion to data frame for all lists of length 1, more standardized 'cats' for process functions
