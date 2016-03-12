@@ -1,27 +1,23 @@
 language: r
-sudo: required
+sudo: false
+cache: packages
 
-warnings_are_errors: true
+env: TRAVIS=true
 
-r_binary_packages:
-  - BH
-  - NLP
-  - Rcpp
-  - assertthat
-  - digest
-  - dplyr
-  - knitr
-  - rmarkdown
-  - stringr
-  - testthat
-  - tidyr
-  - ipred
+install:
+  - ./travis-tool.sh install_deps
 
-r_github_packages:
-  - jimhester/covr
+script:
+  - ./travis-tool.sh run_tests
 
-after_success:
-  - Rscript -e 'covr::codecov()'
+after_failure:
+  - ./travis-tool.sh dump_logs
+
+after_script:
+  - ./travis-tool.sh dump_sysinfo
+
+env:
+  - WARNINGS_ARE_ERRORS=1 R_BUILD_ARGS="--no-manual" R_CHECK_ARGS="--no-manual --as-cran"
 
 notifications:
   email:
