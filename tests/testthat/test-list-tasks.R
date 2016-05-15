@@ -1,10 +1,14 @@
 context("List Tasks")
 
-token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
-
 test_that("listTasks happens successfully", {
   skip_on_cran()
-  setapp(token)
+  
+  token_file <- file("abbyy_key", "r")
+  token <- suppressWarnings(readLines(token_file))
+  close(token_file)
+  setapp(unlist(strsplit(token, ",")))
+
+
   list_tasks <- listTasks()
   expect_that(listTasks(), is_a("data.frame"))
   

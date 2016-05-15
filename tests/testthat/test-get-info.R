@@ -1,10 +1,13 @@
 context("Get App Info.")
 
-token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
-
 test_that("getAppInfo happens successfully", {
   skip_on_cran()
-  setapp(token)
+
+  token_file <- file("abbyy_key", "r")
+  token <- suppressWarnings(readLines(token_file))
+  close(token_file)
+  setapp(unlist(strsplit(token, ",")))
+  
   get_info <- getAppInfo()
   expect_that(get_info, is_a("list"))
 })

@@ -1,10 +1,14 @@
 context("Get Results")
 
-token <- c(Sys.getenv('AbbyyAppId'), Sys.getenv('AbbyyAppPassword'))
-
 test_that("getResults works", {
+
   skip_on_cran()
-  setapp(token)
+
+  token_file <- file("abbyy_key", "r")
+  token <- suppressWarnings(readLines(token_file))
+  close(token_file)
+  setapp(unlist(strsplit(token, ",")))
+
   results <- getResults(save_to_file=FALSE)
   expect_that(results, is_a("data.frame"))
 })
