@@ -23,5 +23,6 @@ Imports:
     readr
 Suggests:
     testthat,
+    rmarkdown,
     knitr (>= 1.11)
 RoxygenNote: 5.0.1
