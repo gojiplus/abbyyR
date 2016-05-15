@@ -5,3 +5,4 @@
 ^dev$
 ^inst/extdata/t1.TIF$
 ^cran-comments.md$
+^tests\testthat\abbyy_key.enc$
