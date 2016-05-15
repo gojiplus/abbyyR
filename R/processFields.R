@@ -16,9 +16,8 @@ processFields <- function(file_path="", taskId=NULL, description=""){
 	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(taskId = taskId, description=description)
-	body=upload_file(file_path)
 	
-	process_details <- abbyy_POST("processFields", query=querylist, body=body)
+	process_details <- abbyy_POST("processFields", query=querylist, body=upload_file(file_path))
 	
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 	

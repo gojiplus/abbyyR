@@ -23,8 +23,7 @@ submitImage <- function(file_path="", taskId="", pdfPassword="")
 		querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 	}
 
-	body <- upload_file(file_path)
-	submit_details <- abbyy_POST("submitImage", query=querylist, body=body)
+	submit_details <- abbyy_POST("submitImage", query=querylist, body=upload_file(file_path))
 	
 	resdf <- as.data.frame(do.call(rbind, submit_details))
 

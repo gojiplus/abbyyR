@@ -22,12 +22,12 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
 	
 	# Convert Bool to string
 	exclude_deleted = 'false'
-	if (excludeDeleted) {
+	if (identical(excludeDeleted, TRUE)) {
 		exclude_deleted = 'true'
 	} 
 
 	querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted = exclude_deleted)
-	tasklist <- abbyy_GET("listTasks", query=querylist)
+	tasklist  <- abbyy_GET("listTasks", query=querylist)
 
 	# Names of return df.
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
@@ -40,8 +40,8 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
 
 	# Converting list to a data.frame
 	lenitem <- sapply(tasklist, length) # length of each list item
-	resdf <- do.call(rbind.data.frame, tasklist) # collapse to a data.frame, wraps where lenitems < longest list (7)
-	names(resdf) <- frame_names
+	resdf   <- setNames(do.call(rbind.data.frame, tasklist), frame_names) # collapse to a data.frame, wraps where lenitems < longest list (7) and set_names to frame_names
+	#names(resdf) <- frame_names
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
 	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
 
