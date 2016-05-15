@@ -2,7 +2,6 @@
 title: "Getting Text from Wisconsin Ads Storyboards Using abbyyR"
 author: "Gaurav Sood"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Getting Text from Wisconsin Ads Storyboards Using abbyyR}
   %\VignetteEngine{knitr::rmarkdown}
