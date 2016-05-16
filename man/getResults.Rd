@@ -17,6 +17,8 @@ or actual results returned.
 }
 \description{
 Get data from all the processed images.
+}
+\details{
 The function calls \code{\link{listFinishedTasks}}, goes through the finishedTasks data frame and downloads all the files in resultsUrl
 Results can be stored in memory or written to the hard disk. By default, the function writes to the disk. 
 If the user wants the results to be written to disk, a data frame with paths to local file paths is returned. If the user wants to store the 

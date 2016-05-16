@@ -1,6 +1,7 @@
 context("Get App Info.")
 
 test_that("getAppInfo happens successfully", {
+	
   skip_on_cran()
 
   token_file <- file("abbyy_key", "r")
@@ -9,5 +10,5 @@ test_that("getAppInfo happens successfully", {
   setapp(unlist(strsplit(token, ",")))
   
   get_info <- getAppInfo()
-  expect_that(get_info, is_a("list"))
+  expect_that(get_info, is_a("data.frame"))
 })

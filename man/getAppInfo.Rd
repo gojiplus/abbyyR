@@ -7,10 +7,14 @@
 getAppInfo()
 }
 \value{
-A list with items including Name of the Application, No. of pages remaining (given the money), No. of fields remaining (given the money), and when the application credits expire.
+A data.frame with the following fields: Name of the Application (name), 
+No. of pages remaining (pages), No. of fields remaining (fields), 
+when the application credits expire (expires) and type of application (type).
 }
 \description{
-Get Information about the Application, such as number of pages (given the money), when the application credits expire etc. The function prints the details, and returns a list with the details.
+Get Information about the Application, such as number of pages (given the money), 
+when the application credits expire etc. The function prints the details, and returns a 
+data.frame with the details.
 }
 \examples{
 \dontrun{

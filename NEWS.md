@@ -1,11 +1,19 @@
-# abbyyr .3
+# abbyyR .4
+
+* compareText moved to R package recognize
+* getAppInfo returns a data.frame
+* Minor improvements to documentation
+* listTasks checks date format, provides more examples
+* Unique rownames for listFinishedTasks df
+
+# abbyyR .3
 
 * getResults returns a data frame carrying local file paths after writing to disk  
 * Simpler coercion to data frame for all lists of length 1, more standardized 'cats' for process functions  
 * httr upgrade issues fixed  
 * getResults accounts for the case when there are no finished tasks  
 
-# abbyyr .2.3
+# abbyyR .2.3
 
 * check if file exists  
 * fixed bug in getResults()  
@@ -14,7 +22,7 @@
 * compareText has been deprecated. Part of another package (recognize) on GitHub.  
 * getResults allows saving to memory  
 
-# abbyyr .2.2
+# abbyyR .2.2
 
 * added basic test  
 * processPhotoID is not completely supported by abbyy. Adjusted for that. Changed documentation.  
@@ -22,7 +30,7 @@
 * Storing keys in environment than options  
 * Took out the https link causing pandoc to break  
 
-# abbyyr .2.1
+# abbyyR .2.1
 
 * Better error handling  
 * Better internal organization of functions  
@@ -30,7 +38,7 @@
 * Vignettes via knitr  
 * runs pdf via qpdf  
 
-# abbyyr .2
+# abbyyR .2
 
 * Improved How Authentication Information is Transmitted.  
 * New Vignette  
