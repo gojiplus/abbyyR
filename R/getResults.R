@@ -31,13 +31,18 @@ getResults <- function(output="./", save_to_file=TRUE) {
 
 	} else {
 
+		# Set progress bar
+		pb <- progress_bar$new(total = nrow(finished_list))
+
 		if (!save_to_file) {
 			# Add additional col. to finished_list
 			finished_list$results <- NA
 			
-			for (i in 1:nrow(finished_list)) {
+			for (i in 1:nrow(finished_list)) 
+			{
 				temp <- curl_fetch_memory(finished_list$resultUrl[i])
 				finished_list$results[i] <- rawToChar(temp$content)
+				pb$tick()
 			}
 
 			return(invisible(finished_list))
@@ -45,11 +50,13 @@ getResults <- function(output="./", save_to_file=TRUE) {
 
 		finished_list$local_file_path <- NA
 
-		for (i in 1:nrow(finished_list)){
+		for (i in 1:nrow(finished_list))
+		{
 			curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
 			finished_list$local_file_path[i] <- paste0(output, finished_list$id[i])
-			}
+			pb$tick()
 		}
+	}
 	
 	return(invisible(finished_list))
 }

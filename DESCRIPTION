@@ -19,8 +19,8 @@ Imports:
     httr,
     XML,
     curl,
-    RecordLinkage,
-    readr
+    readr,
+    progress
 Suggests:
     testthat,
     rmarkdown,

@@ -5,6 +5,7 @@
 * Minor improvements to documentation
 * listTasks checks date format, provides more examples
 * Unique rownames for listFinishedTasks df
+* Added progress bar for getResults()
 
 # abbyyR .3
 
