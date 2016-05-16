@@ -38,7 +38,8 @@ Data frame with details of the task associated with the submitted Document
 }
 \description{
 This function processes several images for the same task and results in a multi-page document. 
-For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
+For instance, upload pages of the book individually via submitImage to the same task. 
+And then process it via ProcessDocument to get a multi-page pdf.
 }
 \examples{
 \dontrun{

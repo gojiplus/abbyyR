@@ -13,7 +13,7 @@ status (Completed), filesCount (No. of files), credits, resultUrl (URL for the p
 \description{
 List all the finished tasks in the application. 
 
-From Abbyy FineReader: The tasks are ordered by the time of the end of processing. 
+The tasks are ordered by the time of the end of processing. 
 No more than 100 tasks can be returned at one method call. 
 The function prints number of finished tasks by default.
 }

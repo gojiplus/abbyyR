@@ -20,7 +20,7 @@ A data.frame with the following columns: id (task id), registrationTime, statusC
 }
 \description{
 List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
-The function prints Total number of tasks and No. of Finished Tasks.
+The function prints total number of tasks and no. of finished tasks by default.
 }
 \examples{
 \dontrun{

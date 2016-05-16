@@ -7,9 +7,13 @@
 #' The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful.
 #' 
 #' @param taskId Required; Id of the task
+#' 
 #' @return Data frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
+#' 
 #' @export
+#' 
 #' @references \url{http://ocrsdk.com/documentation/apireference/deleteTask/}
+#' 
 #' @examples \dontrun{
 #' deleteTask(taskId="task_id")
 #' }

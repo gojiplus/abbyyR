@@ -1,6 +1,6 @@
 #' Process Business Card
 #'
-#' This function gets Information about a particular application
+#' Processes a Business Card
 #' 
 #' @param file_path required, path of the document, default: ""
 #' @param language optional, default: English
@@ -11,9 +11,13 @@
 #' @param pdfPassword  optional, default: NULL
 #' @param description  optional, default: ""
 #' @keywords Process Remote Image
+#' 
 #' @return Data frame with details of the task associated with the submitted Business Card
+#' 
 #' @export
+#' 
 #' @references \url{http://ocrsdk.com/documentation/apireference/processBusinessCard/}
+#' 
 #' @examples \dontrun{
 #' processBusinessCard(file_path="file_path", language="English")
 #' }

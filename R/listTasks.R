@@ -1,7 +1,7 @@
 #' List Tasks
 #'
 #' List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
-#' The function prints Total number of tasks and No. of Finished Tasks. 
+#' The function prints total number of tasks and no. of finished tasks by default. 
 #' 
 #' @param fromDate Optional; format: yyyy-mm-ddThh:mm:ssZ
 #' @param toDate Optional;   format: yyyy-mm-ddThh:mm:ssZ

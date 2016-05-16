@@ -25,7 +25,7 @@ processBarcodeField(file_path = "", barcodeType = "autodetect",
 Data frame with details of the task associated with the submitted Image
 }
 \description{
-This function gets Information about a particular application
+Process the bar code field in an image.
 }
 \examples{
 \dontrun{

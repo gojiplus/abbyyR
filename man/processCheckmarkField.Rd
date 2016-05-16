@@ -2,7 +2,7 @@
 % Please edit documentation in R/processCheckmarkField.R
 \name{processCheckmarkField}
 \alias{processCheckmarkField}
-\title{processCheckmarkField Method}
+\title{processCheckmarkField}
 \usage{
 processCheckmarkField(file_path = "", checkmarkType = "empty",
   region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "",
@@ -25,7 +25,7 @@ processCheckmarkField(file_path = "", checkmarkType = "empty",
 Data frame with details of the task associated with the submitted Image
 }
 \description{
-This function gets Information about a particular application
+Processes Checkmark Field
 }
 \examples{
 \dontrun{
@@ -34,5 +34,7 @@ processCheckmarkField(file_path="file_path")
 }
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
+
+For supported image types, see \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 }
 

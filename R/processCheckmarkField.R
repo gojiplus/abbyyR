@@ -1,6 +1,6 @@
-#' processCheckmarkField Method
+#' processCheckmarkField
 #'
-#' This function gets Information about a particular application
+#' @description Processes Checkmark Field
 #' 
 #' @param file_path required, path of the document, default: ""
 #' @param checkmarkType optional, default: "empty"
@@ -10,12 +10,15 @@
 #' @param description  optional, default: ""
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
+#' 
 #' @references \url{http://ocrsdk.com/documentation/apireference/processCheckmarkField/}
+#' @references For supported image types, see \url{http://ocrsdk.com/documentation/specifications/image-formats/}
+#' 
 #' @examples \dontrun{
 #' processCheckmarkField(file_path="file_path")
 #' }
 
-processCheckmarkField <- function(file_path="",checkmarkType="empty",  region="-1,-1,-1,-1",correctionAllowed="false", pdfPassword="",description="") {
+processCheckmarkField <- function(file_path="", checkmarkType="empty",  region="-1,-1,-1,-1", correctionAllowed="false", pdfPassword="", description="") {
 
 	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 

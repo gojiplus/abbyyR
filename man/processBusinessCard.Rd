@@ -29,7 +29,7 @@ processBusinessCard(file_path = "", language = "English",
 Data frame with details of the task associated with the submitted Business Card
 }
 \description{
-This function gets Information about a particular application
+Processes a Business Card
 }
 \examples{
 \dontrun{
