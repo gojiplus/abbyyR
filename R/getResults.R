@@ -40,7 +40,8 @@ getResults <- function(output="./", save_to_file=TRUE) {
 			
 			for (i in 1:nrow(finished_list)) 
 			{
-				temp <- curl_fetch_memory(finished_list$resultUrl[i])
+				url <- as.character(finished_list$resultUrl[i])
+				temp <- curl_fetch_memory(url)
 				finished_list$results[i] <- rawToChar(temp$content)
 				pb$tick()
 			}
