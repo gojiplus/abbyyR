@@ -6,7 +6,7 @@
 \usage{
 processBarcodeField(file_path = "", barcodeType = "autodetect",
   region = "-1,-1,-1,-1", containsBinaryData = "false", pdfPassword = "",
-  description = "")
+  description = "", ...)
 }
 \arguments{
 \item{file_path}{path of the document}
@@ -20,6 +20,8 @@ processBarcodeField(file_path = "", barcodeType = "autodetect",
 \item{pdfPassword}{optional, default: ""}
 
 \item{description}{optional, default: ""}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Image

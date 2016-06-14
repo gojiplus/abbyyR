@@ -8,6 +8,8 @@
 #' @param correctionAllowed  optional, default: "false"
 #' @param pdfPassword  optional, default: ""
 #' @param description  optional, default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
+#' 
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
 #' 
@@ -18,14 +20,14 @@
 #' processCheckmarkField(file_path="file_path")
 #' }
 
-processCheckmarkField <- function(file_path="", checkmarkType="empty",  region="-1,-1,-1,-1", correctionAllowed="false", pdfPassword="", description="") {
+processCheckmarkField <- function(file_path="", checkmarkType="empty",  region="-1,-1,-1,-1", correctionAllowed="false", pdfPassword="", description="", ...) {
 
 	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
 	
 	body=upload_file(file_path)
-	process_details <- abbyy_POST("processCheckmarkField", query=querylist, body=body)
+	process_details <- abbyy_POST("processCheckmarkField", query=querylist, body=body, ...)
 	
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 

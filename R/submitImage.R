@@ -4,6 +4,8 @@
 #' @param file_path Required; Path to the document
 #' @param taskId    Optional; Assigns image to the task ID specified. If an empty string is passed, a new task is created. 
 #' @param pdfPassword Optional; If the pdf is password protected, put the password here.
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
+#' 
 #' @return Data frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/submitImage/} 
@@ -11,7 +13,7 @@
 #' submitImage(file_path="/images/image1.png", taskId="task_id", pdfPassword="pdf_password")
 #' }
 
-submitImage <- function(file_path="", taskId="", pdfPassword="")
+submitImage <- function(file_path="", taskId="", pdfPassword="", ...)
 {
 	
 	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
@@ -23,7 +25,7 @@ submitImage <- function(file_path="", taskId="", pdfPassword="")
 		querylist = list(taskId = taskId, pdfPassword=pdfPassword)
 	}
 
-	submit_details <- abbyy_POST("submitImage", query=querylist, body=upload_file(file_path))
+	submit_details <- abbyy_POST("submitImage", query=querylist, body=upload_file(file_path), ...)
 	
 	resdf <- as.data.frame(do.call(rbind, submit_details))
 

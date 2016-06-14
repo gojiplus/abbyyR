@@ -4,10 +4,12 @@
 \alias{deleteTask}
 \title{Delete Task}
 \usage{
-deleteTask(taskId = NULL)
+deleteTask(taskId = NULL, ...)
 }
 \arguments{
 \item{taskId}{Required; Id of the task}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 Data frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)

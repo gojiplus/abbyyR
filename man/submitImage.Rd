@@ -4,7 +4,7 @@
 \alias{submitImage}
 \title{Submit Image}
 \usage{
-submitImage(file_path = "", taskId = "", pdfPassword = "")
+submitImage(file_path = "", taskId = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{Required; Path to the document}
@@ -12,6 +12,8 @@ submitImage(file_path = "", taskId = "", pdfPassword = "")
 \item{taskId}{Optional; Assigns image to the task ID specified. If an empty string is passed, a new task is created.}
 
 \item{pdfPassword}{Optional; If the pdf is password protected, put the password here.}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits

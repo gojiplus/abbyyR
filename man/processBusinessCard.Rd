@@ -6,7 +6,7 @@
 \usage{
 processBusinessCard(file_path = "", language = "English",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  exportFormat = "vCard", description = "", pdfPassword = "")
+  exportFormat = "vCard", description = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{required, path of the document, default: ""}
@@ -24,6 +24,8 @@ processBusinessCard(file_path = "", language = "English",
 \item{description}{optional, default: ""}
 
 \item{pdfPassword}{optional, default: NULL}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Business Card

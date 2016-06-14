@@ -4,7 +4,7 @@
 \alias{processFields}
 \title{Process Fields}
 \usage{
-processFields(file_path = "", taskId = NULL, description = "")
+processFields(file_path = "", taskId = NULL, description = "", ...)
 }
 \arguments{
 \item{file_path}{path of the document}
@@ -12,6 +12,8 @@ processFields(file_path = "", taskId = NULL, description = "")
 \item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 
 \item{description}{optional, default: ""}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Image

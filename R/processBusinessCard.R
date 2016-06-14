@@ -10,6 +10,8 @@
 #' @param exportFormat  optional, default: "vCard"
 #' @param pdfPassword  optional, default: NULL
 #' @param description  optional, default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
+#' 
 #' @keywords Process Remote Image
 #' 
 #' @return Data frame with details of the task associated with the submitted Business Card
@@ -23,7 +25,7 @@
 #' }
 
 processBusinessCard <- function(file_path="", language="English", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",exportFormat="vCard", description="", pdfPassword="")
+						        correctSkew="true", exportFormat="vCard", description="", pdfPassword="", ...)
 {
 	
 	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
@@ -32,7 +34,7 @@ processBusinessCard <- function(file_path="", language="English", imageSource="a
 					 correctSkew=correctSkew,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
 	body=upload_file(file_path)
-	process_details <- abbyy_POST("processBusinessCard", query=querylist, body=body)
+	process_details <- abbyy_POST("processBusinessCard", query=querylist, body=body, ...)
 
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 	

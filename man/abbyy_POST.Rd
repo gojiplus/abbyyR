@@ -4,7 +4,7 @@
 \alias{abbyy_POST}
 \title{POST}
 \usage{
-abbyy_POST(path, query, body = "")
+abbyy_POST(path, query, body = "", ...)
 }
 \arguments{
 \item{path}{path to specific API request URL}
@@ -12,6 +12,8 @@ abbyy_POST(path, query, body = "")
 \item{query}{query list}
 
 \item{body}{passing image through body}
+
+\item{\dots}{Additional arguments passed to \code{\link[httr]{POST}}.}
 }
 \value{
 list

@@ -13,6 +13,9 @@
 #' options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto
 #' @param pdfPassword  optional, default: NULL
 #' @param description  optional, default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
+#' 
+#' 
 #' @return Data frame with details of the task associated with the submitted Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/specifications/image-formats/}
@@ -23,7 +26,7 @@
 
 
 processImage <- function(file_path="", language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword="")
+						correctSkew="true", readBarcodes="false", exportFormat="txt", description="", pdfPassword="", ...)
 {
 		
 	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
@@ -32,7 +35,7 @@ processImage <- function(file_path="", language="English", profile="documentConv
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 
 	body <- upload_file(file_path)
-	process_details <- abbyy_POST("processImage", query=querylist, body=body)
+	process_details <- abbyy_POST("processImage", query=querylist, body=body, ...)
 		
 	resdf <- as.data.frame(do.call(rbind, process_details))
 

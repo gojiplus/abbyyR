@@ -12,6 +12,8 @@
 #' @param exportFormat  Optional; default: txt
 #' @param pdfPassword  Optional; default: NULL
 #' @param description  Optional; default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_GET}}.
+#' 
 #' @return Data frame with details of the task associated with the submitted Remote Image
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
@@ -20,14 +22,14 @@
 #' }
 
 processRemoteImage <- function(img_url=NULL, language="English", profile="documentConversion",textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true",readBarcodes="false",exportFormat="txt", description=NULL, pdfPassword=NULL){
+						correctSkew="true",readBarcodes="false", exportFormat="txt", description=NULL, pdfPassword=NULL, ...){
 	
 	if (is.null(img_url)) stop("Must specify img_url")
 
 	querylist = list(source=img_url, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 	
-	process_details <- abbyy_GET("processRemoteImage", query=querylist)
+	process_details <- abbyy_GET("processRemoteImage", query=querylist, ...)
 	
 	resdf <- as.data.frame(do.call(rbind, process_details))
 

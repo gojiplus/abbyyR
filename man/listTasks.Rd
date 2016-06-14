@@ -4,7 +4,7 @@
 \alias{listTasks}
 \title{List Tasks}
 \usage{
-listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE)
+listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE, ...)
 }
 \arguments{
 \item{fromDate}{Optional; format: yyyy-mm-ddThh:mm:ssZ}
@@ -12,6 +12,8 @@ listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE)
 \item{toDate}{Optional;   format: yyyy-mm-ddThh:mm:ssZ}
 
 \item{excludeDeleted}{Optional; Boolean, Default=FALSE}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 A data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status 

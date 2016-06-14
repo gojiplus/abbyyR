@@ -6,7 +6,7 @@
 \usage{
 processCheckmarkField(file_path = "", checkmarkType = "empty",
   region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "",
-  description = "")
+  description = "", ...)
 }
 \arguments{
 \item{file_path}{required, path of the document, default: ""}
@@ -20,6 +20,8 @@ processCheckmarkField(file_path = "", checkmarkType = "empty",
 \item{pdfPassword}{optional, default: ""}
 
 \item{description}{optional, default: ""}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Image

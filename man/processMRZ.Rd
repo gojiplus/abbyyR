@@ -4,10 +4,12 @@
 \alias{processMRZ}
 \title{Process MRZ: Extract data from Machine Readable Zone}
 \usage{
-processMRZ(file_path = "")
+processMRZ(file_path = "", ...)
 }
 \arguments{
 \item{file_path}{path to the document}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted MRZ document

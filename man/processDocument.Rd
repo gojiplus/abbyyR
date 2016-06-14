@@ -8,7 +8,7 @@ processDocument(taskId = NULL, language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
   readBarcodes = "false", exportFormat = "txt", description = NULL,
-  pdfPassword = NULL)
+  pdfPassword = NULL, ...)
 }
 \arguments{
 \item{taskId}{Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
@@ -32,6 +32,8 @@ processDocument(taskId = NULL, language = "English",
 \item{description}{Optional; default: ""}
 
 \item{pdfPassword}{Optional; default: NULL}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Document

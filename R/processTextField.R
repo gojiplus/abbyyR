@@ -14,6 +14,7 @@
 #' @param writingStyle handprint writing style, see Abbyy FineReader documentation for values; optional; default: "default"
 #' @param description Description of processing task; optional; default: ""
 #' @param pdfPassword Password for pdf; optional; default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
 #' 
 #' @return Data frame with details of the task associated with the submitted Image
 #' 
@@ -27,7 +28,7 @@
 
 processTextField <- function(file_path="", region="-1,-1,-1,-1", language="English", letterSet="", regExp="", textType="normal", oneTextLine="false", 
 	                         oneWordPerTextLine="false", markingType="simpleText", placeholdersCount="1", writingStyle="default", description="", 
-	                         pdfPassword="") {
+	                         pdfPassword="", ...) {
 	
 	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
@@ -36,7 +37,7 @@ processTextField <- function(file_path="", region="-1,-1,-1,-1", language="Engli
 		             writingStyle = writingStyle, description = description, pdfPassword = pdfPassword)
 
 	body  <- upload_file(file_path)
-	process_details <- abbyy_POST("processTextField", query=querylist, body=body)
+	process_details <- abbyy_POST("processTextField", query=querylist, body=body, ...)
 			
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 	

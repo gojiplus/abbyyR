@@ -6,7 +6,7 @@
 \usage{
 processPhotoId(file_path = "", idType = "auto", imageSource = "auto",
   correctOrientation = "true", correctSkew = "true", description = "",
-  pdfPassword = "")
+  pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path to file; required}
@@ -22,6 +22,8 @@ processPhotoId(file_path = "", idType = "auto", imageSource = "auto",
 \item{description}{optional; default = ""}
 
 \item{pdfPassword}{optional; default = ""}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Photo ID image

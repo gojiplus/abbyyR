@@ -1,3 +1,8 @@
+# abbyyR .5
+
+* Pass more arguments (dots)
+* StringsAsFactors issues for getresults fixed
+
 # abbyyR .4
 
 * compareText moved to R package recognize

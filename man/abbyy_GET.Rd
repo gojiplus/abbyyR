@@ -4,12 +4,14 @@
 \alias{abbyy_GET}
 \title{Base POST AND GET functions. Not exported.}
 \usage{
-abbyy_GET(path, query)
+abbyy_GET(path, query, ...)
 }
 \arguments{
 \item{path}{path to specific API request URL}
 
 \item{query}{query list}
+
+\item{\dots}{Additional arguments passed to \code{\link[httr]{GET}}.}
 }
 \value{
 list

@@ -8,6 +8,7 @@
 #' @param containsBinaryData   optional, default: "false"
 #' @param pdfPassword  optional, default: ""
 #' @param description  optional, default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
 #' 
 #' @return Data frame with details of the task associated with the submitted Image
 #' 
@@ -19,13 +20,13 @@
 #' processBarcodeField(file_path="file_path")
 #' }
 
-processBarcodeField <- function(file_path="", barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description="") {
+processBarcodeField <- function(file_path="", barcodeType="autodetect", region="-1,-1,-1,-1", containsBinaryData="false", pdfPassword="", description="", ...) {
 		
 	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist = list(barcodeType=barcodeType, region=region, containsBinaryData=containsBinaryData, pdfPassword=pdfPassword, description=description)
 	
-	process_details <- abbyy_POST("processBarcodeField", query=querylist, body=upload_file(file_path))
+	process_details <- abbyy_POST("processBarcodeField", query=querylist, body=upload_file(file_path), ...)
 	
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 

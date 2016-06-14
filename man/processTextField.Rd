@@ -9,7 +9,7 @@ processTextField(file_path = "", region = "-1,-1,-1,-1",
   textType = "normal", oneTextLine = "false",
   oneWordPerTextLine = "false", markingType = "simpleText",
   placeholdersCount = "1", writingStyle = "default", description = "",
-  pdfPassword = "")
+  pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path of the document}
@@ -37,6 +37,8 @@ processTextField(file_path = "", region = "-1,-1,-1,-1",
 \item{description}{Description of processing task; optional; default: ""}
 
 \item{pdfPassword}{Password for pdf; optional; default: ""}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Image

@@ -6,6 +6,7 @@
 #' @param fromDate Optional; format: yyyy-mm-ddThh:mm:ssZ
 #' @param toDate Optional;   format: yyyy-mm-ddThh:mm:ssZ
 #' @param excludeDeleted Optional; Boolean, Default=FALSE
+#' @param \dots Additional arguments passed to \code{\link{abbyy_GET}}.
 #' 
 #' @return A data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status 
 #' 		   (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
@@ -14,7 +15,7 @@
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 #' 
-#' @usage listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE)
+#' @usage listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE, ...)
 #' 
 #' @examples \dontrun{
 #' listTasks()
@@ -22,7 +23,7 @@
 #' listTasks(fromDate="2015-11-10T00:00:00Z")
 #' }
 
-listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
+listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE, ...) {
 	
 	# Convert Bool to string
 	exclude_deleted = 'false'
@@ -40,7 +41,7 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE) {
 	}
 
 	querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted = exclude_deleted)
-	tasklist  <- abbyy_GET("listTasks", query=querylist)
+	tasklist  <- abbyy_GET("listTasks", query=querylist, ...)
 
 	# Names of return df.
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")

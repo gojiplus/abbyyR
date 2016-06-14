@@ -15,6 +15,7 @@
 #' @param exportFormat  Optional; default: txt
 #' @param pdfPassword  Optional; default: NULL
 #' @param description  Optional; default: ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_GET}}.
 #' 
 #' @return Data frame with details of the task associated with the submitted Document
 #' 
@@ -27,12 +28,12 @@
 #' }
 
 processDocument <- function(taskId = NULL, language="English", profile="documentConversion", textType="normal", imageSource="auto", correctOrientation="true", 
-						correctSkew="true", readBarcodes="false", exportFormat="txt", description=NULL, pdfPassword=NULL){
+						correctSkew="true", readBarcodes="false", exportFormat="txt", description=NULL, pdfPassword=NULL, ...){
 	
 	querylist = list(taskId = taskId, language=language, profile=profile,textType=textType, imageSource=imageSource, correctOrientation=correctOrientation, 
 						correctSkew=correctSkew,readBarcodes=readBarcodes,exportFormat=exportFormat, description=description, pdfPassword=pdfPassword)
 
-	process_details <- abbyy_GET("processDocument", query=querylist)
+	process_details <- abbyy_GET("processDocument", query=querylist, ...)
 		
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df

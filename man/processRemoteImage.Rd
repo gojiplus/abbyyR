@@ -8,7 +8,7 @@ processRemoteImage(img_url = NULL, language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
   readBarcodes = "false", exportFormat = "txt", description = NULL,
-  pdfPassword = NULL)
+  pdfPassword = NULL, ...)
 }
 \arguments{
 \item{img_url}{Required; url to remote image}
@@ -32,6 +32,8 @@ processRemoteImage(img_url = NULL, language = "English",
 \item{description}{Optional; default: ""}
 
 \item{pdfPassword}{Optional; default: NULL}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Remote Image

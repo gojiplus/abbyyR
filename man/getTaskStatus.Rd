@@ -4,10 +4,12 @@
 \alias{getTaskStatus}
 \title{Get Task Status}
 \usage{
-getTaskStatus(taskId = NULL)
+getTaskStatus(taskId = NULL, ...)
 }
 \arguments{
 \item{taskId}{Required, Id of the task}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 A data frame with all the available details about the task

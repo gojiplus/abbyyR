@@ -8,7 +8,7 @@ processImage(file_path = "", language = "English",
   profile = "documentConversion", textType = "normal",
   imageSource = "auto", correctOrientation = "true", correctSkew = "true",
   readBarcodes = "false", exportFormat = "txt", description = "",
-  pdfPassword = "")
+  pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path to the document}
@@ -33,6 +33,8 @@ options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndI
 \item{description}{optional, default: ""}
 
 \item{pdfPassword}{optional, default: NULL}
+
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
 Data frame with details of the task associated with the submitted Image

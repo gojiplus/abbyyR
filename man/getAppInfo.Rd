@@ -4,7 +4,10 @@
 \alias{getAppInfo}
 \title{Get Application Info}
 \usage{
-getAppInfo()
+getAppInfo(...)
+}
+\arguments{
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 A data.frame with the following fields: Name of the Application (name), 

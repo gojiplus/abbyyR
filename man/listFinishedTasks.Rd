@@ -4,7 +4,10 @@
 \alias{listFinishedTasks}
 \title{List Finished Tasks}
 \usage{
-listFinishedTasks()
+listFinishedTasks(...)
+}
+\arguments{
+\item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
 A data frame with the following columns: id (task id), registrationTime, statusChangeTime, 

@@ -9,6 +9,8 @@
 #' @param correctSkew optional; default = "true"
 #' @param description optional; default = ""
 #' @param pdfPassword optional; default = ""
+#' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
+#' 
 #' @return Data frame with details of the task associated with the submitted Photo ID image 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
@@ -16,14 +18,14 @@
 #' processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 #' }
 
-processPhotoId <- function(file_path="", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="") {
+processPhotoId <- function(file_path="", idType="auto", imageSource="auto", correctOrientation="true", correctSkew="true", description="", pdfPassword="", ...) {
 		
 	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
 	querylist <- list(idType=idType, imageSource=imageSource, correctOrientation=correctOrientation, correctSkew=correctSkew, description=description, pdfPassword=pdfPassword)
 
 	body <- upload_file(file_path)
-	process_details <- abbyy_POST("processPhotoId", query=NULL, body=body)
+	process_details <- abbyy_POST("processPhotoId", query=NULL, body=body, ...)
 
 	resdf <- as.data.frame(do.call(rbind, process_details))
 
