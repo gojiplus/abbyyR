@@ -3,6 +3,6 @@
 ^\.travis\.yml$
 ^appveyor\.yml$
 ^dev$
-^inst/extdata/t1.TIF$
+^inst/extdata/*.TIF$
 ^cran-comments.md$
 ^tests\testthat\abbyy_key.enc$

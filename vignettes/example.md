@@ -1,7 +1,7 @@
 ---
 title: "A Worked Out Example of Managing with abbyyR"
 author: "Gaurav Sood"
-date: "2016-05-15"
+date: "2016-06-16"
 vignette: >
   %\VignetteIndexEntry{A Worked Out Example of Managing with abbyyR}
   %\VignetteEngine{knitr::rmarkdown}
@@ -10,24 +10,25 @@ vignette: >
 
 #### Load the package
 
-To get started, load the package. The latest version of the package will always be on github. Instructions for installing the package from github are provided below.
+To install the package from CRAN, type:
+
+```r
+install.packages("abbyyR")
+```
+
+To get the latest development version from GitHub:
 
 
+```r
+# install.packages('devtools')
+devtools::install_github('soodoku/abbyyR')
+```
+
+Next, load the package. 
 
 
 ```r
 library(abbyyR)
-```
-
-
-
-```r
-"
-Get the latest version from github:
-
-# install.packages('devtools')
-devtools::install_github('soodoku/abbyyR')
-"
 ```
 
 #### Set credentials
@@ -133,7 +134,7 @@ Note: I am uploading a sample image that Abbyy provides for free to test its sof
 
 
 ```r
-submitImage(file_path="t1.tif", pdfPassword="")
+submitImage(file_path="t1.png", pdfPassword="")
 ```
 
 ```
@@ -146,7 +147,7 @@ submitImage(file_path="t1.tif", pdfPassword="")
 
 
 ```r
-processImage(file_path="t1.tif")
+processImage(file_path="t1.png")
 ```
 
 ```
@@ -159,7 +160,7 @@ processImage(file_path="t1.tif")
 
 
 ```r
-processRemoteImage(img_url="https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.TIF")
+processRemoteImage(img_url="https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.png")
 ```
 
 ```
