@@ -1,6 +1,6 @@
 context("Submit, Process Image")
 
-image <- system.file("extdata/t1.png", package = "abbyyR")
+samp_image <- system.file("extdata/t1.png", package = "abbyyR")
 
 test_that("submitImage, processImage happens successfully", {
   skip_on_cran()
@@ -10,8 +10,8 @@ test_that("submitImage, processImage happens successfully", {
   close(token_file)
   setapp(unlist(strsplit(token, ",")))
 
-  sub_img <- submitImage(file_path=image)
-  proc_img <- processImage(file_path=image)
+  sub_img <- submitImage(file_path=samp_image)
+  proc_img <- processImage(file_path=samp_image)
 
   expect_that(sub_img, is_a("data.frame"))
   expect_that(proc_img, is_a("data.frame"))

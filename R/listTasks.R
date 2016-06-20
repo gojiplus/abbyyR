@@ -41,7 +41,7 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE, ...) {
 	}
 
 	querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted = exclude_deleted)
-	tasklist  <- abbyy_GET("listTasks", query=querylist, ...)
+	tasklist  <- abbyy_GET("listTasks", query = querylist, ...)
 
 	# Names of return df.
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
