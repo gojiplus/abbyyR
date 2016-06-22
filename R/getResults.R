@@ -38,7 +38,7 @@ getResults <- function(output="./", save_to_file=TRUE) {
 			# Add additional col. to finished_list
 			finished_list$results <- NA
 			
-			for (i in 1:nrow(finished_list)) 
+			for (i in seq_along(1:nrow(finished_list))) 
 			{
 				url <- as.character(finished_list$resultUrl[i])
 				temp <- curl_fetch_memory(url)
@@ -51,7 +51,7 @@ getResults <- function(output="./", save_to_file=TRUE) {
 
 		finished_list$local_file_path <- NA
 
-		for (i in 1:nrow(finished_list))
+		for (i in seq_along(1:nrow(finished_list))) 
 		{
 			curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
 			finished_list$local_file_path[i] <- paste0(output, finished_list$id[i])

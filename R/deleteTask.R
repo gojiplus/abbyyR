@@ -26,7 +26,7 @@ deleteTask <- function(taskId=NULL, ...){
 	# Get the status of the task
 	task_status <- getTaskStatus(taskId)
 	
-	if (task_status$status == 'Deleted') {
+	if (identical(task_status$status, 'Deleted')) {
 		# Print status of the task
 		cat("Status of the task: ", task_status$status, "\n")
 		

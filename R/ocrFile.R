@@ -24,7 +24,7 @@ ocrFile <- function(file_path="", output_dir="./", exportFormat="txt", save_to_f
 
 	finishedlist <- listFinishedTasks()
 
-	if (!save_to_file) {
+	if (identical(save_to_file, FALSE)) {
 		res <- curl_fetch_memory(finishedlist$resultUrl[res$id == finishedlist$id])
 		return(rawToChar(res$content))
 	}

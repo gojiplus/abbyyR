@@ -36,7 +36,7 @@ processDocument <- function(taskId = NULL, language="English", profile="document
 	process_details <- abbyy_GET("processDocument", query=querylist, ...)
 		
 	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	row.names(resdf) <- seq_along(1:nrow(resdf))	# row.names for the df
 	
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")

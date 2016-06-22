@@ -56,7 +56,7 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE, ...) {
 	lenitem <- sapply(tasklist, length) # length of each list item
 	resdf   <- setNames(do.call(rbind.data.frame, tasklist), frame_names) # collapse to a data.frame, wraps where lenitems < longest list (7) and set_names to frame_names
 	#names(resdf) <- frame_names
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	row.names(resdf) <- seq_along(1:nrow(resdf))	# row.names for the df
 	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
 
 	# Print some important things

@@ -33,7 +33,7 @@ listFinishedTasks <- function(...) {
 	}
 
 	resdf <- as.data.frame(do.call(rbind, tasklist)) # collapse to a data.frame
-	row.names(resdf) <- 1:nrow(resdf)	# row.names for the df
+	row.names(resdf) <- seq_along(1:nrow(resdf))	 # row.names for the df
 	
 	# Print some important things
 	cat("No. of Finished Tasks: ", nrow(resdf), "\n")
