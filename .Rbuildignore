@@ -1,7 +1,9 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^\.travis\.yml$
-^appveyor\.yml$
+^.gitignore$
+^.gitattributes$
+^appveyor.yml$
 ^dev$
 ^inst/extdata/*.TIF$
 ^cran-comments.md$

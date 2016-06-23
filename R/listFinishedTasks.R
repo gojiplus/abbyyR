@@ -25,7 +25,6 @@ listFinishedTasks <- function(...) {
 	# Names of return df.
 	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
 
-
 	if (is.null(tasklist)){
 		cat("No finished tasks in the application. \n")
 		no_dat <- read.table(text = "", col.names = frame_names)
