@@ -27,7 +27,7 @@ processRemoteImage(img_url = NULL, language = "English",
 
 \item{readBarcodes}{Optional; default:}
 
-\item{exportFormat}{Optional; default: txt}
+\item{exportFormat}{Optional; default: txt. Must be one of the following: txt, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, alto}
 
 \item{description}{Optional; default: ""}
 
