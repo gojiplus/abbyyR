@@ -7,12 +7,15 @@
 deleteTask(taskId = NULL, ...)
 }
 \arguments{
-\item{taskId}{Required; Id of the task}
+\item{taskId}{Required; ID of the task; String}
 
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
-Data frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
+Data frame with all the details of the task you are trying to delete: 
+id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, 
+Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, 
+resultUrl (URL for the processed file if applicable)
 }
 \description{
 Deletes task and associated data. While Abbyy says, "If you try to delete the task that has already been deleted, the successful response is returned," 

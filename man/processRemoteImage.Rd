@@ -15,13 +15,15 @@ processRemoteImage(img_url = NULL, language = "English",
 
 \item{language}{Optional; default: English}
 
-\item{profile}{Optional; default: documentConversion}
+\item{profile}{Optional; default: documentConversion. 
+Must be one of the following: documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}
 
-\item{textType}{Optional; default: normal}
+\item{textType}{Optional; default: normal. Specifies the type of the text on a page. 
+Must be one of the following:: normal, typewriter, matrix, index, handprinted, ocrA, ocrB, e13b, cmc7, gothic}
 
-\item{imageSource}{Optional; default: auto}
+\item{imageSource}{Optional; default: auto. Can be one of the following: auto, photo, scanner}
 
-\item{correctOrientation}{Optional; default: true}
+\item{correctOrientation}{Optional; default: true. Can be true or false}
 
 \item{correctSkew}{Optional; default: true}
 

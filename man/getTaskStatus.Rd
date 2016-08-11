@@ -17,7 +17,9 @@ A data frame with all the available details about the task
 \description{
 This function gets task status for a particular task ID.
 The function prints the status of the task by default.
-The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
+The function returns a data.frame with all the task details: id (task id), registrationTime, 
+statusChangeTime, status (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), 
+filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
 }
 \examples{
 \dontrun{
