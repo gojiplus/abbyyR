@@ -53,7 +53,7 @@ getResults <- function(output="./", save_to_file=TRUE) {
 
 		for (i in seq_along(1:nrow(finished_list))) 
 		{
-			curl_download(finished_list$resultUrl[i], destfile=paste0(output, finished_list$id[i]))
+			curl_download(as.character(finished_list$resultUrl[i]), destfile=paste0(output, finished_list$id[i]))
 			finished_list$local_file_path[i] <- paste0(output, finished_list$id[i])
 			pb$tick()
 		}
