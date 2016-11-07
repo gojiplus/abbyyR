@@ -5,6 +5,7 @@
 ^.gitattributes$
 ^appveyor.yml$
 ^dev$
+^revdep$
 ^inst/extdata/*.TIF$
 ^cran-comments.md$
 ^tests\testthat\abbyy_key.enc$
