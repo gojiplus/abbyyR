@@ -5,6 +5,7 @@
 ^.gitattributes$
 ^appveyor.yml$
 ^dev$
+^docs$
 ^revdep$
 ^inst/extdata/*.TIF$
 ^cran-comments.md$
