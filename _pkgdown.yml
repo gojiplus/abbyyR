@@ -2,28 +2,9 @@ templates:
   params:
     bootswatch: cerulean
 
-reference:
-  - title: Package-level
-  contents:
-    - abbyyR
- - title: Corpus functions
-  desc: Functions for constructing and manipulating corpus class objects.
-  contents:
-    - corpus
-    - corpus_reshape
-    - corpus_sample
-    - corpus_segment
-    - corpus_subset
-    - metacorpus
-    - docvars
-    - metacorpus
-    - metadoc
-    - texts
-    - as.character.corpus
-
 navbar:
   left:
   - text: Intro
-    href: articles/pkgdown.html
+    href: articles/index.html
   - text: Reference
     href: reference/index.html
