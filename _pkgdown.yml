@@ -3,15 +3,23 @@ templates:
     bootswatch: cerulean
 
 reference:
-  - title: Build
-    desc:  Build each component of the site.
-    contents:
-    - starts_with("build_")
-    - init_site
-  - title: Templates
-    contents:
-    - template_navbar
-    - render_page
+  - title: Package-level
+  contents:
+    - abbyyR
+ - title: Corpus functions
+  desc: Functions for constructing and manipulating corpus class objects.
+  contents:
+    - corpus
+    - corpus_reshape
+    - corpus_sample
+    - corpus_segment
+    - corpus_subset
+    - metacorpus
+    - docvars
+    - metacorpus
+    - metadoc
+    - texts
+    - as.character.corpus
 
 navbar:
   left:
