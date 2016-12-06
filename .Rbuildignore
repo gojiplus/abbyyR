@@ -10,3 +10,4 @@
 ^inst/extdata/*.TIF$
 ^cran-comments.md$
 ^tests\testthat\abbyy_key.enc$
+^_pkgdown\.yml$
