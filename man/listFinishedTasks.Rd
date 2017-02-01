@@ -28,4 +28,3 @@ listFinishedTasks()
 \references{
 \url{http://ocrsdk.com/documentation/apireference/listFinishedTasks/}
 }
-

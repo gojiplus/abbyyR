@@ -2,8 +2,8 @@
 % Please edit documentation in R/abbyyR.R
 \docType{package}
 \name{abbyyR-package}
-\alias{abbyyR}
 \alias{abbyyR-package}
+\alias{abbyyR}
 \title{abbyyR: R Client for the Abbyy Cloud OCR}
 \description{
 OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R.
@@ -20,4 +20,3 @@ If you haven't already, get these at \url{http://ocrsdk.com/}. And set these usi
 \author{
 Gaurav Sood
 }
-

@@ -56,4 +56,3 @@ processTextField(file_path="file_path")
 
 \url{http://ocrsdk.com/documentation/specifications/regular-expressions/}
 }
-

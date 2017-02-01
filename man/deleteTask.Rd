@@ -32,4 +32,3 @@ deleteTask(taskId="task_id")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/deleteTask/}
 }
-

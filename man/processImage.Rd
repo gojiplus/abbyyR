@@ -52,4 +52,3 @@ processImage(file_path="file_path", language="English", exportFormat="txtUnstruc
 
 \url{http://ocrsdk.com/documentation/apireference/processImage/}
 }
-

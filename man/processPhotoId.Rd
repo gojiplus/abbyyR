@@ -39,4 +39,3 @@ processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processPhotoId/}
 }
-

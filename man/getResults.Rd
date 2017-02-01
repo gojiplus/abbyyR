@@ -32,4 +32,3 @@ getResults(save_to_file=FALSE)
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/}
 }
-

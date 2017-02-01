@@ -44,4 +44,3 @@ processBusinessCard(file_path="file_path", language="English")
 \keyword{Image}
 \keyword{Process}
 \keyword{Remote}
-

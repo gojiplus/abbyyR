@@ -39,4 +39,3 @@ processCheckmarkField(file_path="file_path")
 
 For supported image types, see \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 }
-

@@ -34,4 +34,3 @@ listTasks(fromDate="2015-11-10T00:00:00Z")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
 }
-

@@ -29,4 +29,3 @@ getAppInfo()
 
 \url{http://ocrsdk.com/schema/appInfo-1.0.xsd}
 }
-

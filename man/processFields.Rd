@@ -29,4 +29,3 @@ processFields(file_path="file_path", taskId="task_id",description="")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processFields/}
 }
-

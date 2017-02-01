@@ -51,4 +51,3 @@ processRemoteImage(img_url="img_url")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processRemoteImage/}
 }
-

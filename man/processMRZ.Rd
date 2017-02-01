@@ -25,4 +25,3 @@ processMRZ(file_path="file_path")
 \references{
 \url{http://ocrsdk.com/documentation/apireference/processMRZ/}
 }
-

@@ -29,4 +29,3 @@ submitImage(file_path="/images/image1.png", taskId="task_id", pdfPassword="pdf_p
 \references{
 \url{http://ocrsdk.com/documentation/apireference/submitImage/}
 }
-
