@@ -5,8 +5,10 @@
 #' @param file_path path to file; required
 #' @param idType optional; default = "auto"
 #' @param imageSource optional; default = "auto"
-#' @param correctOrientation optional; default = "true"
-#' @param correctSkew optional; default = "true"
+#' @param correctOrientation  String. Optional; default: \code{true}. 
+#' Options: \code{true} or \code{false}
+#' @param correctSkew String. Optional; default: \code{true}.
+#' Options: \code{true} or \code{false}
 #' @param description optional; default = ""
 #' @param pdfPassword optional; default = ""
 #' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
@@ -27,7 +29,7 @@ processPhotoId <- function(file_path="", idType="auto", imageSource="auto", corr
 	body <- upload_file(file_path)
 	process_details <- abbyy_POST("processPhotoId", query=NULL, body=body, ...)
 
-	resdf <- as.data.frame(do.call(rbind, process_details))
+	resdf <- ldply(process_details, rbind)
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")

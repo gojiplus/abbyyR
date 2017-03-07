@@ -37,12 +37,12 @@ deleteTask <- function(taskId = NULL, ...){
 		
 		querylist = list(taskId = taskId)
 		deleted_task_details <- abbyy_GET("deleteTask", query=querylist, ...)
-		resdf <- as.data.frame(do.call(rbind, deleted_task_details))
+		resdf <- ldply(deleted_task_details, rbind)
 	
 		# Print status of the task
 		cat("Status of the task: ", resdf$status, "\n")
-		return(invisible(resdf))
+		resdf
 	}
 
-	return(invisible(task_status))
+	task_status
 }

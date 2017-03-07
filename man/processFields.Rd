@@ -9,14 +9,14 @@ processFields(file_path = "", taskId = NULL, description = "", ...)
 \arguments{
 \item{file_path}{path of the document}
 
-\item{taskId}{- Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
+\item{taskId}{Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 
 \item{description}{optional, default: ""}
 
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
-Data frame with details of the task associated with the submitted Image
+\code{data.frame} with details of the task associated with the submitted Image
 }
 \description{
 This function gets Information about a particular application

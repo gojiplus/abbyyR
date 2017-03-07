@@ -1,6 +1,6 @@
 Package: abbyyR
 Title: Access to Abbyy Optical Character Recognition (OCR) API
-Version: 0.5.0
+Version: 0.5.1
 Authors@R: person("Gaurav", "Sood", email = "gsood07@gmail.com", role = c("aut", "cre"))
 Maintainer: Gaurav Sood <gsood07@gmail.com>
 Description: Get text from images of text using Abbyy Cloud Optical Character
@@ -20,9 +20,10 @@ Imports:
     XML,
     curl,
     readr,
+    plyr,
     progress
 Suggests:
     testthat,
     rmarkdown,
     knitr (>= 1.11)
-RoxygenNote: 6.0.0
+RoxygenNote: 6.0.1

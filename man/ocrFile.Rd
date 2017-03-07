@@ -4,7 +4,9 @@
 \alias{ocrFile}
 \title{OCR File}
 \usage{
-ocrFile(file_path = "", output_dir = "./", exportFormat = "txt",
+ocrFile(file_path = "", output_dir = "./", exportFormat = c("txt",
+  "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
+  "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
   save_to_file = TRUE)
 }
 \arguments{

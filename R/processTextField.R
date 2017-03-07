@@ -39,7 +39,7 @@ processTextField <- function(file_path="", region="-1,-1,-1,-1", language="Engli
 	body  <- upload_file(file_path)
 	process_details <- abbyy_POST("processTextField", query=querylist, body=body, ...)
 			
-	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
+	resdf <- ldply(process_details, rbind)
 	
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")

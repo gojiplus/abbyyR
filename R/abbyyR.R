@@ -21,6 +21,7 @@
 #' @importFrom curl curl_download curl_fetch_memory
 #' @importFrom progress progress_bar
 #' @importFrom readr read_file
+#' @importFrom plyr ldply
 #' @docType package
 #' @author Gaurav Sood
 NULL

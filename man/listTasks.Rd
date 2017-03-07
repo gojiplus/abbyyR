@@ -16,9 +16,9 @@ listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE, ...)
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
-A data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status 
+A \code{data.frame} with the following columns: id (task id), registrationTime, statusChangeTime, status 
 		   (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
-        credits, resultUrl (URL for the processed file)).
+        credits, resultUrl (URL for the processed file)). If no tasks are finished, the last column (resultUrl) isn't returned.
 }
 \description{
 List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
@@ -32,5 +32,5 @@ listTasks(fromDate="2015-11-10T00:00:00Z")
 }
 }
 \references{
-\url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
+\url{http://ocrsdk.com/documentation/apireference/listTasks/}
 }

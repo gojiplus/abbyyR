@@ -10,7 +10,7 @@ listFinishedTasks(...)
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
-A data frame with the following columns: id (task id), registrationTime, statusChangeTime, 
+A \code{data.frame} with the following columns: id (task id), registrationTime, statusChangeTime, 
 status (Completed), filesCount (No. of files), credits, resultUrl (URL for the processed file)
 }
 \description{

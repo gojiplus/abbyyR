@@ -2,13 +2,15 @@
 #'
 #' This function gets Information about a particular application
 #' @param file_path path of the document
-#' @param taskId - Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
+#' @param taskId  Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.
 #' @param description  optional, default: ""
 #' @param \dots Additional arguments passed to \code{\link{abbyy_POST}}.
 #' 
-#' @return Data frame with details of the task associated with the submitted Image
+#' @return \code{data.frame} with details of the task associated with the submitted Image
+#' 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
+#' 
 #' @examples \dontrun{
 #' processFields(file_path="file_path", taskId="task_id",description="")
 #' }
@@ -21,8 +23,8 @@ processFields <- function(file_path="", taskId=NULL, description="", ...){
 	
 	process_details <- abbyy_POST("processFields", query=querylist, body=upload_file(file_path), ...)
 	
-	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
-	
+	resdf <- ldply(process_details, rbind)
+		
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")

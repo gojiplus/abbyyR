@@ -8,12 +8,18 @@
 #' @param save_to_file Required, Boolean, Default is TRUE, but if not, returns result to memory 
 #' 
 #' @return path to output file
+#' 
 #' @export
+#'
 #' @examples \dontrun{
 #' ocrFile(file_path="path_to_ocr_file", output_dir="path_to_output_dir")
 #' }
 
-ocrFile <- function(file_path="", output_dir="./", exportFormat="txt", save_to_file=TRUE) {
+ocrFile <- function(file_path="", output_dir="./", 
+					exportFormat=c("txt", "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable", "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"), 
+					save_to_file=TRUE) {
+
+	exportFormat <- match.arg(exportFormat)
 
 	res <- processImage(file_path=file_path, exportFormat=exportFormat)
 

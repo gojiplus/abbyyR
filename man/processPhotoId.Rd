@@ -15,9 +15,11 @@ processPhotoId(file_path = "", idType = "auto", imageSource = "auto",
 
 \item{imageSource}{optional; default = "auto"}
 
-\item{correctOrientation}{optional; default = "true"}
+\item{correctOrientation}{String. Optional; default: \code{true}. 
+Options: \code{true} or \code{false}}
 
-\item{correctSkew}{optional; default = "true"}
+\item{correctSkew}{String. Optional; default: \code{true}.
+Options: \code{true} or \code{false}}
 
 \item{description}{optional; default = ""}
 

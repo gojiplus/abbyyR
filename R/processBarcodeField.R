@@ -28,7 +28,7 @@ processBarcodeField <- function(file_path="", barcodeType="autodetect", region="
 	
 	process_details <- abbyy_POST("processBarcodeField", query=querylist, body=upload_file(file_path), ...)
 	
-	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
+	resdf <- ldply(process_details, rbind)
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")

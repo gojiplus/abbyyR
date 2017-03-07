@@ -31,6 +31,6 @@ getAppInfo <- function(...) {
   	cat("Application Credits Expire on: ", appinfo$expires, "\n", sep = "")
   	cat("Type: ", appinfo$type, "\n", sep = "")
   	
-  	return(invisible(appinfo))
+  	appinfo
 }
 

@@ -36,8 +36,8 @@ processBusinessCard <- function(file_path="", language="English", imageSource="a
 	body=upload_file(file_path)
 	process_details <- abbyy_POST("processBusinessCard", query=querylist, body=body, ...)
 
-	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
-	
+	resdf <- ldply(process_details, rbind)
+		
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")

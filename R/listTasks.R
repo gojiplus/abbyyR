@@ -8,12 +8,12 @@
 #' @param excludeDeleted Optional; Boolean, Default=FALSE
 #' @param \dots Additional arguments passed to \code{\link{abbyy_GET}}.
 #' 
-#' @return A data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status 
+#' @return A \code{data.frame} with the following columns: id (task id), registrationTime, statusChangeTime, status 
 #' 		   (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
-#'         credits, resultUrl (URL for the processed file)). 
+#'         credits, resultUrl (URL for the processed file)). If no tasks are finished, the last column (resultUrl) isn't returned.
 #' 
 #' @export
-#' @references \url{http://ocrsdk.com/documentation/apireference/getApplicationInfo/}
+#' @references \url{http://ocrsdk.com/documentation/apireference/listTasks/}
 #' 
 #' @usage listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE, ...)
 #' 
@@ -23,7 +23,7 @@
 #' listTasks(fromDate="2015-11-10T00:00:00Z")
 #' }
 
-listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE, ...) {
+listTasks <- function(fromDate = NULL, toDate = NULL, excludeDeleted = FALSE, ...) {
 	
 	# Convert Bool to string
 	exclude_deleted = 'false'
@@ -43,26 +43,13 @@ listTasks <- function(fromDate=NULL, toDate=NULL, excludeDeleted=FALSE, ...) {
 	querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted = exclude_deleted)
 	tasklist  <- abbyy_GET("listTasks", query = querylist, ...)
 
-	# Names of return df.
-	frame_names <- c("id", "registrationTime", "statusChangeTime", "status", "filesCount", "credits", "resultUrl")
-
-	if (is.null(tasklist)){
-		cat("No tasks in the application. \n")
-		no_dat <- read.table(text = "", col.names = frame_names)
-		return(invisible(no_dat))
-	}
-
 	# Converting list to a data.frame
-	lenitem <- sapply(tasklist, length) # length of each list item
-	resdf   <- setNames(do.call(rbind.data.frame, tasklist), frame_names) # collapse to a data.frame, wraps where lenitems < longest list (7) and set_names to frame_names
-	#names(resdf) <- frame_names
-	row.names(resdf) <- seq_along(1:nrow(resdf))	# row.names for the df
-	resdf[lenitem == 6,7] <- NA 		# Fill NAs where lenitems falls short
+	resdf   <- ldply(tasklist, rbind) 
 
 	# Print some important things
 	cat("Total No. of Tasks: ", nrow(resdf), "\n")
-	cat("No. of Finished Tasks: ", sum(lenitem==7), "\n")
+	cat("No. of Finished Tasks: ", ifelse(!("resultUrl" %in% names(resdf)), 0, sum(!is.na(resdf$resultUrl))), "\n")
   
   	# Return the data.frame
-	return(invisible(resdf))
+	resdf
 }

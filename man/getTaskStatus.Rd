@@ -12,7 +12,7 @@ getTaskStatus(taskId = NULL, ...)
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
-A data frame with all the available details about the task
+A \code{data.frame} with all the available details about the task
 }
 \description{
 This function gets task status for a particular task ID.

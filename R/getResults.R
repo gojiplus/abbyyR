@@ -59,5 +59,5 @@ getResults <- function(output="./", save_to_file=TRUE) {
 		}
 	}
 	
-	return(invisible(finished_list))
+	finished_list
 }

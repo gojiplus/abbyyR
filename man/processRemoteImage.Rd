@@ -5,27 +5,35 @@
 \title{Process Remote Image}
 \usage{
 processRemoteImage(img_url = NULL, language = "English",
-  profile = "documentConversion", textType = "normal",
-  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes = "false", exportFormat = "txt", description = NULL,
-  pdfPassword = NULL, ...)
+  profile = c("documentConversion", "documentArchiving", "textExtraction",
+  "fieldLevelRecognition", "barcodeRecognition"), textType = c("normal",
+  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"),
+  imageSource = c("auto", "photo", "scanner"),
+  correctOrientation = c("true", "false"), correctSkew = c("true", "false"),
+  readBarcodes = c("false", "true"), exportFormat = c("txt",
+  "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
+  "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
+  description = NULL, pdfPassword = NULL, ...)
 }
 \arguments{
 \item{img_url}{Required; url to remote image}
 
 \item{language}{Optional; default: English}
 
-\item{profile}{Optional; default: documentConversion. 
-Must be one of the following: documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}
+\item{profile}{String. Optional; default: \code{documentConversion}
+Options: \code{documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}}
 
-\item{textType}{Optional; default: normal. Specifies the type of the text on a page. 
-Must be one of the following:: normal, typewriter, matrix, index, handprinted, ocrA, ocrB, e13b, cmc7, gothic}
+\item{textType}{String. Optional; default: \code{normal}. Specifies the type of the text on a page.
+Options: \code{normal, typewriter, matrix, index, ocrA,ocrB, e13b,cmc7, gothic}}
 
-\item{imageSource}{Optional; default: auto. Can be one of the following: auto, photo, scanner}
+\item{imageSource}{String. Optional; default: \code{auto}
+Options: \code{auto, photo, scanner}}
 
-\item{correctOrientation}{Optional; default: true. Can be true or false}
+\item{correctOrientation}{String. Optional; default: \code{true}. 
+Options: \code{true} or \code{false}}
 
-\item{correctSkew}{Optional; default: true}
+\item{correctSkew}{String. Optional; default: \code{true}.
+Options: \code{true} or \code{false}}
 
 \item{readBarcodes}{Optional; default:}
 

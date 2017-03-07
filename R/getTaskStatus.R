@@ -9,9 +9,11 @@
 #' @param taskId Required, Id of the task
 #' @param \dots Additional arguments passed to \code{\link{abbyy_GET}}.
 #' 
-#' @return A data frame with all the available details about the task
+#' @return A \code{data.frame} with all the available details about the task
+#' 
 #' @export
 #' @references \url{http://ocrsdk.com/documentation/apireference/getTaskStatus/} 
+#' 
 #' @examples \dontrun{
 #' getTaskStatus(taskId="task_id")
 #' }
@@ -23,10 +25,10 @@ getTaskStatus <- function(taskId = NULL, ...) {
 	querylist <- list(taskId = taskId)	
 	taskdetails <- abbyy_GET("getTaskStatus", query=querylist, ...)
 
-	resdf <- as.data.frame(do.call(rbind, taskdetails)) # collapse to a data.frame
+	resdf <- ldply(taskdetails, rbind) 
 
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

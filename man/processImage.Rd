@@ -5,30 +5,41 @@
 \title{Process Image}
 \usage{
 processImage(file_path = "", language = "English",
-  profile = "documentConversion", textType = "normal",
-  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes = "false", exportFormat = "txt", description = "",
-  pdfPassword = "", ...)
+  profile = c("documentConversion", "documentArchiving", "textExtraction",
+  "fieldLevelRecognition", "barcodeRecognition"), textType = c("normal",
+  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"),
+  imageSource = c("auto", "photo", "scanner"),
+  correctOrientation = c("true", "false"), correctSkew = c("true", "false"),
+  readBarcodes = c("false", "true"), exportFormat = c("txt",
+  "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
+  "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
+  description = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path to the document}
 
 \item{language}{optional, default: English}
 
-\item{profile}{optional, default: documentConversion}
+\item{profile}{String. Optional; default: \code{documentConversion}
+Options: \code{documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}}
 
-\item{textType}{optional, default: normal}
+\item{textType}{String. Optional; default: \code{normal}
+Options: \code{normal, typewriter, matrix, index, ocrA,ocrB, e13b,cmc7, gothic}}
 
-\item{imageSource}{optional, default: auto}
+\item{imageSource}{String. Optional; default: \code{auto}
+Options: \code{auto, photo, scanner}}
 
-\item{correctOrientation}{optional, default: true}
+\item{correctOrientation}{String. Optional; default: \code{true}. 
+Options: \code{true} or \code{false}}
 
-\item{correctSkew}{optional, default: true}
+\item{correctSkew}{String. Optional; default: \code{true}.
+Options: \code{true} or \code{false}}
 
-\item{readBarcodes}{optional, default: false}
+\item{readBarcodes}{Optional; 
+Options: \code{true} or \code{false}}
 
-\item{exportFormat}{optional, default: txt; 
-options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto}
+\item{exportFormat}{optional, default: \code{txt} 
+options: \code{txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto}}
 
 \item{description}{optional, default: ""}
 
@@ -37,7 +48,7 @@ options: txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndI
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_POST}}.}
 }
 \value{
-Data frame with details of the task associated with the submitted Image
+A \code{data.frame} with details of the task associated with the submitted Image
 }
 \description{
 This function processes an image

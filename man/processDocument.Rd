@@ -5,29 +5,41 @@
 \title{Process Document}
 \usage{
 processDocument(taskId = NULL, language = "English",
-  profile = "documentConversion", textType = "normal",
-  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  readBarcodes = "false", exportFormat = "txt", description = NULL,
-  pdfPassword = NULL, ...)
+  profile = c("documentConversion", "documentArchiving", "textExtraction",
+  "fieldLevelRecognition", "barcodeRecognition"), textType = c("normal",
+  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"),
+  imageSource = c("auto", "photo", "scanner"),
+  correctOrientation = c("true", "false"), correctSkew = c("true", "false"),
+  readBarcodes = c("false", "true"), exportFormat = c("txt",
+  "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
+  "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
+  description = NULL, pdfPassword = NULL, ...)
 }
 \arguments{
 \item{taskId}{Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.}
 
-\item{language}{Optional; default: English}
+\item{language}{String. Optional; default: English}
 
-\item{profile}{Optional; default: documentConversion}
+\item{profile}{String. Optional; default: \code{documentConversion}
+Options: \code{documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}}
 
-\item{textType}{Optional; default: normal}
+\item{textType}{String. Optional; default: \code{normal}
+Options: \code{normal, typewriter, matrix, index, ocrA,ocrB, e13b,cmc7, gothic}}
 
-\item{imageSource}{Optional; default: auto}
+\item{imageSource}{String. Optional; default: \code{auto}
+Options: \code{auto, photo, scanner}}
 
-\item{correctOrientation}{Optional; default: true}
+\item{correctOrientation}{String. Optional; default: \code{true}. 
+Options: \code{true} or \code{false}}
 
-\item{correctSkew}{Optional; default: true}
+\item{correctSkew}{String. Optional; default: \code{true}.
+Options: \code{true} or \code{false}}
 
-\item{readBarcodes}{Optional; default:}
+\item{readBarcodes}{Optional; 
+Options: \code{true} or \code{false}}
 
-\item{exportFormat}{Optional; default: txt}
+\item{exportFormat}{optional, default: \code{txt} 
+options: \code{txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto}}
 
 \item{description}{Optional; default: ""}
 
@@ -36,7 +48,7 @@ processDocument(taskId = NULL, language = "English",
 \item{\dots}{Additional arguments passed to \code{\link{abbyy_GET}}.}
 }
 \value{
-Data frame with details of the task associated with the submitted Document
+\code{data.frame} with details of the task associated with the submitted Document
 }
 \description{
 This function processes several images for the same task and results in a multi-page document. 
