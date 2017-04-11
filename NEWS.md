@@ -3,6 +3,7 @@
 * moved to ldply for coercing list to data.frame
 * improved documentation
 * moved to match.arg
+* making all returns visible
 
 # abbyyR 0.5.0
 

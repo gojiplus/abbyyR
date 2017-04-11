@@ -25,5 +25,5 @@ processMRZ <- function(file_path="", ...) {
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

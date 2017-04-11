@@ -34,5 +34,5 @@ processBarcodeField <- function(file_path="", barcodeType="autodetect", region="
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

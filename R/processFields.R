@@ -29,5 +29,5 @@ processFields <- function(file_path="", taskId=NULL, description="", ...){
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

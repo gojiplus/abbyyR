@@ -63,5 +63,5 @@ processDocument <- function(taskId = NULL, language="English",
 	# Print some important things
 	cat("Status of the task: ", resdf$status, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

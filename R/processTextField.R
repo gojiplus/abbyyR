@@ -45,5 +45,5 @@ processTextField <- function(file_path="", region="-1,-1,-1,-1", language="Engli
 	cat("Status of the task: ", resdf$status, "\n")
 	cat("Task ID: ", 			resdf$id, "\n")
 
-	return(invisible(resdf))
+	resdf
 }

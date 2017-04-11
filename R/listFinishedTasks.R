@@ -36,5 +36,5 @@ listFinishedTasks <- function(...) {
 	# Print some important things
 	cat("No. of Finished Tasks: ", nrow(resdf), "\n")
 
-	return(invisible(resdf))
+	resdf
 }
