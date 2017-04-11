@@ -8,6 +8,10 @@
 ^docs$
 ^revdep$
 ^inst/extdata/t1.tif$
+^inst/extdata/wisc_ads/PA_Casey_Rendell_Twisting.pdf$
+^inst/extdata/wisc_ads/PA_Fisher_Rendell_Liberal.pdf$
+^inst/extdata/wisc_ads/VA_Boucher_Healthcare.pdf$
+^inst/extdata/wisc_ads/VA_Goode_87_Yr_Old_Mom.pdf$
 ^cran-comments.md$
 ^tests\testthat\abbyy_key.enc$
 ^_pkgdown\.yml$
