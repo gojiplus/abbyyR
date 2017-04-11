@@ -17,7 +17,8 @@ test_that("listTasks happens successfully", {
     expect_that(task_status, is_a("data.frame"))
     
     # Delete Task
-    del_task <- deleteTask(list_tasks[1,2])
+    ready_to_delete <- list_tasks[list_tasks$status=="Completed",]
+    del_task <- deleteTask(ready_to_delete[1,2])
     expect_that(del_task, is_a("data.frame"))
   }
 })

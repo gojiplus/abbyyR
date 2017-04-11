@@ -7,7 +7,7 @@
 ^dev$
 ^docs$
 ^revdep$
-^inst/extdata/*.TIF$
+^inst/extdata/t1.tif$
 ^cran-comments.md$
 ^tests\testthat\abbyy_key.enc$
 ^_pkgdown\.yml$
