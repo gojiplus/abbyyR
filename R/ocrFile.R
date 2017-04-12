@@ -24,11 +24,15 @@ ocrFile <- function(file_path="", output_dir="./",
 	res <- processImage(file_path=file_path, exportFormat=exportFormat)
 
 	# Wait till the processing is finished with a maximum time 
-	while(!(any(res$id ==listFinishedTasks()$id))) {
+	while(!(any(as.character(res$id) == as.character(listFinishedTasks()$id)))) {
 		Sys.sleep(1)
 	}
 
 	finishedlist <- listFinishedTasks()
+	
+	# Coerce to char. if not.
+	res$id <- as.character(res$id)
+	finishedlist$id <- as.character(finishedlist$id)
 
 	if (identical(save_to_file, FALSE)) {
 		res <- curl_fetch_memory(finishedlist$resultUrl[res$id == finishedlist$id])
