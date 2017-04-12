@@ -9,6 +9,7 @@
 ^revdep$
 ^inst/extdata/t1.tif$
 ^inst/extdata/doc10003.tif$
+^inst/extdata/Page_01.tif$
 ^inst/extdata/wisc_ads/PA_Casey_Rendell_Twisting.pdf$
 ^inst/extdata/wisc_ads/PA_Fisher_Rendell_Liberal.pdf$
 ^inst/extdata/wisc_ads/VA_Boucher_Healthcare.pdf$
