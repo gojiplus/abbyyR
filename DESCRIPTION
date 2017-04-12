@@ -6,8 +6,8 @@ Maintainer: Gaurav Sood <gsood07@gmail.com>
 Description: Get text from images of text using Abbyy Cloud Optical Character
     Recognition (OCR) API. Easily OCR images, barcodes, forms, documents with
     machine readable zones, e.g. passports. Get the results in a variety of formats
-    including plain text and XML. To learn more about the Abbyy OCR API, see <http://
-    ocrsdk.com/>.
+    including plain text and XML. To learn more about the Abbyy OCR API, see 
+    <http://ocrsdk.com/>.
 URL: http://github.com/soodoku/abbyyR
 BugReports: http://github.com/soodoku/abbyyR/issues
 Depends:
