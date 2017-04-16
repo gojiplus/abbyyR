@@ -55,7 +55,7 @@ This function processes an image
 }
 \examples{
 \dontrun{
-processImage(file_path="file_path", language="English", exportFormat="txtUnstructured")
+processImage(file_path = "file_path", language = "English", exportFormat = "txtUnstructured")
 }
 }
 \references{

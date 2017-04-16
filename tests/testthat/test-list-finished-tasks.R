@@ -2,7 +2,7 @@ context("List Finished Tasks")
 
 test_that("listFinishedTasks happens successfully", {
   skip_on_cran()
-  
+
   token_file <- file("abbyy_key", "r")
   token <- suppressWarnings(readLines(token_file))
   close(token_file)

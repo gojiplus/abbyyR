@@ -12,22 +12,22 @@
 #' @references \url{http://ocrsdk.com/documentation/apireference/processFields/}
 #' 
 #' @examples \dontrun{
-#' processFields(file_path="file_path", taskId="task_id",description="")
+#' processFields(file_path = "file_path", taskId = "task_id", description = "")
 #' }
 
-processFields <- function(file_path="", taskId=NULL, description="", ...){
-	
-	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+processFields <- function(file_path = "", taskId = NULL, description = "", ...){
+  
+  if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(taskId = taskId, description=description)
-	
-	process_details <- abbyy_POST("processFields", query=querylist, body=upload_file(file_path), ...)
-	
-	resdf <- ldply(process_details, rbind)
-		
-	# Print some important things
-	cat("Status of the task: ", resdf$status, "\n")
-	cat("Task ID: ", 			resdf$id, "\n")
+  querylist <- list(taskId = taskId, description = description)
+  
+  process_details <- abbyy_POST("processFields", query = querylist, body = upload_file(file_path), ...)
+  
+  resdf <- ldply(process_details, rbind)
+    
+  # Print some important things
+  cat("Status of the task: ", resdf$status, "\n")
+  cat("Task ID: ",       resdf$id, "\n")
 
-	resdf
+  resdf
 }

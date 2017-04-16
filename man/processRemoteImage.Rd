@@ -53,7 +53,7 @@ This function gets Information about a particular application
 }
 \examples{
 \dontrun{
-processRemoteImage(img_url="img_url")
+processRemoteImage(img_url = "img_url")
 }
 }
 \references{

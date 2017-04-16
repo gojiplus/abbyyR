@@ -1,3 +1,7 @@
+# abbyyR 0.5.2
+
+* extensive linting
+
 # abbyyR 0.5.1
 
 * moved to ldply for coercing list to data.frame

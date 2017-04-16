@@ -35,7 +35,7 @@ Get data from a Photo ID. The function is under testing and may not work fully.
 }
 \examples{
 \dontrun{
-processPhotoId(file_path="file_path", idType="auto", imageSource="auto")
+processPhotoId(file_path = "file_path", idType = "auto", imageSource = "auto")
 }
 }
 \references{

@@ -17,23 +17,23 @@
 #' @references For supported image types, see \url{http://ocrsdk.com/documentation/specifications/image-formats/}
 #' 
 #' @examples \dontrun{
-#' processCheckmarkField(file_path="file_path")
+#' processCheckmarkField(file_path = "file_path")
 #' }
 
-processCheckmarkField <- function(file_path="", checkmarkType="empty",  region="-1,-1,-1,-1", correctionAllowed="false", pdfPassword="", description="", ...) {
+processCheckmarkField <- function(file_path = "", checkmarkType = "empty",  region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "", description = "", ...) {
 
-	if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+  if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	querylist = list(checkmarkType=checkmarkType, region=region,correctionAllowed=correctionAllowed,pdfPassword=pdfPassword,description=description)
-	
-	body=upload_file(file_path)
-	process_details <- abbyy_POST("processCheckmarkField", query=querylist, body=body, ...)
-	
-	resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
+  querylist <- list(checkmarkType = checkmarkType, region = region,correctionAllowed = correctionAllowed,pdfPassword = pdfPassword,description = description)
+  
+  body <- upload_file(file_path)
+  process_details <- abbyy_POST("processCheckmarkField", query = querylist, body = body, ...)
+  
+  resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
 
-	# Print some important things
-	cat("Status of the task: ", resdf$status, "\n")
-	cat("Task ID: ", 			resdf$id, "\n")
-	
-	resdf
+  # Print some important things
+  cat("Status of the task: ", resdf$status, "\n")
+  cat("Task ID: ",       resdf$id, "\n")
+  
+  resdf
 }

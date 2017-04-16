@@ -16,30 +16,29 @@
 #' setapp(c("app_id", "app_password"))
 #' }
 
-setapp <- 
-function(appdetails = NULL, force=FALSE) {
+setapp <- function(appdetails = NULL, force=FALSE) {
 
-    env_id <- Sys.getenv('AbbyyAppId')
-    env_pass <- Sys.getenv('AbbyyAppPassword')
-    
+    env_id <- Sys.getenv("AbbyyAppId")
+    env_pass <- Sys.getenv("AbbyyAppPassword")
+
     # If you cannot find AbbyyAppId or AbbyyAppPassword in the environment
     if ((identical(env_id, "") | identical(env_pass, "")) | !force) {
 
-    	# First look for arguments passed in the function
-	    if (!is.null(appdetails)) {
-	        Sys.setenv(AbbyyAppId = appdetails[1])
-	        Sys.setenv(AbbyyAppPassword = appdetails[2])
-	       }
+      # First look for arguments passed in the function
+      if (!is.null(appdetails)) {
+          Sys.setenv(AbbyyAppId = appdetails[1])
+          Sys.setenv(AbbyyAppPassword = appdetails[2])
+         }
 
-		# Else ask user for the details    
-	    else {
-    		message("Couldn't find env var AbbyyAppId or AbbyyAppPassword. See ?setapp for more details.")
-			message("Please enter your AbbyyAppId and press enter:")
-		  	pat <- readline(": ")
-        	Sys.setenv(AbbyyAppId = pat)
-        	message("Now please enter your AbbyyAppPassword and press enter:")
-		  	pat <- readline(": ")
-        	Sys.setenv(AbbyyAppPassword = pat)
-	        }
+    # Else ask user for the details    
+      else {
+        message("Couldn't find env var AbbyyAppId or AbbyyAppPassword. See ?setapp for more details.")
+      message("Please enter your AbbyyAppId and press enter:")
+        pat <- readline(": ")
+          Sys.setenv(AbbyyAppId = pat)
+          message("Now please enter your AbbyyAppPassword and press enter:")
+        pat <- readline(": ")
+          Sys.setenv(AbbyyAppPassword = pat)
+          }
     }
 }

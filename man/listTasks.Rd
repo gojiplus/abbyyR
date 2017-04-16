@@ -17,7 +17,7 @@ listTasks(fromDate=NULL, toDate=NULL, excludeDeleted = FALSE, ...)
 }
 \value{
 A \code{data.frame} with the following columns: id (task id), registrationTime, statusChangeTime, status 
-		   (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
+       (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
         credits, resultUrl (URL for the processed file)). If no tasks are finished, the last column (resultUrl) isn't returned.
 }
 \description{
@@ -27,8 +27,8 @@ The function prints total number of tasks and no. of finished tasks by default.
 \examples{
 \dontrun{
 listTasks()
-listTasks(fromDate="2015-11-10T00:00:00Z", toDate="2016-11-10T00:00:00Z")
-listTasks(fromDate="2015-11-10T00:00:00Z")
+listTasks(fromDate = "2015-11-10T00:00:00Z", toDate = "2016-11-10T00:00:00Z")
+listTasks(fromDate = "2015-11-10T00:00:00Z")
 }
 }
 \references{

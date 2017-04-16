@@ -4,7 +4,7 @@
 \alias{getResults}
 \title{Get Results}
 \usage{
-getResults(output="", save_to_file=TRUE)
+getResults(output = "", save_to_file = TRUE)
 }
 \arguments{
 \item{output}{Optional; folder to which you want to save the data from the processed images; Default is same folder as the script}
@@ -26,7 +26,7 @@ results in memory, data frame with a column carrying the results is returned.
 }
 \examples{
 \dontrun{
-getResults(save_to_file=FALSE)
+getResults(save_to_file = FALSE)
 }
 }
 \references{

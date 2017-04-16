@@ -31,7 +31,7 @@ Processes Checkmark Field
 }
 \examples{
 \dontrun{
-processCheckmarkField(file_path="file_path")
+processCheckmarkField(file_path = "file_path")
 }
 }
 \references{

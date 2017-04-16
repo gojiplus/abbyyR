@@ -13,25 +13,25 @@
 #' submitImage(file_path="/images/image1.png", taskId="task_id", pdfPassword="pdf_password")
 #' }
 
-submitImage <- function(file_path="", taskId="", pdfPassword="", ...)
+submitImage <- function(file_path = "", taskId = "", pdfPassword = "", ...)
 {
-	
-	if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	# The API doesn't handle taskId="" and that is just as well as new task is created
-	if (taskId=="") {
-		querylist = list(pdfPassword=pdfPassword)
-	} else {
-		querylist = list(taskId = taskId, pdfPassword=pdfPassword)
-	}
+  if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
 
-	submit_details <- abbyy_POST("submitImage", query=querylist, body=upload_file(file_path), ...)
-	
-	resdf <- as.data.frame(do.call(rbind, submit_details))
+  # The API doesn't handle taskId="" and that is just as well as new task is created
+  if (taskId == "") {
+    querylist <- list(pdfPassword = pdfPassword)
+  } else {
+    querylist <- list(taskId = taskId, pdfPassword = pdfPassword)
+  }
 
-	# Print some important things
-	cat("Status of the task: ", resdf$status, "\n")
-	cat("Task ID: ", 			resdf$id, "\n")
+  submit_details <- abbyy_POST("submitImage", query = querylist, body = upload_file(file_path), ...)
 
-	resdf
+  resdf <- as.data.frame(do.call(rbind, submit_details))
+
+  # Print some important things
+  cat("Status of the task: ", resdf$status, "\n")
+  cat("Task ID: ",       resdf$id, "\n")
+
+  resdf
 }

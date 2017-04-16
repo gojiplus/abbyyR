@@ -26,7 +26,7 @@ The function by default prints the status of the task you are trying to delete. 
 }
 \examples{
 \dontrun{
-deleteTask(taskId="task_id")
+deleteTask(taskId = "task_id")
 }
 }
 \references{

@@ -23,7 +23,7 @@ This function gets Information about a particular application
 }
 \examples{
 \dontrun{
-processFields(file_path="file_path", taskId="task_id",description="")
+processFields(file_path = "file_path", taskId = "task_id", description = "")
 }
 }
 \references{

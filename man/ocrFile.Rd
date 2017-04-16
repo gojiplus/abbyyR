@@ -27,6 +27,6 @@ Want to quick OCR a local file and get the results? Use this function.
 }
 \examples{
 \dontrun{
-ocrFile(file_path="path_to_ocr_file", output_dir="path_to_output_dir")
+ocrFile(file_path = "path_to_ocr_file", output_dir = "path_to_output_dir")
 }
 }

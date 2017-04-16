@@ -31,7 +31,7 @@ Process the bar code field in an image.
 }
 \examples{
 \dontrun{
-processBarcodeField(file_path="file_path")
+processBarcodeField(file_path = "file_path")
 }
 }
 \references{
