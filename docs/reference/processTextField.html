@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -49,10 +51,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/index.html">Intro</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/index.html">Articles</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -78,10 +83,10 @@
     </div>
 
     
-    <p>This function gets Information about a particular application</p>
+    This function gets Information about a particular application
     
 
-    <pre><span class='fu'>processTextField</span>(<span class='kw'>file_path</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"-1,-1,-1,-1"</span>,
+    <pre class="usage"><span class='fu'>processTextField</span>(<span class='kw'>file_path</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>region</span> <span class='kw'>=</span> <span class='st'>"-1,-1,-1,-1"</span>,
   <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"English"</span>, <span class='kw'>letterSet</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>regExp</span> <span class='kw'>=</span> <span class='st'>""</span>,
   <span class='kw'>textType</span> <span class='kw'>=</span> <span class='st'>"normal"</span>, <span class='kw'>oneTextLine</span> <span class='kw'>=</span> <span class='st'>"false"</span>,
   <span class='kw'>oneWordPerTextLine</span> <span class='kw'>=</span> <span class='st'>"false"</span>, <span class='kw'>markingType</span> <span class='kw'>=</span> <span class='st'>"simpleText"</span>,
@@ -89,45 +94,74 @@
   <span class='kw'>pdfPassword</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>file_path</dt>
-      <dd>path of the document</dd>
-      <dt>region</dt>
-      <dd>coordinates of region from top left, 4 values: top left bottom right; optional; default: &quot;-1,-1,-1,-1&quot; (entire image)</dd>
-      <dt>language</dt>
-      <dd>optional; default: &quot;English&quot;</dd>
-      <dt>letterSet</dt>
-      <dd>letterset to be used for recognition, set by language but can be customized; optional; default: &quot;&quot;</dd>
-      <dt>regExp</dt>
-      <dd>which words are allowed in the field. see regular expression documentation; optional; default: &quot;&quot;</dd>
-      <dt>textType</dt>
-      <dd>type of the text in the field including typewriter, handprinted; optional; default: &quot;normal&quot;</dd>
-      <dt>oneTextLine</dt>
-      <dd>field contains only one text line or more; optional; default: &quot;false&quot;</dd>
-      <dt>oneWordPerTextLine</dt>
-      <dd>field contains one word per line or not; optional; default: &quot;false&quot;</dd>
-      <dt>markingType</dt>
-      <dd>only for handprint recognition, includes underlinedText etc.; optional; default: &quot;simpleText&quot;</dd>
-      <dt>placeholdersCount</dt>
-      <dd>No. of character cells for the field; optional; default: &quot;1&quot;</dd>
-      <dt>writingStyle</dt>
-      <dd>handprint writing style, see Abbyy FineReader documentation for values; optional; default: &quot;default&quot;</dd>
-      <dt>description</dt>
-      <dd>Description of processing task; optional; default: &quot;&quot;</dd>
-      <dt>pdfPassword</dt>
-      <dd>Password for pdf; optional; default: &quot;&quot;</dd>
-      <dt>&#8230;</dt>
-      <dd>Additional arguments passed to <code><a href='abbyy_POST.html'>abbyy_POST</a></code>.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>file_path</th>
+      <td>path of the document</td>
+    </tr>
+    <tr>
+      <th>region</th>
+      <td>coordinates of region from top left, 4 values: top left bottom right; optional; default: &quot;-1,-1,-1,-1&quot; (entire image)</td>
+    </tr>
+    <tr>
+      <th>language</th>
+      <td>optional; default: &quot;English&quot;</td>
+    </tr>
+    <tr>
+      <th>letterSet</th>
+      <td>letterset to be used for recognition, set by language but can be customized; optional; default: &quot;&quot;</td>
+    </tr>
+    <tr>
+      <th>regExp</th>
+      <td>which words are allowed in the field. see regular expression documentation; optional; default: &quot;&quot;</td>
+    </tr>
+    <tr>
+      <th>textType</th>
+      <td>type of the text in the field including typewriter, handprinted; optional; default: &quot;normal&quot;</td>
+    </tr>
+    <tr>
+      <th>oneTextLine</th>
+      <td>field contains only one text line or more; optional; default: &quot;false&quot;</td>
+    </tr>
+    <tr>
+      <th>oneWordPerTextLine</th>
+      <td>field contains one word per line or not; optional; default: &quot;false&quot;</td>
+    </tr>
+    <tr>
+      <th>markingType</th>
+      <td>only for handprint recognition, includes underlinedText etc.; optional; default: &quot;simpleText&quot;</td>
+    </tr>
+    <tr>
+      <th>placeholdersCount</th>
+      <td>No. of character cells for the field; optional; default: &quot;1&quot;</td>
+    </tr>
+    <tr>
+      <th>writingStyle</th>
+      <td>handprint writing style, see Abbyy FineReader documentation for values; optional; default: &quot;default&quot;</td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td>Description of processing task; optional; default: &quot;&quot;</td>
+    </tr>
+    <tr>
+      <th>pdfPassword</th>
+      <td>Password for pdf; optional; default: &quot;&quot;</td>
+    </tr>
+    <tr>
+      <th>&#8230;</th>
+      <td>Additional arguments passed to <code><a href='abbyy_POST.html'>abbyy_POST</a></code>.</td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame with details of the task associated with the submitted Image</p>
+    Data frame with details of the task associated with the submitted Image
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'http://ocrsdk.com/documentation/apireference/processTextField/'>http://ocrsdk.com/documentation/apireference/processTextField/</a></p>
-    <p><a href = 'http://ocrsdk.com/documentation/specifications/regular-expressions/'>http://ocrsdk.com/documentation/specifications/regular-expressions/</a></p>
+    <a href = 'http://ocrsdk.com/documentation/apireference/processTextField/'>http://ocrsdk.com/documentation/apireference/processTextField/</a>
+    <a href = 'http://ocrsdk.com/documentation/specifications/regular-expressions/'>http://ocrsdk.com/documentation/specifications/regular-expressions/</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

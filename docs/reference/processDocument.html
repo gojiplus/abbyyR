@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -49,10 +51,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/index.html">Intro</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/index.html">Articles</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -78,52 +83,89 @@
     </div>
 
     
-    <p>This function processes several images for the same task and results in a multi-page document. 
+    This function processes several images for the same task and results in a multi-page document. 
 For instance, upload pages of the book individually via submitImage to the same task. 
-And then process it via ProcessDocument to get a multi-page pdf.</p>
+And then process it via ProcessDocument to get a multi-page pdf.
     
 
-    <pre><span class='fu'>processDocument</span>(<span class='kw'>taskId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"English"</span>,
-  <span class='kw'>profile</span> <span class='kw'>=</span> <span class='st'>"documentConversion"</span>, <span class='kw'>textType</span> <span class='kw'>=</span> <span class='st'>"normal"</span>,
-  <span class='kw'>imageSource</span> <span class='kw'>=</span> <span class='st'>"auto"</span>, <span class='kw'>correctOrientation</span> <span class='kw'>=</span> <span class='st'>"true"</span>, <span class='kw'>correctSkew</span> <span class='kw'>=</span> <span class='st'>"true"</span>,
-  <span class='kw'>readBarcodes</span> <span class='kw'>=</span> <span class='st'>"false"</span>, <span class='kw'>exportFormat</span> <span class='kw'>=</span> <span class='st'>"txt"</span>, <span class='kw'>description</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>pdfPassword</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>processDocument</span>(<span class='kw'>taskId</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>language</span> <span class='kw'>=</span> <span class='st'>"English"</span>,
+  <span class='kw'>profile</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"documentConversion"</span>, <span class='st'>"documentArchiving"</span>, <span class='st'>"textExtraction"</span>,
+  <span class='st'>"fieldLevelRecognition"</span>, <span class='st'>"barcodeRecognition"</span>), <span class='kw'>textType</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"normal"</span>,
+  <span class='st'>"typewriter"</span>, <span class='st'>"matrix"</span>, <span class='st'>"index"</span>, <span class='st'>"ocrA"</span>, <span class='st'>"ocrB"</span>, <span class='st'>"e13b"</span>, <span class='st'>"cmc7"</span>, <span class='st'>"gothic"</span>),
+  <span class='kw'>imageSource</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"auto"</span>, <span class='st'>"photo"</span>, <span class='st'>"scanner"</span>),
+  <span class='kw'>correctOrientation</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"true"</span>, <span class='st'>"false"</span>), <span class='kw'>correctSkew</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"true"</span>, <span class='st'>"false"</span>),
+  <span class='kw'>readBarcodes</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"false"</span>, <span class='st'>"true"</span>), <span class='kw'>exportFormat</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"txt"</span>,
+  <span class='st'>"txtUnstructured"</span>, <span class='st'>"rtf"</span>, <span class='st'>"docx"</span>, <span class='st'>"xlsx"</span>, <span class='st'>"pptx"</span>, <span class='st'>"pdfSearchable"</span>,
+  <span class='st'>"pdfTextAndImages"</span>, <span class='st'>"pdfa"</span>, <span class='st'>"xml"</span>, <span class='st'>"xmlForCorrectedImage"</span>, <span class='st'>"alto"</span>),
+  <span class='kw'>description</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>pdfPassword</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>taskId</dt>
-      <dd>Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.</dd>
-      <dt>language</dt>
-      <dd>Optional; default: English</dd>
-      <dt>profile</dt>
-      <dd>Optional; default: documentConversion</dd>
-      <dt>textType</dt>
-      <dd>Optional; default: normal</dd>
-      <dt>imageSource</dt>
-      <dd>Optional; default: auto</dd>
-      <dt>correctOrientation</dt>
-      <dd>Optional; default: true</dd>
-      <dt>correctSkew</dt>
-      <dd>Optional; default: true</dd>
-      <dt>readBarcodes</dt>
-      <dd>Optional; default:</dd>
-      <dt>exportFormat</dt>
-      <dd>Optional; default: txt</dd>
-      <dt>description</dt>
-      <dd>Optional; default: &quot;&quot;</dd>
-      <dt>pdfPassword</dt>
-      <dd>Optional; default: NULL</dd>
-      <dt>&#8230;</dt>
-      <dd>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>taskId</th>
+      <td>Only tasks with Submitted, Completed or NotEnoughCredits status can be processed using this function.</td>
+    </tr>
+    <tr>
+      <th>language</th>
+      <td>String. Optional; default: English</td>
+    </tr>
+    <tr>
+      <th>profile</th>
+      <td>String. Optional; default: <code>documentConversion</code>
+Options: <code>documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition</code></td>
+    </tr>
+    <tr>
+      <th>textType</th>
+      <td>String. Optional; default: <code>normal</code>
+Options: <code>normal, typewriter, matrix, index, ocrA,ocrB, e13b,cmc7, gothic</code></td>
+    </tr>
+    <tr>
+      <th>imageSource</th>
+      <td>String. Optional; default: <code>auto</code>
+Options: <code>auto, photo, scanner</code></td>
+    </tr>
+    <tr>
+      <th>correctOrientation</th>
+      <td>String. Optional; default: <code>true</code>. 
+Options: <code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <th>correctSkew</th>
+      <td>String. Optional; default: <code>true</code>.
+Options: <code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <th>readBarcodes</th>
+      <td>Optional; 
+Options: <code>true</code> or <code>false</code></td>
+    </tr>
+    <tr>
+      <th>exportFormat</th>
+      <td>optional, default: <code>txt</code> 
+options: <code>txt, txtUnstructured, rtf, docx, xlsx, pptx, pdfSearchable, pdfTextAndImages, pdfa, xml, xmlForCorrectedImage, alto</code></td>
+    </tr>
+    <tr>
+      <th>description</th>
+      <td>Optional; default: &quot;&quot;</td>
+    </tr>
+    <tr>
+      <th>pdfPassword</th>
+      <td>Optional; default: NULL</td>
+    </tr>
+    <tr>
+      <th>&#8230;</th>
+      <td>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame with details of the task associated with the submitted Document</p>
+    <code>data.frame</code> with details of the task associated with the submitted Document
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'http://ocrsdk.com/documentation/apireference/processDocument/'>http://ocrsdk.com/documentation/apireference/processDocument/</a></p>
+    <a href = 'http://ocrsdk.com/documentation/apireference/processDocument/'>http://ocrsdk.com/documentation/apireference/processDocument/</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

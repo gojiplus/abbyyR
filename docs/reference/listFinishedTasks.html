@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -49,10 +51,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/index.html">Intro</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/index.html">Articles</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -78,29 +83,32 @@
     </div>
 
     
-    <p>List all the finished tasks in the application.</p>
+    List all the finished tasks in the application.
 
-    <p>The tasks are ordered by the time of the end of processing. 
+    The tasks are ordered by the time of the end of processing. 
 No more than 100 tasks can be returned at one method call. 
-The function prints number of finished tasks by default.</p>
+The function prints number of finished tasks by default.
     
 
-    <pre><span class='fu'>listFinishedTasks</span>(<span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>listFinishedTasks</span>(<span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>&#8230;</dt>
-      <dd>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>&#8230;</th>
+      <td>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with the following columns: id (task id), registrationTime, statusChangeTime, 
-status (Completed), filesCount (No. of files), credits, resultUrl (URL for the processed file)</p>
+    A <code>data.frame</code> with the following columns: id (task id), registrationTime, statusChangeTime, 
+status (Completed), filesCount (No. of files), credits, resultUrl (URL for the processed file)
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'http://ocrsdk.com/documentation/apireference/listFinishedTasks/'>http://ocrsdk.com/documentation/apireference/listFinishedTasks/</a></p>
+    <a href = 'http://ocrsdk.com/documentation/apireference/listFinishedTasks/'>http://ocrsdk.com/documentation/apireference/listFinishedTasks/</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

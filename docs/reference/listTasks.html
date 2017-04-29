@@ -25,12 +25,14 @@
 <script src="../pkgdown.js"></script>
 
 <!-- mathjax -->
-<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
+<script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
 <!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
   </head>
 
   <body>
@@ -49,10 +51,13 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../articles/index.html">Intro</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../articles/index.html">Articles</a>
+</li>
+<li>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       
@@ -78,40 +83,49 @@
     </div>
 
     
-    <p>List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
-The function prints total number of tasks and no. of finished tasks by default.</p>
+    List all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. 
+The function prints total number of tasks and no. of finished tasks by default.
     
 
-    <pre><span class='fu'>listTasks</span>(<span class='kw'>fromDate</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>toDate</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>excludeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>listTasks</span>(<span class='kw'>fromDate</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>toDate</span><span class='kw'>=</span><span class='kw'>NULL</span>, <span class='kw'>excludeDeleted</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <dl class="dl-horizontal">
-      <dt>fromDate</dt>
-      <dd>Optional; format: yyyy-mm-ddThh:mm:ssZ</dd>
-      <dt>toDate</dt>
-      <dd>Optional;   format: yyyy-mm-ddThh:mm:ssZ</dd>
-      <dt>excludeDeleted</dt>
-      <dd>Optional; Boolean, Default=FALSE</dd>
-      <dt>&#8230;</dt>
-      <dd>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</dd>
-    </dl>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>fromDate</th>
+      <td>Optional; format: yyyy-mm-ddThh:mm:ssZ</td>
+    </tr>
+    <tr>
+      <th>toDate</th>
+      <td>Optional;   format: yyyy-mm-ddThh:mm:ssZ</td>
+    </tr>
+    <tr>
+      <th>excludeDeleted</th>
+      <td>Optional; Boolean, Default=FALSE</td>
+    </tr>
+    <tr>
+      <th>&#8230;</th>
+      <td>Additional arguments passed to <code><a href='abbyy_GET.html'>abbyy_GET</a></code>.</td>
+    </tr>
+    </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data.frame with the following columns: id (task id), registrationTime, statusChangeTime, status 
-		   (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
-        credits, resultUrl (URL for the processed file)).</p>
+    A <code>data.frame</code> with the following columns: id (task id), registrationTime, statusChangeTime, status 
+       (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), 
+        credits, resultUrl (URL for the processed file)). If no tasks are finished, the last column (resultUrl) isn&#39;t returned.
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'http://ocrsdk.com/documentation/apireference/getApplicationInfo/'>http://ocrsdk.com/documentation/apireference/getApplicationInfo/</a></p>
+    <a href = 'http://ocrsdk.com/documentation/apireference/listTasks/'>http://ocrsdk.com/documentation/apireference/listTasks/</a>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
 <span class='co'># listTasks()</span>
-<span class='co'># listTasks(fromDate="2015-11-10T00:00:00Z", toDate="2016-11-10T00:00:00Z")</span>
-<span class='co'># listTasks(fromDate="2015-11-10T00:00:00Z")</span>
+<span class='co'># listTasks(fromDate = "2015-11-10T00:00:00Z", toDate = "2016-11-10T00:00:00Z")</span>
+<span class='co'># listTasks(fromDate = "2015-11-10T00:00:00Z")</span>
 <span class='co'>## ---------------------------------------------</span></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

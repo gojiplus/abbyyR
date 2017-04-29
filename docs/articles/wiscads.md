@@ -10,7 +10,7 @@ vignette: >
 
 ### abbyyR: Getting Text from Wisconsin Ads Storyboards
 
-[Wisconsin Ads Project](http://wiscadproject.wisc.edu/download.php) (now at [Wesleyan](http://mediaproject.wesleyan.edu/)) archives data on televised presidential, gubernatorial and congressional ads collected by [Kantar media](http://www.kantarmedia.com/). The data includes flattened storyboards of each political ad. These storyboards are pdfs of static images for the years 2000 and 2002 (gubernatorial ads). (Since 2004, the storyboards have included an extractable text layer. The script for extracting the text layer using PyPdf can be found [here](https://gist.github.com/soodoku/62a3172eb1b4a55dee1a).) 
+Wisconsin Ads Project (now at [Wesleyan](http://mediaproject.wesleyan.edu/)) archives data on televised presidential, gubernatorial and congressional ads collected by [Kantar media](http://www.kantarmedia.com/). The data includes flattened storyboards of each political ad. These storyboards are pdfs of static images for the years 2000 and 2002 (gubernatorial ads). (Since 2004, the storyboards have included an extractable text layer. The script for extracting the text layer using PyPdf can be found [here](https://gist.github.com/soodoku/62a3172eb1b4a55dee1a).) 
 
 Here below are the steps for getting text from static image storyboads using abbyyR. 
 
