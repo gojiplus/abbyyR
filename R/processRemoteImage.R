@@ -26,31 +26,52 @@
 #' processRemoteImage(img_url = "img_url")
 #' }
 
-processRemoteImage <- function(img_url = NULL, language = "English", 
-                 profile = c("documentConversion", "documentArchiving", "textExtraction", "fieldLevelRecognition", "barcodeRecognition"), 
-                 textType = c("normal", "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"), 
-                 imageSource = c("auto", "photo", "scanner"), 
-                 correctOrientation = c("true", "false"),
-                 correctSkew = c("true", "false"),
-                 readBarcodes = c("false", "true"), 
-                 exportFormat = c("txt", "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable", "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
-                   description = NULL, pdfPassword = NULL, ...) {
-  
+processRemoteImage <- function(img_url = NULL, language = "English",
+                               profile = c("documentConversion",
+                                           "documentArchiving",
+                                            "textExtraction",
+                                            "fieldLevelRecognition",
+                                            "barcodeRecognition"),
+                               textType = c("normal", "typewriter", "matrix",
+                                           "index", "ocrA", "ocrB", "e13b",
+                                           "cmc7", "gothic"),
+                               imageSource = c("auto", "photo", "scanner"),
+                               correctOrientation = c("true", "false"),
+                               correctSkew = c("true", "false"),
+                               readBarcodes = c("false", "true"),
+                               exportFormat = c("txt", "txtUnstructured",
+                                                "rtf", "docx", "xlsx", "pptx",
+                                                "pdfSearchable",
+                                                "pdfTextAndImages", "pdfa",
+                                                "xml", "xmlForCorrectedImage",
+                                                "alto"),
+                               description = NULL, pdfPassword = NULL, ...) {
+
   if (is.null(img_url)) stop("Must specify img_url")
 
   profile        <- match.arg(profile, choices = profile)
   textType       <- match.arg(textType, choices = textType)
   correctSkew    <- match.arg(correctSkew, choices = correctSkew)
   imageSource    <- match.arg(imageSource, choices = imageSource)
-  correctOrientation <- match.arg(correctOrientation, choices = correctOrientation)
+  correctOrientation <- match.arg(correctOrientation,
+                                  choices = correctOrientation)
   readBarcodes   <- match.arg(readBarcodes, choices = readBarcodes)
   exportFormat   <- match.arg(exportFormat, choices = exportFormat)
 
-  querylist <- list(source = img_url, language = language, profile = profile,textType = textType, imageSource = imageSource, correctOrientation = correctOrientation, 
-           correctSkew = correctSkew,readBarcodes = readBarcodes,exportFormat = exportFormat, description = description, pdfPassword = pdfPassword)
-  
+  querylist <- list(source = img_url,
+                    language = language,
+                    profile = profile,
+                    textType = textType,
+                    imageSource = imageSource,
+                    correctOrientation = correctOrientation,
+                    correctSkew = correctSkew,
+                    readBarcodes = readBarcodes,
+                    exportFormat = exportFormat,
+                    description = description,
+                    pdfPassword = pdfPassword)
+
   process_details <- abbyy_GET("processRemoteImage", query = querylist, ...)
-  
+
   resdf <- ldply(process_details, rbind)
 
   # Print some important things

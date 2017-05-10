@@ -39,16 +39,20 @@ NULL
 #' 
 #' @return list
 
-abbyy_GET <- 
-function(path, query, ...) {
+abbyy_GET <- function(path, query, ...) {
 
-  app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
-  if(identical(app_id, "") | identical(app_pass, "")) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-  
+  app_id <- Sys.getenv("AbbyyAppId")
+  app_pass <- Sys.getenv("AbbyyAppPassword")
+
+  if (identical(app_id, "") | identical(app_pass, "")) {
+    stop("Please set application id and password using
+          setapp(c('app_id', 'app_pass')).")
+  }
+
   auth <- authenticate(app_id, app_pass)
-  res <- GET("https://cloud.ocrsdk.com/", path=path, auth, query=query, ...)
+  res <- GET("https://cloud.ocrsdk.com/", path = path, auth, query = query, ...)
   abbyy_check(res)
-  res <- xmlToList(content(res, as="text"))
+  res <- xmlToList(content(res, as = "text"))
 
   res
 }
@@ -64,16 +68,24 @@ function(path, query, ...) {
 #' 
 #' @return list
 
-abbyy_POST <- 
-function(path, query, body="", ...) {
+abbyy_POST <- function(path, query, body = "", ...) {
 
-  app_id = Sys.getenv("AbbyyAppId"); app_pass = Sys.getenv("AbbyyAppPassword")
-  if(identical(app_id, "") | identical(app_pass, "")) stop("Please set application id and password using setapp(c('app_id', 'app_pass')).")
-  
+  app_id <- Sys.getenv("AbbyyAppId")
+  app_pass <- Sys.getenv("AbbyyAppPassword")
+
+  if (identical(app_id, "") | identical(app_pass, "")) {
+    stop("Please set application id and password using
+          setapp(c('app_id', 'app_pass')).")
+  }
+
   auth <- authenticate(app_id, app_pass)
-  res <- POST("https://cloud.ocrsdk.com/", path=path, auth, query=query, body=body, ...)
+  res <- POST("https://cloud.ocrsdk.com/",
+         path = path,
+         auth,
+         query = query,
+         body = body, ...)
   abbyy_check(res)
-  res <- xmlToList(content(res, as="text"))
+  res <- xmlToList(content(res, as = "text"))
 
   res
 }
@@ -84,9 +96,9 @@ function(path, query, body="", ...) {
 #' @param  req request
 #' @return in case of failure, a message
 
-abbyy_check <- 
-function(req) {
+abbyy_check <- function(req) {
+
   if (req$status_code < 400) return(invisible())
 
   stop("HTTP failure: ", req$status_code, "\n", call. = FALSE)
-} 
+}

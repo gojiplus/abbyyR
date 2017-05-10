@@ -26,10 +26,10 @@ getAppInfo <- function(...) {
   appinfo <- as.data.frame(appinfo)
 
   cat("Name of Application: ", appinfo$name, "\n", sep = "")
-    cat("No. of Pages Remaining: ", appinfo$pages, "\n", sep = "")
-    cat("No. of Fields Remaining: ", appinfo$fields, "\n", sep = "")
-    cat("Application Credits Expire on: ", appinfo$expires, "\n", sep = "")
-    cat("Type: ", appinfo$type, "\n", sep = "")
-    
-    appinfo
+  cat("No. of Pages Remaining: ", appinfo$pages, "\n", sep = "")
+  cat("No. of Fields Remaining: ", appinfo$fields, "\n", sep = "")
+  cat("Application Credits Expire on: ", appinfo$expires, "\n", sep = "")
+  cat("Type: ", appinfo$type, "\n", sep = "")
+
+  appinfo
 }

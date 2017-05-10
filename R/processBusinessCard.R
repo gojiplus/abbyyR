@@ -24,20 +24,34 @@
 #' processBusinessCard(file_path="file_path", language="English")
 #' }
 
-processBusinessCard <- function(file_path = "", language = "English", imageSource = "auto", correctOrientation = "true", 
-                    correctSkew = "true", exportFormat = "vCard", description = "", pdfPassword = "", ...)
-{
-  
-  if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
-  
-  querylist <- list(language = language, imageSource = imageSource, correctOrientation = correctOrientation, 
-           correctSkew = correctSkew,exportFormat = exportFormat, description = description, pdfPassword = pdfPassword)
-  
-  body = upload_file(file_path)
-  process_details <- abbyy_POST("processBusinessCard", query = querylist, body = body, ...)
+processBusinessCard <- function(file_path = "",
+                               language = "English",
+                               imageSource = "auto",
+                               correctOrientation = "true",
+                               correctSkew = "true",
+                               exportFormat = "vCard",
+                               description = "",
+                               pdfPassword = "", ...) {
+
+  if (!file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
+
+  querylist <- list(language = language,
+                    imageSource = imageSource,
+                    correctOrientation = correctOrientation,
+                    correctSkew = correctSkew,
+                    exportFormat = exportFormat,
+                    description = description,
+                    pdfPassword = pdfPassword)
+
+  body <- upload_file(file_path)
+  process_details <- abbyy_POST("processBusinessCard",
+                                query = querylist,
+                                body = body, ...)
 
   resdf <- ldply(process_details, rbind)
-    
+
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
   cat("Task ID: ",       resdf$id, "\n")

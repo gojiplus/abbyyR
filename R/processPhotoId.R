@@ -20,14 +20,26 @@
 #' processPhotoId(file_path = "file_path", idType = "auto", imageSource = "auto")
 #' }
 
-processPhotoId <- function(file_path = "", idType = "auto", imageSource = "auto", correctOrientation = "true", correctSkew = "true", description = "", pdfPassword = "", ...) {
-    
-  if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+processPhotoId <- function(file_path = "", idType = "auto",
+                           imageSource = "auto", correctOrientation = "true",
+                           correctSkew = "true", description = "",
+                           pdfPassword = "", ...) {
 
-  querylist <- list(idType = idType, imageSource = imageSource, correctOrientation = correctOrientation, correctSkew = correctSkew, description = description, pdfPassword = pdfPassword)
+  if ( !file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
+
+  querylist <- list(idType = idType,
+                    imageSource = imageSource,
+                    correctOrientation = correctOrientation,
+                    correctSkew = correctSkew,
+                    description = description,
+                    pdfPassword = pdfPassword)
 
   body <- upload_file(file_path)
-  process_details <- abbyy_POST("processPhotoId", query = NULL, body = body, ...)
+  process_details <- abbyy_POST("processPhotoId",
+                                query = NULL,
+                                body = body, ...)
 
   resdf <- ldply(process_details, rbind)
 

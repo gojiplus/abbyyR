@@ -23,33 +23,46 @@
 #' listTasks(fromDate = "2015-11-10T00:00:00Z")
 #' }
 
-listTasks <- function(fromDate = NULL, toDate = NULL, excludeDeleted = FALSE, ...) {
-  
-  # Convert Bool to string
-  exclude_deleted = 'false'
-  if (identical(excludeDeleted, TRUE)) {
-    exclude_deleted = 'true'
-  } 
+listTasks <- function(fromDate = NULL,
+                      toDate = NULL,
+                      excludeDeleted = FALSE, ...) {
 
-  # Check format 
+  # Convert Bool to string
+  exclude_deleted <- "false"
+
+  if (identical(excludeDeleted, TRUE)) {
+    exclude_deleted <- "true"
+  }
+
+  # Check format
   if (!identical(fromDate, NULL)) {
-    if (!grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", fromDate)) stop("Incorrect Date Format. See examples.")
+    if (!grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z",
+      fromDate)) {
+      stop("Incorrect Date Format. See examples.")
+    }
   }
 
   if (!identical(toDate, NULL))  {
-     if (!grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z", toDate))  stop("Incorrect Date Format. See examples.")
+     if (!grepl("^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z",
+      toDate))  {
+      stop("Incorrect Date Format. See examples.")
+    }
   }
 
-  querylist <- list(fromDate = fromDate, toDate = toDate, excludeDeleted = exclude_deleted)
+  querylist <- list(fromDate = fromDate,
+                    toDate = toDate,
+                    excludeDeleted = exclude_deleted)
   tasklist  <- abbyy_GET("listTasks", query = querylist, ...)
 
   # Converting list to a data.frame
-  resdf   <- ldply(tasklist, rbind) 
+  resdf   <- ldply(tasklist, rbind)
 
   # Print some important things
   cat("Total No. of Tasks: ", nrow(resdf), "\n")
-  cat("No. of Finished Tasks: ", ifelse(!("resultUrl" %in% names(resdf)), 0, sum(!is.na(resdf$resultUrl))), "\n")
-  
-    # Return the data.frame
+  cat("No. of Finished Tasks: ", ifelse(!("resultUrl" %in% names(resdf)),
+                                        0,
+                                        sum(!is.na(resdf$resultUrl))), "\n")
+
+  # Return the data.frame
   resdf
 }

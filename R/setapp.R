@@ -22,7 +22,7 @@ setapp <- function(appdetails = NULL, force=FALSE) {
     env_pass <- Sys.getenv("AbbyyAppPassword")
 
     # If you cannot find AbbyyAppId or AbbyyAppPassword in the environment
-    if ((identical(env_id, "") | identical(env_pass, "")) | !force) {
+    if ( (identical(env_id, "") | identical(env_pass, "")) | !force) {
 
       # First look for arguments passed in the function
       if (!is.null(appdetails)) {
@@ -30,9 +30,10 @@ setapp <- function(appdetails = NULL, force=FALSE) {
           Sys.setenv(AbbyyAppPassword = appdetails[2])
          }
 
-    # Else ask user for the details    
+    # Else ask user for the details
       else {
-        message("Couldn't find env var AbbyyAppId or AbbyyAppPassword. See ?setapp for more details.")
+        message("Couldn't find env var AbbyyAppId or AbbyyAppPassword.
+                 See ?setapp for more details.")
       message("Please enter your AbbyyAppId and press enter:")
         pat <- readline(": ")
           Sys.setenv(AbbyyAppId = pat)

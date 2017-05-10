@@ -26,18 +26,39 @@
 #' processTextField(file_path="file_path")
 #' }
 
-processTextField <- function(file_path = "", region = "-1,-1,-1,-1", language = "English", letterSet = "", regExp = "", textType = "normal", oneTextLine = "false", 
-                           oneWordPerTextLine = "false", markingType = "simpleText", placeholdersCount = "1", writingStyle = "default", description = "", 
-                           pdfPassword = "", ...) {
-  
-  if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+processTextField <- function(file_path = "",
+                             region = "-1,-1,-1,-1",
+                             language = "English",
+                             letterSet = "",
+                             regExp = "", textType = "normal",
+                             oneTextLine = "false",
+                             oneWordPerTextLine = "false",
+                             markingType = "simpleText",
+                             placeholdersCount = "1",
+                             writingStyle = "default",
+                             description = "",
+                             pdfPassword = "", ...) {
 
-  querylist <- list(language = language, letterSet = letterSet, regExp = regExp, textType = textType, oneTextLine = oneTextLine, 
-                 oneWordPerTextLine = oneWordPerTextLine, markingType = markingType, placeholdersCount = placeholdersCount, 
-                 writingStyle = writingStyle, description = description, pdfPassword = pdfPassword)
+  if (!file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
+
+  querylist <- list(language = language,
+                    letterSet = letterSet,
+                    regExp = regExp,
+                    textType = textType,
+                    oneTextLine = oneTextLine,
+                    oneWordPerTextLine = oneWordPerTextLine,
+                    markingType = markingType,
+                    placeholdersCount = placeholdersCount,
+                    writingStyle = writingStyle,
+                    description = description,
+                    pdfPassword = pdfPassword)
 
   body  <- upload_file(file_path)
-  process_details <- abbyy_POST("processTextField", query = querylist, body = body, ...)
+  process_details <- abbyy_POST("processTextField",
+                                query = querylist,
+                                body = body, ...)
 
   resdf <- ldply(process_details, rbind)
 

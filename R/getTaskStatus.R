@@ -19,13 +19,13 @@
 #' }
 
 getTaskStatus <- function(taskId = NULL, ...) {
-  
-  if (is.null(taskId)) stop("Must specify taskId")
-  
-  querylist <- list(taskId = taskId)  
-  taskdetails <- abbyy_GET("getTaskStatus", query=querylist, ...)
 
-  resdf <- ldply(taskdetails, rbind) 
+  if (is.null(taskId)) stop("Must specify taskId")
+
+  querylist <- list(taskId = taskId)
+  taskdetails <- abbyy_GET("getTaskStatus", query = querylist, ...)
+
+  resdf <- ldply(taskdetails, rbind)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

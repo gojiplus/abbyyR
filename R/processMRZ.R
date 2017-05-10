@@ -12,11 +12,13 @@
 #' }
 
 processMRZ <- function(file_path = "", ...) {
-  
-  if (!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+
+  if (!file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
 
   body <- upload_file(file_path)
-  
+
   process_details <- abbyy_POST("processMRZ", body = body, ...)
 
   resdf <- ldply(process_details, rbind)

@@ -16,15 +16,19 @@
 #' }
 
 processFields <- function(file_path = "", taskId = NULL, description = "", ...){
-  
-  if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+
+  if (!file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
 
   querylist <- list(taskId = taskId, description = description)
-  
-  process_details <- abbyy_POST("processFields", query = querylist, body = upload_file(file_path), ...)
-  
+
+  process_details <- abbyy_POST("processFields",
+                                 query = querylist,
+                                 body = upload_file(file_path), ...)
+
   resdf <- ldply(process_details, rbind)
-    
+
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
   cat("Task ID: ",       resdf$id, "\n")

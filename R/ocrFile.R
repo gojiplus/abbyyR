@@ -15,21 +15,24 @@
 #' ocrFile(file_path = "path_to_ocr_file", output_dir = "path_to_output_dir")
 #' }
 
-ocrFile <- function(file_path = "", output_dir = "./", 
-          exportFormat = c("txt", "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable", "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"), 
-          save_to_file = TRUE) {
+ocrFile <- function(file_path = "", output_dir = "./",
+                    exportFormat = c("txt", "txtUnstructured", "rtf",
+                                     "docx", "xlsx", "pptx", "pdfSearchable",
+                                     "pdfTextAndImages", "pdfa", "xml",
+                                     "xmlForCorrectedImage", "alto"),
+                    save_to_file = TRUE) {
 
   exportFormat <- match.arg(exportFormat)
 
   res <- processImage(file_path = file_path, exportFormat = exportFormat)
 
-  # Wait till the processing is finished with a maximum time 
-  while(!(any(as.character(res$id) == as.character(listFinishedTasks()$id)))) {
+  # Wait till the processing is finished with a maximum time
+  while (!(any(as.character(res$id) == as.character(listFinishedTasks()$id)))) {
     Sys.sleep(1)
   }
 
   finishedlist <- listFinishedTasks()
-  
+
   # Coerce to char. if not.
   res$id <- as.character(res$id)
   finishedlist$id <- as.character(finishedlist$id)
@@ -39,6 +42,9 @@ ocrFile <- function(file_path = "", output_dir = "./",
     return(rawToChar(res$content))
   }
 
-  curl_download(finishedlist$resultUrl[res$id == finishedlist$id], destfile = paste0(output_dir, unlist(strsplit(basename(file_path), "[.]"))[1], ".", exportFormat))
-  
+  curl_download(finishedlist$resultUrl[res$id == finishedlist$id],
+               destfile = paste0(output_dir,
+                            unlist(strsplit(basename(file_path), "[.]"))[1],
+                            ".",
+                            exportFormat))
 }

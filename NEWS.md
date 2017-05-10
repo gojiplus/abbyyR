@@ -1,6 +1,6 @@
 # abbyyR 0.5.2
 
-* extensive linting
+* extensive linting. passes expect_lint_free
 
 # abbyyR 0.5.1
 

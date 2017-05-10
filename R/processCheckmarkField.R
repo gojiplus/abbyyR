@@ -20,20 +20,33 @@
 #' processCheckmarkField(file_path = "file_path")
 #' }
 
-processCheckmarkField <- function(file_path = "", checkmarkType = "empty",  region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "", description = "", ...) {
+processCheckmarkField <- function(file_path = "",
+                                  checkmarkType = "empty",
+                                  region = "-1,-1,-1,-1",
+                                  correctionAllowed = "false",
+                                  pdfPassword = "", description = "", ...) {
 
-  if(!file.exists(file_path)) stop("File Doesn't Exist. Please check the path.")
+  if (!file.exists(file_path)) {
+    stop("File Doesn't Exist. Please check the path.")
+  }
 
-  querylist <- list(checkmarkType = checkmarkType, region = region,correctionAllowed = correctionAllowed,pdfPassword = pdfPassword,description = description)
-  
+  querylist <- list(checkmarkType = checkmarkType,
+                    region = region,
+                    correctionAllowed = correctionAllowed,
+                    pdfPassword = pdfPassword,
+                    description = description)
+
   body <- upload_file(file_path)
-  process_details <- abbyy_POST("processCheckmarkField", query = querylist, body = body, ...)
-  
-  resdf <- as.data.frame(do.call(rbind, process_details)) # collapse to a data.frame
+  process_details <- abbyy_POST("processCheckmarkField",
+                                query = querylist,
+                                body = body, ...)
+
+  # collapse to a data.frame
+  resdf <- as.data.frame(do.call(rbind, process_details))
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
   cat("Task ID: ",       resdf$id, "\n")
-  
+
   resdf
 }

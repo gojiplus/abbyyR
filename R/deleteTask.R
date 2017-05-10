@@ -23,22 +23,22 @@
 #' }
 
 deleteTask <- function(taskId = NULL, ...){
-    
+
   if (is.null(taskId)) stop("must provide taskId.", call. = FALSE)
 
   # Get the status of the task
   task_status <- getTaskStatus(taskId, ...)
-  
-  if (identical(task_status$status, 'Deleted')) {
+
+  if (identical(task_status$status, "Deleted")) {
     # Print status of the task
     cat("Status of the task: ", task_status$status, "\n")
-    
+
   } else {
-    
-    querylist = list(taskId = taskId)
+
+    querylist <- list(taskId = taskId)
     deleted_task_details <- abbyy_GET("deleteTask", query = querylist, ...)
     resdf <- ldply(deleted_task_details, rbind)
-  
+
     # Print status of the task
     cat("Status of the task: ", resdf$status, "\n")
     resdf
