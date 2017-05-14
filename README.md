@@ -5,6 +5,8 @@
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/abbyyR)](https://cran.r-project.org/package=abbyyR)
 ![](http://cranlogs.r-pkg.org/badges/grand-total/abbyyR)
 [![codecov](https://codecov.io/gh/soodoku/abbyyR/branch/master/graph/badge.svg)](https://codecov.io/gh/soodoku/abbyyR)
+[![Research software impact](http://depsy.org/api/package/cran/abbyyR/badge.svg)](http://depsy.org/package/r/abbyyR)
+[![Github Stars](https://img.shields.io/github/stars/soodoku/abbyyR.svg?style=social&label=Github)](https://github.com/jeroen/abbyyR)
 
 Easily OCR images, barcodes, forms, documents with machine readable zones, e.g. passports, right from R. Get the results in a wide variety of formats, from text files to detailed XMLs with information about bounding boxes, etc.
 
