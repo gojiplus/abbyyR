@@ -28,7 +28,8 @@ listFinishedTasks <- function(...) {
 
   if (is.null(tasklist)){
     cat("No finished tasks in the application. \n")
-    no_dat <- read.table(text = "", col.names = frame_names)
+    no_dat <- read.table(text = "", col.names = frame_names,
+                         stringsAsFactors = FALSE)
     return(invisible(no_dat))
   }
 
