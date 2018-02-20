@@ -36,6 +36,7 @@ ocrFile <- function(file_path = "", output_dir = "./",
   # Coerce to char. if not.
   res$id <- as.character(res$id)
   finishedlist$id <- as.character(finishedlist$id)
+  finishedlist$resultUrl <- as.character(finishedlist$resultUrl)
 
   if (identical(save_to_file, FALSE)) {
     res <- curl_fetch_memory(finishedlist$resultUrl[res$id == finishedlist$id])
