@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>A Worked Out Example of Managing with abbyyR • abbyyR</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -29,10 +29,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/example.html">A Worked Out Example of Managing with abbyyR</a>
+    </li>
+    <li>
+      <a href="../articles/overview.html">Overview of abbyyR</a>
+    </li>
+    <li>
+      <a href="../articles/wiscads.html">Getting Text from Wisconsin Ads Storyboards Using abbyyR</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +81,7 @@
       <h1>A Worked Out Example of Managing with abbyyR</h1>
                         <h4 class="author">Gaurav Sood</h4>
             
-            <h4 class="date">2017-04-29</h4>
+            <h4 class="date">2018-03-27</h4>
           </div>
 
     
@@ -68,7 +89,7 @@
 <div class="contents">
 <div id="load-the-package" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#load-the-package" class="anchor"> </a></body></html>Load the package</h4>
+<a href="#load-the-package" class="anchor"></a>Load the package</h4>
 <p>To install the package from CRAN, type:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"abbyyR"</span>)</code></pre></div>
 <p>To get the latest development version from GitHub:</p>
@@ -79,14 +100,14 @@ devtools::<span class="kw">install_github</span>(<span class="st">'soodoku/abbyy
 </div>
 <div id="set-credentials" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#set-credentials" class="anchor"> </a></body></html>Set credentials</h4>
+<a href="#set-credentials" class="anchor"></a>Set credentials</h4>
 <p>Your first task on loading the package should be to set the credentials - application ID and password. If you haven’t already, you can get this information <a href="http://ocrsdk.com/" class="uri">http://ocrsdk.com/</a>. Once you have the application ID and password, set it via the <code>setapp</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/setapp.html">setapp</a></span>(<span class="kw">c</span>(<span class="st">"factbook"</span>, <span class="st">"7YVBc8E6xMricoTwp0mF0aH"</span>))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/setapp">setapp</a></span>(<span class="kw">c</span>(<span class="st">"factbook"</span>, <span class="st">"7YVBc8E6xMricoTwp0mF0aH"</span>))</code></pre></div>
 </div>
 <div id="get-information-about-application" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#get-information-about-application" class="anchor"> </a></body></html>Get Information about Application</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getAppInfo.html">getAppInfo</a></span>()</code></pre></div>
+<a href="#get-information-about-application" class="anchor"></a>Get Information about Application</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/getAppInfo">getAppInfo</a></span>()</code></pre></div>
 <pre><code>## Name of Application: factbook
 ## No. of Pages Remaining: 99
 ## No. of Fields Remaining: 495
@@ -95,52 +116,52 @@ devtools::<span class="kw">install_github</span>(<span class="st">'soodoku/abbyy
 </div>
 <div id="list-tasks" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#list-tasks" class="anchor"> </a></body></html>List Tasks</h4>
+<a href="#list-tasks" class="anchor"></a>List Tasks</h4>
 <p>List all the tasks – completed, in progress, queued etc. The function returns a data frame.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tasklist &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listTasks.html">listTasks</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">tasklist &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/listTasks">listTasks</a></span>()</code></pre></div>
 <pre><code>## Total No. of Tasks:  30 
 ## No. of Finished Tasks:  22</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/listTasks.html">listTasks</a></span>(<span class="dt">excludeDeleted=</span><span class="st">"true"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/listTasks">listTasks</a></span>(<span class="dt">excludeDeleted=</span><span class="st">"true"</span>)</code></pre></div>
 <pre><code>## Total No. of Tasks:  28 
 ## No. of Finished Tasks:  22</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/listTasks.html">listTasks</a></span>(<span class="dt">fromDate=</span><span class="st">"2015-05-30T20:28:43Z"</span>, <span class="dt">toDate=</span><span class="st">"2015-05-31T20:28:43Z"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/listTasks">listTasks</a></span>(<span class="dt">fromDate=</span><span class="st">"2015-05-30T20:28:43Z"</span>, <span class="dt">toDate=</span><span class="st">"2015-05-31T20:28:43Z"</span>)</code></pre></div>
 <pre><code>## No tasks in the application.</code></pre>
 </div>
 <div id="list-finished-tasks" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#list-finished-tasks" class="anchor"> </a></body></html>List Finished Tasks</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/listFinishedTasks.html">listFinishedTasks</a></span>()</code></pre></div>
+<a href="#list-finished-tasks" class="anchor"></a>List Finished Tasks</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/listFinishedTasks">listFinishedTasks</a></span>()</code></pre></div>
 <pre><code>## No. of Finished Tasks:  24</code></pre>
 </div>
 <div id="get-task-status" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#get-task-status" class="anchor"> </a></body></html>Get Task Status</h4>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/getTaskStatus.html">getTaskStatus</a></span>(<span class="dt">taskId=</span><span class="st">"47f9b0d4-79a2-4aed-b656-2683a85ac203"</span>)</code></pre></div>
+<a href="#get-task-status" class="anchor"></a>Get Task Status</h4>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/getTaskStatus">getTaskStatus</a></span>(<span class="dt">taskId=</span><span class="st">"47f9b0d4-79a2-4aed-b656-2683a85ac203"</span>)</code></pre></div>
 <pre><code>## Status of the task:  Deleted</code></pre>
 </div>
 <div id="delete-task" class="section level4">
 <h4 class="hasAnchor">
-<html><body><a href="#delete-task" class="anchor"> </a></body></html>Delete Task</h4>
+<a href="#delete-task" class="anchor"></a>Delete Task</h4>
 <p>Deleting an already deleted task will result in an error.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#deleteTask(taskId="47f9b0d4-79a2-4aed-b656-2683a85ac203")</span></code></pre></div>
 <p><strong>Submit an Image for Processing</strong></p>
 <p>Note: I am uploading a sample image that Abbyy provides for free to test its software. You can find this image in the data folder of the package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/submitImage.html">submitImage</a></span>(<span class="dt">file_path=</span><span class="st">"t1.png"</span>, <span class="dt">pdfPassword=</span><span class="st">""</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/submitImage">submitImage</a></span>(<span class="dt">file_path=</span><span class="st">"t1.png"</span>, <span class="dt">pdfPassword=</span><span class="st">""</span>)</code></pre></div>
 <pre><code>## Status of the task:  Submitted 
 ## Task ID:  4c088272-003d-4fc7-b0f7-b805495c4466</code></pre>
 <p><strong>Process an Image</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/processImage.html">processImage</a></span>(<span class="dt">file_path=</span><span class="st">"t1.png"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/processImage">processImage</a></span>(<span class="dt">file_path=</span><span class="st">"t1.png"</span>)</code></pre></div>
 <pre><code>## Status of the task:  Queued 
 ## Task ID:  650d4cd3-964c-40c6-9118-97eecc099b34</code></pre>
 <p><strong>Process a Remote Image</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/processRemoteImage.html">processRemoteImage</a></span>(<span class="dt">img_url=</span><span class="st">"https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.png"</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/processRemoteImage">processRemoteImage</a></span>(<span class="dt">img_url=</span><span class="st">"https://raw.githubusercontent.com/soodoku/abbyyR/master/inst/extdata/t1.png"</span>)</code></pre></div>
 <pre><code>## Status of the task:  Submitted 
 ## Task ID:  7f5112b8-6541-435e-86c4-dc978a45749e</code></pre>
 <p><strong>Process Document</strong></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw"><a href="../reference/listTasks.html">listTasks</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">res &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/listTasks">listTasks</a></span>()</code></pre></div>
 <pre><code>## Total No. of Tasks:  33 
 ## No. of Finished Tasks:  23</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/processDocument.html">processDocument</a></span>(<span class="dt">taskId=</span>res$id[res$status==<span class="st">"Submitted"</span>][<span class="dv">1</span>])</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/abbyyR/topics/processDocument">processDocument</a></span>(<span class="dt">taskId=</span>res$id[res$status==<span class="st">"Submitted"</span>][<span class="dv">1</span>])</code></pre></div>
 <pre><code>## Status of the task:  Queued</code></pre>
 <p><strong>Get Results</strong></p>
 <p>Go through all the finished tasks and download all the data.</p>

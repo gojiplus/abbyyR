@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cerulean/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,31 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/example.html">A Worked Out Example of Managing with abbyyR</a>
+    </li>
+    <li>
+      <a href="../articles/overview.html">Overview of abbyyR</a>
+    </li>
+    <li>
+      <a href="../articles/wiscads.html">Getting Text from Wisconsin Ads Storyboards Using abbyyR</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -83,7 +105,7 @@
     </div>
 
     
-    Get data from all the processed images.
+    <p>Get data from all the processed images.</p>
     
 
     <pre class="usage"><span class='fu'>getResults</span>(<span class='kw'>output</span> <span class='kw'>=</span> <span class='st'>""</span>, <span class='kw'>save_to_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
@@ -93,35 +115,35 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>output</th>
-      <td>Optional; folder to which you want to save the data from the processed images; Default is same folder as the script</td>
+      <td><p>Optional; folder to which you want to save the data from the processed images; Default is same folder as the script</p></td>
     </tr>
     <tr>
       <th>save_to_file</th>
-      <td>Required; Default is TRUE; If true, it saves to file. Otherwise returns a data frame with results + other attributes from Abbyy</td>
+      <td><p>Required; Default is TRUE; If true, it saves to file. Otherwise returns a data frame with results + other attributes from Abbyy</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    data frame returned by <code><a href='listFinishedTasks.html'>listFinishedTasks</a></code> plus either a column that contains paths to local files (when writing to disk), 
-or actual results returned.
+    <p>data frame returned by <code>listFinishedTasks</code> plus either a column that contains paths to local files (when writing to disk), 
+or actual results returned.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    The function calls <code><a href='listFinishedTasks.html'>listFinishedTasks</a></code>, goes through the finishedTasks data frame and downloads all the files in resultsUrl
+    <p>The function calls <code>listFinishedTasks</code>, goes through the finishedTasks data frame and downloads all the files in resultsUrl
 Results can be stored in memory or written to the hard disk. By default, the function writes to the disk. 
 If the user wants the results to be written to disk, a data frame with paths to local file paths is returned. If the user wants to store the 
-results in memory, data frame with a column carrying the results is returned.
+results in memory, data frame with a column carrying the results is returned.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <a href = 'http://ocrsdk.com/documentation/apireference/getTaskStatus/'>http://ocrsdk.com/documentation/apireference/getTaskStatus/</a>
+    <p><a href='http://ocrsdk.com/documentation/apireference/getTaskStatus/'>http://ocrsdk.com/documentation/apireference/getTaskStatus/</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'>## Not run: ------------------------------------</span>
-<span class='co'># getResults(save_to_file = FALSE)</span>
-<span class='co'>## ---------------------------------------------</span></div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>getResults</span>(<span class='kw'>save_to_file</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
