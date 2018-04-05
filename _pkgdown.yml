@@ -1,3 +1,42 @@
-templates:
+url: https://soodoku.github.io/abbyyR/
+
+template:
   params:
-    bootswatch: cerulean
+    bootswatch: cosmo
+  docsearch:
+    api_key: 
+    index_name: abbyyR
+
+authors:
+  Gaurav Sood:
+    href: https://github.com/soodoku
+
+reference:
+  - title: Authentication
+    contents:
+    - setapp
+  
+  - title: OCR a File
+    contents:
+    - ocrFile
+
+  - title: Process Image
+    desc: Submit Image, MRZ, PhotoID etc. to be OCRd
+    contents:
+    - starts_with("process")
+    - submitImage
+  
+  - title: Get Results
+    contents:
+    - getResults
+
+  - title: Get Information
+    contents:
+    - getAppInfo
+    - getTaskStatus
+    - listTasks
+    - listFinishedTasks
+  
+  - title: Delete Tasks
+    contents:
+    - deleteTask

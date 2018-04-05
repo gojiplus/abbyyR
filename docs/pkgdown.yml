@@ -1,0 +1,11 @@
+pandoc: 1.17.1
+pkgdown: 0.1.0.9000
+pkgdown_sha: d6ebaea156244a88bee4f14b4e8bcfb9e36f7727
+articles:
+  example: example.html
+  overview: overview.html
+  wiscads: wiscads.html
+urls:
+  reference: https://soodoku.github.io/abbyyR//reference
+  article: https://soodoku.github.io/abbyyR//articles
+
