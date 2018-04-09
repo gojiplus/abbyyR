@@ -18,3 +18,4 @@
 ^tests\testthat\abbyy_key.enc$
 ^_pkgdown\.yml$
 .lintr
+.github

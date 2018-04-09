@@ -3,9 +3,9 @@ url: https://soodoku.github.io/abbyyR/
 template:
   params:
     bootswatch: cosmo
-  docsearch:
-    api_key: 
-    index_name: abbyyR
+    docsearch:
+      api_key: 446ff9bfa58fce6edec52b2e151cbf9c
+      index_name: abbyyr
 
 authors:
   Gaurav Sood:

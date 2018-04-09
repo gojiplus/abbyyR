@@ -15,7 +15,7 @@
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-<![endif]-->
+<![endif]--><!-- docsearch --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css">
 </head>
 <body>
     <div class="container template-article">
@@ -74,7 +74,13 @@
   </a>
 </li>
       </ul>
+<form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
 </div>
+      </form>
+      
+    </div>
 <!--/.nav-collapse -->
   </div>
 <!--/.container -->
@@ -88,7 +94,7 @@
       <h1>Overview of abbyyR</h1>
                         <h4 class="author">Gaurav Sood</h4>
             
-            <h4 class="date">2018-04-05</h4>
+            <h4 class="date">2018-04-09</h4>
       
       <small>Source: <a href="http://github.com/soodoku/abbyyR/blob/master/vignettes/overview.Rmd"><code>vignettes/overview.Rmd</code></a></small>
       <div class="hidden name"><code>overview.Rmd</code></div>
@@ -106,19 +112,19 @@
 <h3 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h3>
 <p>To get the current development version from github:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages("devtools")</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"soodoku/abbyyR"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="co"># install.packages("devtools")</span></a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"soodoku/abbyyR"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="usage" class="section level3">
 <h3 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h3>
 <p>To get going, get the application id and password from <a href="http://ocrsdk.com/" class="uri">http://ocrsdk.com/</a>. Then set the application id and password via the <code>setapp</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">setapp</span>(<span class="kw">c</span>(<span class="st">"app_id"</span>, <span class="st">"app_password"</span>))</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">setapp</span>(<span class="kw">c</span>(<span class="st">"app_id"</span>, <span class="st">"app_password"</span>))</a></code></pre></div>
 <div id="applications" class="section level4">
 <h4 class="hasAnchor">
 <a href="#applications" class="anchor"></a>Applications</h4>
 <p>Applications are a convenient way to keep different OCR projects separate. You can have multiple applications running at the same time. Each application has its own budget. To get more information about the application, use <code>getAppInfo</code>.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getAppInfo</span>()</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">getAppInfo</span>()</a></code></pre></div>
 <p>The function returns a list that includes the name of the Application, no. of pages remaining (given the money), no. of fields remaining (given the money), and when the application credits expire. The function automatically prints these out. For additional details about how Abbyy FineReader implements <code>getAppInfo</code>, see the <a href="http://ocrsdk.com/documentation/apireference/getApplicationInfo/">reference</a> for the function.</p>
 </div>
 <div id="tasks" class="section level4">
@@ -126,99 +132,165 @@ devtools::<span class="kw">install_github</span>(<span class="st">"soodoku/abbyy
 <a href="#tasks" class="anchor"></a>Tasks</h4>
 <p>Tasks are a way to bundle images that need to be processed with same parameters. Say for instance, one task may have images that have been taken by a mobile phone and which you want OCRd to a text file. Another may have all scanned images that you want exported to XML. There are a variety of functions to help you manage the tasks.</p>
 <ul>
-<li>
-<p><strong>List Tasks</strong></p>
-<p><code>listTasks</code> lists all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements <code>listTasks</code>, see the <a href="http://ocrsdk.com/documentation/apireference/listTasks/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">listTasks</span>(<span class="dt">fromDate=</span><span class="st">"yyyy-mm-ddThh:mm:ssZ"</span>,<span class="dt">toDate=</span><span class="st">"yyyy-mm-ddThh:mm:ssZ"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>List Finished Tasks</strong></p>
-<p>List all the finished tasks in the application. “The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call.” (From Abbyy FineReader). The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements <code>listFinishedTasks</code>, see the <a href="http://ocrsdk.com/documentation/apireference/listFinishedTasks/">reference</a> for the function.</p>
-<p>You can download the results of the OCR project from all the FinishedTasks using the <code>getResults</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">listFinishedTasks</span>()</code></pre></div>
-</li>
-<li>
-<p><strong>Get Task Status</strong></p>
-<p>The function gets task status for a particular task ID. The function prints the status of the task by default. The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable).</p>
-<p>For additional details about how Abbyy FineReader implements <code>getTaskStatus</code>, see the <a href="http://ocrsdk.com/documentation/apireference/getTaskStatus/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">getTaskStatus</span>(<span class="dt">taskId=</span><span class="st">"task_id"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Delete a Task</strong></p>
-<p>This function deletes a particular task and associated data. From Abbyy “If you try to delete the task that has already been deleted, the successful response is returned.” The function by default prints the status of the task you are trying to delete. It will show up as ‘deleted’ if successful. The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)</p>
-<p>For additional details about how Abbyy FineReader implements <code>deleteTask</code>, see the <a href="http://ocrsdk.com/documentation/apireference/deleteTask/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">    <span class="kw">deleteTask</span>(<span class="dt">taskId=</span><span class="st">"task_id"</span>)</code></pre></div>
-</li>
+<li><strong>List Tasks</strong></li>
 </ul>
+<pre><code>`listTasks` lists all the tasks in the application. You can specify a date range and whether or not you want to include deleted tasks. The function prints Total number of tasks, Task IDs, and No. of Finished Tasks. The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listTasks/) for the function.
+
+
+```r
+listTasks(fromDate="yyyy-mm-ddThh:mm:ssZ",toDate="yyyy-mm-ddThh:mm:ssZ")
+```</code></pre>
+<ul>
+<li><strong>List Finished Tasks</strong></li>
+</ul>
+<pre><code>List all the finished tasks in the application. "The tasks are ordered by the time of the end of processing. No more than 100 tasks can be returned at one method call." (From Abbyy FineReader). The function returns a data.frame with the following columns: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file). For additional details about how Abbyy FineReader implements `listFinishedTasks`, see the [reference](http://ocrsdk.com/documentation/apireference/listFinishedTasks/) for the function.
+
+You can download the results of the OCR project from all the FinishedTasks using the `getResults` function.
+
+
+```r
+listFinishedTasks()
+```</code></pre>
+<ul>
+<li><strong>Get Task Status</strong></li>
+</ul>
+<pre><code>The function gets task status for a particular task ID. The function prints the status of the task by default. The function returns a data.frame with all the task details: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable).
+
+For additional details about how Abbyy FineReader implements `getTaskStatus`, see the [reference](http://ocrsdk.com/documentation/apireference/getTaskStatus/) for the function.
+
+
+```r
+getTaskStatus(taskId="task_id")
+```</code></pre>
+<ul>
+<li><strong>Delete a Task</strong></li>
+</ul>
+<pre><code>This function deletes a particular task and associated data. From Abbyy "If you try to delete the task that has already been deleted, the successful response is returned." The function by default prints the status of the task you are trying to delete. It will show up as 'deleted' if successful. The function returns a data.frame with all the details of the task you are trying to delete: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, resultUrl (URL for the processed file if applicable)
+
+For additional details about how Abbyy FineReader implements `deleteTask`, see the [reference](http://ocrsdk.com/documentation/apireference/deleteTask/) for the function.
+
+
+```r
+    deleteTask(taskId="task_id")
+```</code></pre>
 </div>
 <div id="ocr" class="section level4">
 <h4 class="hasAnchor">
 <a href="#ocr" class="anchor"></a>OCR</h4>
 <p>Till now we have covered tools to manage the workflow. Now we cover details about how to submit images, barcode fields, business cards etc. for OCR. Abbyy conveniently provides separate functions for submitting different types of documents. The argument that we can pass depending on the kind of the document we are processing. Abbyy provides a way to process a single image, and a bundle of images (bundled under one task) using the same set of parameters. The function below either submit documents to Abbyy or trigger processing of documents (separate steps). To download images that have been processed, use the <code>getResults</code> function.</p>
 <ul>
-<li>
-<p><strong>Submit an Image for Processing</strong></p>
-<p>Adds image to the existing task or creates a new task for the uploaded image. The new task isn’t processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits, estimatedProcessingTime</p>
-<p>For additional details about how Abbyy FineReader implements <code>submitImage</code>, see the <a href="http://ocrsdk.com/documentation/apireference/submitImage/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">submitImage</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>, <span class="dt">taskId=</span><span class="st">"task_id"</span>, <span class="dt">pdfPassword=</span><span class="st">""</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Image</strong></p>
-<p>Adds image to the existing task or creates a new task for the uploaded image. The new task isn’t processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If an empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, <a href="http://ocrsdk.com/documentation/specifications/task-statuses/">status</a> (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits</p>
-<p>For supported file formats, see <a href="http://ocrsdk.com/documentation/specifications/image-formats/">Supported File Formats</a>. For additional details about how Abbyy FineReader implements <code>processImage</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processImage/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processImage</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>, <span class="dt">language=</span><span class="st">"English"</span>, <span class="dt">profile=</span><span class="st">"documentConversion"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process a Remote Image</strong></p>
-<p>Same as processImage except the function takes image url as a required argument.</p>
-<p>For supported file formats, see <a href="http://ocrsdk.com/documentation/specifications/image-formats/">Supported File Formats</a>. For additional details about how Abbyy FineReader implements <code>processImage</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processRemoteImage/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processRemoteImage</span>(<span class="dt">img_url=</span><span class="st">"img_url"</span>, <span class="dt">language=</span><span class="st">"English"</span>, <span class="dt">profile=</span><span class="st">"documentConversion"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Document</strong></p>
-<p>This function processes several images for the same task and results in a multi-page document. For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.</p>
-<p>For additional details about how Abbyy FineReader implements <code>processDocument</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processDocument/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processDocument</span>(<span class="dt">task_id=</span><span class="st">"task_id"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Business Card</strong></p>
-<p>For additional details about how Abbyy FineReader implements <code>processBusinessCard</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processBusinessCard/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processBusinessCard</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Text Field</strong></p>
-<p>For additional details about how Abbyy FineReader implements <code>processTextField</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processTextField/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processTextField</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Barcode Field</strong></p>
-<p>For additional details about how Abbyy FineReader implements <code>processBarcodeField</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processBarcodeField/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processBarcodeField</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Checkmark Field</strong></p>
-<p>For additional details about how Abbyy FineReader implements <code>processCheckmarkField</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processCheckmarkField/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processCheckmarkField</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Fields</strong></p>
-<p>For additional details about how Abbyy FineReader implements <code>processFields</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processFields/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processFields</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process MRZ</strong></p>
-<p>Extract data from Machine Readable Zone.</p>
-<p>Output may contain the following fields: MrzType, Line1, Line2, Line3, DocumentType, DocumentSubtype, IssuingCountry, LastName, GivenName, DocumentNumber, DocumentNumberVerified, DocumentNumberCheck, Nationality, BirthDate, BirthDateVerified</p>
-<p>For supported file formats, see <a href="http://ocrsdk.com/documentation/specifications/image-formats/">Supported File Formats</a>. For additional details about how Abbyy FineReader implements <code>processMRZ</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processMRZ/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processMRZ</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
-<li>
-<p><strong>Process Photo ID</strong></p>
-<p>Extract data from a Photo ID.</p>
-<p>For additional details about how Abbyy FineReader implements <code>processMRZ</code>, see the <a href="http://ocrsdk.com/documentation/apireference/processMRZ/">reference</a> for the function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">processPhotoId</span>(<span class="dt">file_path=</span><span class="st">"file_path"</span>)</code></pre></div>
-</li>
+<li><strong>Submit an Image for Processing</strong></li>
 </ul>
+<pre><code>Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits,  estimatedProcessingTime
+
+For additional details about how Abbyy FineReader implements `submitImage`, see the [reference](http://ocrsdk.com/documentation/apireference/submitImage/) for the function.
+
+
+```r
+submitImage(file_path="file_path", taskId="task_id", pdfPassword="")
+```</code></pre>
+<ul>
+<li><strong>Process Image</strong></li>
+</ul>
+<pre><code>Adds image to the existing task or creates a new task for the uploaded image. The new task isn't processed till processDocument or processFields is called (via Abbyy FineReader). The function takes two optional arguments, taskId (assigns image to the task ID specified. If an empty string is passed, a new task is created) and pdfPassword (If the pdf is password protected). The function returns a data.frame with all the details of the submitted image: id (task id), registrationTime, statusChangeTime, [status](http://ocrsdk.com/documentation/specifications/task-statuses/) (Submitted, Queued, InProgress, Completed, ProcessingFailed, Deleted, NotEnoughCredits), filesCount (No. of files), credits
+
+For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processImage/) for the function.
+
+
+```r
+processImage(file_path="file_path", language="English", profile="documentConversion")
+```</code></pre>
+<ul>
+<li><strong>Process a Remote Image</strong></li>
+</ul>
+<pre><code>Same as processImage except the function takes image url as a required argument.
+
+For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processImage`, see the [reference](http://ocrsdk.com/documentation/apireference/processRemoteImage/) for the function.
+
+
+```r
+processRemoteImage(img_url="img_url", language="English", profile="documentConversion")
+```</code></pre>
+<ul>
+<li><strong>Process Document</strong></li>
+</ul>
+<pre><code>This function processes several images for the same task and results in a multi-page document. For instance, upload pages of the book individually via submitImage to the same task. And then process it via ProcessDocument to get a multi-page pdf.
+
+For additional details about how Abbyy FineReader implements `processDocument`, see the [reference](http://ocrsdk.com/documentation/apireference/processDocument/) for the function.
+
+
+```r
+processDocument(task_id="task_id")
+```</code></pre>
+<ul>
+<li><strong>Process Business Card</strong></li>
+</ul>
+<pre><code>For additional details about how Abbyy FineReader implements `processBusinessCard`, see the [reference](http://ocrsdk.com/documentation/apireference/processBusinessCard/) for the function.
+
+
+```r
+processBusinessCard(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process Text Field</strong></li>
+</ul>
+<pre><code>For additional details about how Abbyy FineReader implements `processTextField`, see the [reference](http://ocrsdk.com/documentation/apireference/processTextField/) for the function.
+
+
+```r
+processTextField(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process Barcode Field</strong></li>
+</ul>
+<pre><code>For additional details about how Abbyy FineReader implements `processBarcodeField`, see the [reference](http://ocrsdk.com/documentation/apireference/processBarcodeField/) for the function.
+
+
+```r
+processBarcodeField(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process Checkmark Field</strong></li>
+</ul>
+<pre><code>For additional details about how Abbyy FineReader implements `processCheckmarkField`, see the [reference](http://ocrsdk.com/documentation/apireference/processCheckmarkField/) for the function.
+
+
+```r
+processCheckmarkField(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process Fields</strong></li>
+</ul>
+<pre><code>For additional details about how Abbyy FineReader implements `processFields`, see the [reference](http://ocrsdk.com/documentation/apireference/processFields/) for the function.
+
+
+```r
+processFields(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process MRZ</strong></li>
+</ul>
+<pre><code>Extract data from Machine Readable Zone.
+
+Output may contain the following fields: MrzType, Line1, Line2, Line3, DocumentType, DocumentSubtype, IssuingCountry, LastName, GivenName, DocumentNumber, DocumentNumberVerified, DocumentNumberCheck, Nationality, BirthDate, BirthDateVerified
+
+For supported file formats, see [Supported File Formats](http://ocrsdk.com/documentation/specifications/image-formats/). For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
+
+
+```r
+processMRZ(file_path="file_path")
+```</code></pre>
+<ul>
+<li><strong>Process Photo ID</strong></li>
+</ul>
+<pre><code>Extract data from a Photo ID.
+
+For additional details about how Abbyy FineReader implements `processMRZ`, see the [reference](http://ocrsdk.com/documentation/apireference/processMRZ/) for the function.
+
+
+```r
+processPhotoId(file_path="file_path")
+```</code></pre>
 </div>
 </div>
   </div>
@@ -241,6 +313,14 @@ devtools::<span class="kw">install_github</span>(<span class="st">"soodoku/abbyy
 </div>
 
   
-
-  </body>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script><script>
+  docsearch({
+    
+    apiKey: '446ff9bfa58fce6edec52b2e151cbf9c',
+    indexName: 'abbyyr',
+    inputSelector: 'input#search-input.form-control',
+    debug: false // Set debug to true if you want to inspect the dropdown
+  });
+</script>
+</body>
 </html>
