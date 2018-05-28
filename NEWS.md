@@ -1,3 +1,7 @@
+# abbyyR 0.5.3
+
+* add region argument to processImage()
+
 # abbyyR 0.5.2
 
 * extensive linting. passes expect_lint_free
