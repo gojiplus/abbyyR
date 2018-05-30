@@ -44,6 +44,7 @@ processTextField <- function(file_path = "",
   }
 
   querylist <- list(language = language,
+                    region = region,
                     letterSet = letterSet,
                     regExp = regExp,
                     textType = textType,

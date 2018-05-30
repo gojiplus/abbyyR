@@ -1,3 +1,7 @@
+# abbyyR 0.5.4
+
+* fixed bug in processTextField, region was not being passed to the querylist. see #8.
+
 # abbyyR 0.5.3
 
 * add region argument to processImage()
