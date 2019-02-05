@@ -37,7 +37,6 @@ processImage <- function(file_path = "", language = "English",
                          profile = c("documentConversion",
                                       "documentArchiving",
                                       "textExtraction",
-                                      "fieldLevelRecognition",
                                       "barcodeRecognition"),
                          textType = c("normal", "typewriter", "matrix",
                                       "index", "ocrA", "ocrB", "e13b",
@@ -45,7 +44,6 @@ processImage <- function(file_path = "", language = "English",
                          imageSource = c("auto", "photo", "scanner"),
                          correctOrientation = c("true", "false"),
                          correctSkew = c("true", "false"),
-                         region = "-1,-1,-1,-1",
                          readBarcodes = c("false", "true"),
                          exportFormat = c("txt", "txtUnstructured",
                                           "rtf", "docx", "xlsx", "pptx",
@@ -68,7 +66,6 @@ processImage <- function(file_path = "", language = "English",
   exportFormat   <- match.arg(exportFormat, choices = exportFormat)
 
   querylist <- list(language = language,
-                    region = region,
                     profile = profile,
                     textType = textType,
                     imageSource = imageSource,
@@ -84,7 +81,9 @@ processImage <- function(file_path = "", language = "English",
                                 query = querylist,
                                 body = body, ...)
 
-  resdf <- ldply(process_details, rbind)
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
