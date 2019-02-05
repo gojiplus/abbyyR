@@ -42,7 +42,9 @@ processCheckmarkField <- function(file_path = "",
                                 body = body, ...)
 
   # collapse to a data.frame
-  resdf <- as.data.frame(do.call(rbind, process_details))
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

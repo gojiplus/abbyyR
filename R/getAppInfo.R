@@ -23,8 +23,6 @@ getAppInfo <- function(...) {
 
   appinfo <- abbyy_GET("getApplicationInfo", query = "", ...)[[1]]
 
-  appinfo <- as.data.frame(appinfo)
-
   cat("Name of Application: ", appinfo$name, "\n", sep = "")
   cat("No. of Pages Remaining: ", appinfo$pages, "\n", sep = "")
   cat("No. of Fields Remaining: ", appinfo$fields, "\n", sep = "")

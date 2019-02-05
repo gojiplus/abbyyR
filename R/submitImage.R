@@ -14,27 +14,29 @@
 #' }
 
 submitImage <- function(file_path = "", taskId = "", pdfPassword = "", ...) {
-
+  
   if (!file.exists(file_path)) {
     stop("File Doesn't Exist. Please check the path.")
   }
-
+  
   # The API doesn't handle taskId="" and that is fine as new task is created
   if (taskId == "") {
     querylist <- list(pdfPassword = pdfPassword)
   } else {
     querylist <- list(taskId = taskId, pdfPassword = pdfPassword)
   }
-
+  
   submit_details <- abbyy_POST("submitImage",
                                query = querylist,
                                body = upload_file(file_path), ...)
-
-  resdf <- as.data.frame(do.call(rbind, submit_details))
-
+  
+  
+  resdf <- ldply(submit_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
   cat("Task ID: ",       resdf$id, "\n")
-
+  
   resdf
 }
