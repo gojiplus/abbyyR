@@ -72,7 +72,9 @@ processRemoteImage <- function(img_url = NULL, language = "English",
 
   process_details <- abbyy_GET("processRemoteImage", query = querylist, ...)
 
-  resdf <- ldply(process_details, rbind)
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

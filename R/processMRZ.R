@@ -21,7 +21,9 @@ processMRZ <- function(file_path = "", ...) {
 
   process_details <- abbyy_POST("processMRZ", body = body, ...)
 
-  resdf <- ldply(process_details, rbind)
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

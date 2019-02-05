@@ -27,7 +27,9 @@ processFields <- function(file_path = "", taskId = NULL, description = "", ...){
                                  query = querylist,
                                  body = upload_file(file_path), ...)
 
-  resdf <- ldply(process_details, rbind)
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

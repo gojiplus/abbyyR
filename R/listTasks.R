@@ -55,7 +55,9 @@ listTasks <- function(fromDate = NULL,
   tasklist  <- abbyy_GET("listTasks", query = querylist, ...)
 
   # Converting list to a data.frame
-  resdf   <- ldply(tasklist, rbind)
+  resdf   <- ldply(tasklist, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Total No. of Tasks: ", nrow(resdf), "\n")

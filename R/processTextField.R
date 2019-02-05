@@ -61,7 +61,9 @@ processTextField <- function(file_path = "",
                                 query = querylist,
                                 body = body, ...)
 
-  resdf <- ldply(process_details, rbind)
+  resdf <- ldply(process_details, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")

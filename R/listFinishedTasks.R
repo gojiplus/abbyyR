@@ -33,7 +33,9 @@ listFinishedTasks <- function(...) {
     return(invisible(no_dat))
   }
 
-  resdf <- ldply(tasklist, rbind)
+  resdf <- ldply(tasklist, rbind, .id = NULL)
+  row.names(resdf) <- NULL
+  resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("No. of Finished Tasks: ", nrow(resdf), "\n")
