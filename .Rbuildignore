@@ -19,3 +19,4 @@
 ^_pkgdown\.yml$
 .lintr
 .github
+^CRAN-RELEASE$
