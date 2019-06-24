@@ -20,3 +20,4 @@
 .lintr
 .github
 ^CRAN-RELEASE$
+^codecov.yml$
