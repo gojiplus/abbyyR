@@ -5,8 +5,8 @@
 \title{Process Bar Code Field}
 \usage{
 processBarcodeField(file_path = "", barcodeType = "autodetect",
-  region = "-1,-1,-1,-1", containsBinaryData = "false", pdfPassword = "",
-  description = "", ...)
+  region = "-1,-1,-1,-1", containsBinaryData = "false",
+  pdfPassword = "", description = "", ...)
 }
 \arguments{
 \item{file_path}{path of the document}

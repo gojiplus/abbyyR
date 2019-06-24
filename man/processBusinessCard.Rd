@@ -5,8 +5,9 @@
 \title{Process Business Card}
 \usage{
 processBusinessCard(file_path = "", language = "English",
-  imageSource = "auto", correctOrientation = "true", correctSkew = "true",
-  exportFormat = "vCard", description = "", pdfPassword = "", ...)
+  imageSource = "auto", correctOrientation = "true",
+  correctSkew = "true", exportFormat = "vCard", description = "",
+  pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{required, path of the document, default: ""}

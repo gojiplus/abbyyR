@@ -5,8 +5,8 @@
 \title{Process Photo ID}
 \usage{
 processPhotoId(file_path = "", idType = "auto", imageSource = "auto",
-  correctOrientation = "true", correctSkew = "true", description = "",
-  pdfPassword = "", ...)
+  correctOrientation = "true", correctSkew = "true",
+  description = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path to file; required}

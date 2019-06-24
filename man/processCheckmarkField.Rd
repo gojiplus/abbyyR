@@ -5,8 +5,8 @@
 \title{processCheckmarkField}
 \usage{
 processCheckmarkField(file_path = "", checkmarkType = "empty",
-  region = "-1,-1,-1,-1", correctionAllowed = "false", pdfPassword = "",
-  description = "", ...)
+  region = "-1,-1,-1,-1", correctionAllowed = "false",
+  pdfPassword = "", description = "", ...)
 }
 \arguments{
 \item{file_path}{required, path of the document, default: ""}

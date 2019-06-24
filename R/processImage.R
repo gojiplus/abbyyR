@@ -2,7 +2,6 @@
 #'
 #' This function processes an image
 #' @param file_path path to the document
-#' @param region String. Optional. Default: "-1,-1,-1,-1". Region of the image.
 #' @param language optional, default: English
 #' @param profile   String. Optional; default: \code{documentConversion}
 #' Options: \code{documentConversion, documentArchiving, textExtraction, fieldLevelRecognition, barcodeRecognition}

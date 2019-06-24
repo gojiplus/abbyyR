@@ -5,15 +5,15 @@
 \title{Process Image}
 \usage{
 processImage(file_path = "", language = "English",
-  profile = c("documentConversion", "documentArchiving", "textExtraction",
-  "fieldLevelRecognition", "barcodeRecognition"), textType = c("normal",
-  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"),
-  imageSource = c("auto", "photo", "scanner"),
-  correctOrientation = c("true", "false"), correctSkew = c("true", "false"),
-  region = "-1,-1,-1,-1", readBarcodes = c("false", "true"),
-  exportFormat = c("txt", "txtUnstructured", "rtf", "docx", "xlsx", "pptx",
-  "pdfSearchable", "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage",
-  "alto"), description = "", pdfPassword = "", ...)
+  profile = c("documentConversion", "documentArchiving",
+  "textExtraction", "barcodeRecognition"), textType = c("normal",
+  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7",
+  "gothic"), imageSource = c("auto", "photo", "scanner"),
+  correctOrientation = c("true", "false"), correctSkew = c("true",
+  "false"), readBarcodes = c("false", "true"), exportFormat = c("txt",
+  "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
+  "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
+  description = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path to the document}
@@ -34,8 +34,6 @@ Options: \code{true} or \code{false}}
 
 \item{correctSkew}{String. Optional; default: \code{true}.
 Options: \code{true} or \code{false}}
-
-\item{region}{String. Optional. Default: "-1,-1,-1,-1". Region of the image.}
 
 \item{readBarcodes}{Optional; 
 Options: \code{true} or \code{false}}

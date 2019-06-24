@@ -5,12 +5,12 @@
 \title{Process Document}
 \usage{
 processDocument(taskId = NULL, language = "English",
-  profile = c("documentConversion", "documentArchiving", "textExtraction",
-  "fieldLevelRecognition", "barcodeRecognition"), textType = c("normal",
-  "typewriter", "matrix", "index", "ocrA", "ocrB", "e13b", "cmc7", "gothic"),
-  imageSource = c("auto", "photo", "scanner"),
-  correctOrientation = c("true", "false"), correctSkew = c("true", "false"),
-  readBarcodes = c("false", "true"), exportFormat = c("txt",
+  profile = c("documentConversion", "documentArchiving",
+  "textExtraction", "fieldLevelRecognition", "barcodeRecognition"),
+  textType = c("normal", "typewriter", "matrix", "index", "ocrA", "ocrB",
+  "e13b", "cmc7", "gothic"), imageSource = c("auto", "photo", "scanner"),
+  correctOrientation = c("true", "false"), correctSkew = c("true",
+  "false"), readBarcodes = c("false", "true"), exportFormat = c("txt",
   "txtUnstructured", "rtf", "docx", "xlsx", "pptx", "pdfSearchable",
   "pdfTextAndImages", "pdfa", "xml", "xmlForCorrectedImage", "alto"),
   description = NULL, pdfPassword = NULL, ...)

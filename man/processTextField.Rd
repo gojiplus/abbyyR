@@ -8,8 +8,8 @@ processTextField(file_path = "", region = "-1,-1,-1,-1",
   language = "English", letterSet = "", regExp = "",
   textType = "normal", oneTextLine = "false",
   oneWordPerTextLine = "false", markingType = "simpleText",
-  placeholdersCount = "1", writingStyle = "default", description = "",
-  pdfPassword = "", ...)
+  placeholdersCount = "1", writingStyle = "default",
+  description = "", pdfPassword = "", ...)
 }
 \arguments{
 \item{file_path}{path of the document}

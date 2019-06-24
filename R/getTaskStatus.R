@@ -24,13 +24,13 @@ getTaskStatus <- function(taskId = NULL, ...) {
 
   querylist <- list(taskId = taskId)
   taskdetails <- abbyy_GET("getTaskStatus", query = querylist, ...)
-  
+
   resdf <- ldply(taskdetails, rbind, .id = NULL)
   row.names(resdf) <- NULL
   resdf[] <- lapply(resdf, as.character)
 
   # Print some important things
   cat("Status of the task: ", resdf$status, "\n")
-  
+
   resdf
 }
