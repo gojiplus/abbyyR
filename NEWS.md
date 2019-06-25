@@ -2,6 +2,7 @@
 
 * fixed bug in processImage. API call no longer supports region
 * how dataframe return is handled --- breaking changes either in abbyy api or plyr
+* fixed links to vignettes in abbyyR-package R file
 
 # abbyyR 0.5.4
 
