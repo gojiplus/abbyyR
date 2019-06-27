@@ -11,6 +11,7 @@ before_install:
 - Rscript -e 'install.packages("Rdpack")'
 - Rscript -e 'install.packages("tinytex")'
 - Rscript -e 'install.packages("pander")'
+- Rscript -e 'install.packages("digest")'
 - Rscript -e 'tinytex::install_tinytex(force=TRUE)'
 - sudo apt-get install ghostscript
 - openssl aes-256-cbc -K $encrypted_1fc90f464345_key -iv $encrypted_1fc90f464345_iv
