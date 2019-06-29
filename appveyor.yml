@@ -9,9 +9,14 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
+  - travis-tool.sh r_binary_install curl
 
 test_script:
   - travis-tool.sh run_tests
+
+before_test:
+  - cinst pandoc
+  - ps: $env:Path += ";C:\Program Files (x86)\Pandoc\"
 
 environment:
   global:
