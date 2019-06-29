@@ -46,3 +46,6 @@ artifacts:
 
   - path: '\*_*.zip'
     name: Bits
+
+cache:
+  - C:\RLibrary
